@@ -52,7 +52,7 @@ const Navbar = () => {
                 <img alt="Travel for university admissions" style={{
                 filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.1))',
                 minHeight: '120px'
-              }} className="h-20 w-auto min-w-[180px] md:h-24 transition-transform duration-300 hover:scale-105 object-contain" src="https://ik.imagekit.io/sa7gckrpwy/logo%20travel.ico?updatedAt=1748450827694" />
+              }} src="https://ik.imagekit.io/sa7gckrpwy/logo%20travel.ico?updatedAt=1748450827694" className="h-20 w-auto min-w-[180px] md:h-24 transition-transform duration-300 hover:scale-105 object-scale-down" />
               </div>
             </Link>
           </div>
