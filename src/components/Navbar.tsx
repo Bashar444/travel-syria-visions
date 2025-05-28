@@ -49,10 +49,10 @@ const Navbar = () => {
           <div className={`flex items-center ${direction === 'rtl' ? 'order-2' : 'order-1'}`}>
             <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
               <div className="flex items-center logo-hover">
-                <img src="/lovable-uploads/266da83c-19ae-41d9-b291-60b8b0b9136a.png" alt="Travel for university admissions" className="h-20 w-auto min-w-[180px] md:h-24 transition-transform duration-300 hover:scale-105" style={{
+                <img alt="Travel for university admissions" style={{
                 filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.1))',
                 minHeight: '120px'
-              }} />
+              }} className="h-20 w-auto min-w-[180px] md:h-24 transition-transform duration-300 hover:scale-105 object-contain" src="https://ik.imagekit.io/sa7gckrpwy/logo%20travel.ico?updatedAt=1748450827694" />
               </div>
             </Link>
           </div>
