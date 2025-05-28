@@ -26,7 +26,7 @@ const OptimizedImage = ({
       
       {hasError ? <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
           <span className="text-gray-400">خطأ في تحميل الصورة</span>
-        </div> : <img src={src} alt={alt} width={width} height={height} loading={priority ? "eager" : "lazy"} onLoad={handleLoad} onError={handleError} className="delete the image from this website" />}
+        </div> : <img src={src} alt={alt} width={width} height={height} loading={priority ? "eager" : "lazy"} onLoad={handleLoad} onError={handleError} className="delete the image from this website object-contain" />}
     </div>;
 };
 export default OptimizedImage;
