@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -97,5 +98,50 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] {
+    text-align: right;
+  }
+
+  [dir="rtl"] .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 1;
+  }
+
+  /* Arabic Typography */
+  [lang="ar"] {
+    font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+    font-size: 1.1em;
+    line-height: 1.6;
+  }
+
+  [lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6 {
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  /* English Typography */
+  [lang="en"] {
+    font-family: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+  }
+
+  /* Smooth transitions for language switching */
+  html {
+    transition: direction 0.3s ease;
+  }
+
+  /* Custom scrollbar for RTL */
+  [dir="rtl"]::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  [dir="rtl"]::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  [dir="rtl"]::-webkit-scrollbar-thumb {
+    background: #EE3524;
+    border-radius: 4px;
   }
 }
