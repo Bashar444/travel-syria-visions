@@ -7,76 +7,51 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
-
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
-
     --radius: 0.5rem;
-
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
-
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
-
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
@@ -109,39 +84,126 @@
     --tw-space-x-reverse: 1;
   }
 
-  /* Arabic Typography */
+  /* Arabic Typography - Enhanced */
   [lang="ar"] {
     font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-    font-size: 1.1em;
-    line-height: 1.6;
+    font-size: 1.15em;
+    line-height: 1.7;
+    letter-spacing: 0.025em;
   }
 
   [lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6 {
     font-weight: 700;
     line-height: 1.4;
+    margin-bottom: 0.5em;
   }
+
+  [lang="ar"] h1 { font-size: 2.5em; }
+  [lang="ar"] h2 { font-size: 2em; }
+  [lang="ar"] h3 { font-size: 1.75em; }
 
   /* English Typography */
   [lang="en"] {
     font-family: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+    line-height: 1.6;
+  }
+
+  /* Enhanced Navigation Styles */
+  .nav-link {
+    @apply relative transition-all duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #EE3524;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .nav-link.active::after {
+    transform: scaleX(1);
+  }
+
+  /* Enhanced Button Hover Effects */
+  .enhanced-hover {
+    @apply transition-all duration-300 transform hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .enhanced-hover:active {
+    @apply translate-y-0 shadow-md;
+  }
+
+  /* Mobile Menu Accordion Animation */
+  .mobile-menu-item {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .mobile-menu-item:hover {
+    @apply bg-gray-50 transform translate-x-1;
+  }
+
+  [dir="rtl"] .mobile-menu-item:hover {
+    @apply transform -translate-x-1;
   }
 
   /* Smooth transitions for language switching */
   html {
-    transition: direction 0.3s ease;
+    transition: direction 0.4s ease;
   }
 
-  /* Custom scrollbar for RTL */
+  /* Enhanced Custom scrollbar for RTL */
   [dir="rtl"]::-webkit-scrollbar {
     width: 8px;
   }
 
   [dir="rtl"]::-webkit-scrollbar-track {
     background: #f1f1f1;
+    border-radius: 4px;
   }
 
   [dir="rtl"]::-webkit-scrollbar-thumb {
     background: #EE3524;
     border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  [dir="rtl"]::-webkit-scrollbar-thumb:hover {
+    background: #d32f2f;
+  }
+
+  /* Focus states for accessibility */
+  .focus-enhanced:focus-visible {
+    @apply ring-2 ring-[#EE3524] ring-offset-2 outline-none;
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:scale-105;
+  }
+
+  /* Logo animation */
+  .logo-hover {
+    @apply transition-transform duration-300 hover:scale-110;
+  }
+}
+
+/* Performance optimizations */
+@layer utilities {
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  .optimized-rendering {
+    contain: layout style paint;
   }
 }
