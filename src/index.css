@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -86,7 +87,7 @@
   /* Enhanced Arabic Typography */
   [lang="ar"] {
     font-family: 'Noto Sans Arabic', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-    font-size: 1.25em; /* 18px base size for Arabic */
+    font-size: 1.25em;
     line-height: 1.7;
     letter-spacing: 0.025em;
   }
@@ -104,21 +105,69 @@
   /* Enhanced English Typography */
   [lang="en"] {
     font-family: 'Inter', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
-    font-size: 1em; /* 14px base size for English */
+    font-size: 1em;
     line-height: 1.6;
+  }
+
+  /* Deutsche Bank Color Palette Implementation */
+  .db-primary {
+    background-color: #0018A8;
+    color: white;
+  }
+
+  .db-primary-hover:hover {
+    background-color: #00A3E0;
+  }
+
+  .db-dark-bg {
+    background-color: #0E1B34;
+    color: white;
+  }
+
+  .db-secondary-dark {
+    background-color: #12213C;
+    color: white;
+  }
+
+  .db-accent {
+    background-color: #00A3E0;
+    color: white;
+  }
+
+  .db-accent-alt {
+    background-color: #3E82EF;
+    color: white;
+  }
+
+  .db-light-bg {
+    background-color: #F6F8FC;
+    color: #2B3A3E;
+  }
+
+  .db-light-bg-alt {
+    background-color: #EDF1F7;
+    color: #2B3A3E;
+  }
+
+  .db-neutral-text {
+    color: #2B3A3E;
+  }
+
+  .db-neutral-border {
+    border-color: #747474;
   }
 
   /* Enhanced Logo Styling */
   .logo-hover {
     @apply transition-all duration-300 hover:scale-105;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+    filter: drop-shadow(0 2px 8px rgba(0,24,168,0.1));
   }
 
   .logo-hover:hover {
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+    filter: drop-shadow(0 4px 12px rgba(0,24,168,0.15));
   }
 
-  /* Enhanced Navigation Styles */
+  /* Enhanced Navigation Styles with Deutsche Bank Colors */
   .nav-link {
     @apply relative transition-all duration-300;
   }
@@ -130,7 +179,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #EE3524;
+    background-color: #0018A8;
     transform: scaleX(0);
     transition: transform 0.3s ease-in-out;
   }
@@ -139,7 +188,7 @@
     transform: scaleX(1);
   }
 
-  /* Enhanced Button Hover Effects */
+  /* Enhanced Button Hover Effects with Deutsche Bank Colors */
   .enhanced-hover {
     @apply transition-all duration-300 transform hover:shadow-lg hover:-translate-y-1;
   }
@@ -154,26 +203,36 @@
   }
 
   .mobile-menu-item:hover {
-    @apply bg-gray-50 transform translate-x-1;
+    @apply bg-[#F6F8FC] transform translate-x-1;
   }
 
   [dir="rtl"] .mobile-menu-item:hover {
     @apply transform -translate-x-1;
   }
 
-  /* University Cards Enhancement */
+  /* University Cards Enhancement with Deutsche Bank Colors */
   .university-card {
     @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:scale-105;
+    background: linear-gradient(135deg, #F6F8FC 0%, #EDF1F7 100%);
+    border: 1px solid #747474;
   }
 
-  /* Form Enhancement */
+  .university-card:hover {
+    border-color: #0018A8;
+    box-shadow: 0 10px 30px rgba(0,24,168,0.1);
+  }
+
+  /* Form Enhancement with Deutsche Bank Colors */
   .enhanced-form-field:focus {
-    @apply ring-2 ring-[#EE3524] border-transparent;
+    @apply ring-2 ring-[#0018A8] border-transparent;
+    background-color: #F6F8FC;
   }
 
-  /* Loading Spinner */
+  /* Loading Spinner with Deutsche Bank Colors */
   .loading-spinner {
     animation: spin 1s linear infinite;
+    border-color: #0018A8;
+    border-top-color: transparent;
   }
 
   @keyframes spin {
@@ -186,34 +245,38 @@
     transition: direction 0.4s ease;
   }
 
-  /* Enhanced Custom scrollbar for RTL */
+  /* Enhanced Custom scrollbar for RTL with Deutsche Bank Colors */
   [dir="rtl"]::-webkit-scrollbar {
     width: 8px;
   }
 
   [dir="rtl"]::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #F6F8FC;
     border-radius: 4px;
   }
 
   [dir="rtl"]::-webkit-scrollbar-thumb {
-    background: #EE3524;
+    background: #0018A8;
     border-radius: 4px;
     transition: background-color 0.3s ease;
   }
 
   [dir="rtl"]::-webkit-scrollbar-thumb:hover {
-    background: #d32f2f;
+    background: #00A3E0;
   }
 
-  /* Focus states for accessibility */
+  /* Focus states for accessibility with Deutsche Bank Colors */
   .focus-enhanced:focus-visible {
-    @apply ring-2 ring-[#EE3524] ring-offset-2 outline-none;
+    @apply ring-2 ring-[#0018A8] ring-offset-2 outline-none;
   }
 
-  /* Card hover effects */
+  /* Card hover effects with Deutsche Bank Colors */
   .card-hover {
     @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:scale-105;
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 20px 40px rgba(0,24,168,0.1);
   }
 }
 
@@ -232,20 +295,40 @@
     contain: layout style paint;
   }
 
-  /* Enhanced Color Palette */
-  .text-university-blue {
-    color: #2E86AB;
+  /* Deutsche Bank Enhanced Color Palette Utilities */
+  .text-db-primary {
+    color: #0018A8;
   }
 
-  .bg-university-blue {
-    background-color: #2E86AB;
+  .bg-db-primary {
+    background-color: #0018A8;
   }
 
-  .text-success-green {
-    color: #43AA8B;
+  .text-db-dark {
+    color: #0E1B34;
   }
 
-  .bg-success-green {
-    background-color: #43AA8B;
+  .bg-db-dark {
+    background-color: #0E1B34;
+  }
+
+  .text-db-accent {
+    color: #00A3E0;
+  }
+
+  .bg-db-accent {
+    background-color: #00A3E0;
+  }
+
+  .text-db-neutral {
+    color: #2B3A3E;
+  }
+
+  .bg-db-light {
+    background-color: #F6F8FC;
+  }
+
+  .border-db-neutral {
+    border-color: #747474;
   }
 }

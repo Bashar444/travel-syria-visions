@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -47,8 +48,8 @@ const Index = () => {
       />
       
       <div className="min-h-screen">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-[#EE3524] to-red-600 text-white py-20">
+        {/* Hero Section with Deutsche Bank Colors */}
+        <section className="bg-gradient-to-br from-[#0018A8] to-[#0E1B34] text-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className={direction === 'rtl' ? 'text-right' : 'text-left'}>
@@ -61,14 +62,14 @@ const Index = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     size="lg"
-                    className="bg-white text-[#EE3524] hover:bg-gray-100 font-semibold px-8 py-4 text-lg"
+                    className="bg-white text-[#0018A8] hover:bg-[#F6F8FC] font-semibold px-8 py-4 text-lg transition-all duration-300"
                   >
                     {t('hero.cta')}
                   </Button>
                   <Button 
                     size="lg"
                     variant="outline"
-                    className="border-2 border-white text-white hover:bg-white hover:text-[#EE3524] font-semibold px-8 py-4 text-lg"
+                    className="border-2 border-white text-white hover:bg-white hover:text-[#0018A8] font-semibold px-8 py-4 text-lg transition-all duration-300"
                     onClick={() => window.open('https://wa.me/+963985453247', '_blank')}
                   >
                     {t('hero.whatsapp')}
@@ -77,11 +78,11 @@ const Index = () => {
               </div>
               
               <div className="relative">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-[#00A3E0]/30">
                   <div className="grid grid-cols-2 gap-6">
                     {stats.map((stat, index) => (
                       <div key={index} className="text-center">
-                        <div className="text-3xl font-bold mb-2">{stat.number}</div>
+                        <div className="text-3xl font-bold mb-2 text-[#00A3E0]">{stat.number}</div>
                         <div className="text-sm opacity-90">{stat.label}</div>
                       </div>
                     ))}
@@ -92,29 +93,29 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Services Overview */}
-        <section className="py-20 bg-gray-50">
+        {/* Services Overview with Deutsche Bank Colors */}
+        <section className="py-20 bg-[#F6F8FC]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className={`text-center mb-16 ${direction === 'rtl' ? 'text-right' : 'text-left'}`}>
-              <h2 className="text-4xl font-bold text-[#231F20] mb-4">
+              <h2 className="text-4xl font-bold text-[#0E1B34] mb-4">
                 {t('services.title')}
               </h2>
-              <div className="text-2xl font-semibold text-[#EE3524] mb-8">
+              <div className="text-2xl font-semibold text-[#0018A8] mb-8">
                 {t('services.price')}
               </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {services.map((service, index) => (
-                <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 university-card">
                   <CardContent className="p-6 text-center">
-                    <div className="bg-[#EE3524] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="bg-[#0018A8] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-[#00A3E0] transition-colors duration-300">
                       <service.icon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-lg font-semibold text-[#231F20] mb-3">
+                    <h3 className="text-lg font-semibold text-[#0E1B34] mb-3">
                       {service.title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-[#2B3A3E] leading-relaxed">
                       {service.description}
                     </p>
                   </CardContent>
@@ -124,14 +125,14 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Trust Indicators with Optimized Images */}
+        {/* Trust Indicators with Deutsche Bank Colors */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-[#231F20] mb-12">
+              <h2 className="text-3xl font-bold text-[#0E1B34] mb-12">
                 شركاؤنا من الجامعات المرموقة
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
                 {[
                   { name: "Sant'Anna School", image: "https://images.unsplash.com/photo-1562774053-701939374585?w=400&q=80" },
                   { name: "Milano-Bicocca", image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&q=80" },
@@ -140,7 +141,7 @@ const Index = () => {
                   { name: "SRM Andhra Pradesh", image: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?w=400&q=80" },
                   { name: "Babeș-Bolyai", image: "https://images.unsplash.com/photo-1580537659466-0a9bfa916a54?w=400&q=80" },
                 ].map((university, index) => (
-                  <div key={index} className="bg-gray-100 h-20 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                  <div key={index} className="bg-[#EDF1F7] h-20 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-[#747474]/20 hover:border-[#0018A8]/50">
                     <OptimizedImage
                       src={university.image}
                       alt={`${university.name} University campus`}
@@ -153,8 +154,8 @@ const Index = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-[#231F20] text-white">
+        {/* CTA Section with Deutsche Bank Colors */}
+        <section className="py-20 bg-[#0E1B34] text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold mb-4">
               ابدأ رحلتك التعليمية اليوم
@@ -164,7 +165,7 @@ const Index = () => {
             </p>
             <Button 
               size="lg"
-              className="bg-[#EE3524] hover:bg-red-600 text-white font-semibold px-12 py-4 text-lg"
+              className="bg-[#0018A8] hover:bg-[#00A3E0] text-white font-semibold px-12 py-4 text-lg transition-all duration-300"
             >
               {t('hero.cta')}
             </Button>
