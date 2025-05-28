@@ -33,15 +33,19 @@ const Navbar = () => {
   return (
     <nav className="bg-white shadow-lg border-b-2 border-[#EE3524] sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
+        <div className="flex justify-between items-center h-24">
+          {/* Logo - Optimized with larger size and hover effects */}
           <div className={`flex items-center ${direction === 'rtl' ? 'order-2' : 'order-1'}`}>
             <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-              <div className="flex items-center">
+              <div className="flex items-center logo-hover">
                 <img 
                   src="/lovable-uploads/266da83c-19ae-41d9-b291-60b8b0b9136a.png" 
                   alt="Travel for university admissions" 
-                  className="h-12 w-auto"
+                  className="h-20 w-auto min-w-[180px] md:h-24 transition-transform duration-300 hover:scale-105"
+                  style={{ 
+                    filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.1))',
+                    minHeight: '120px'
+                  }}
                 />
               </div>
             </Link>
@@ -100,7 +104,11 @@ const Navbar = () => {
                     <img 
                       src="/lovable-uploads/266da83c-19ae-41d9-b291-60b8b0b9136a.png" 
                       alt="Travel for university admissions" 
-                      className="h-10 w-auto mx-auto"
+                      className="h-16 w-auto min-w-[140px] mx-auto"
+                      style={{ 
+                        filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.1))',
+                        minHeight: '93px'
+                      }}
                     />
                   </div>
 

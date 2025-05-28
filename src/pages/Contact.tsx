@@ -4,20 +4,66 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Textarea } from '@/components/ui/textarea';
+import { 
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { useForm } from 'react-hook-form';
 
 const Contact = () => {
   const { t, direction } = useLanguage();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const form = useForm({
+    defaultValues: {
+      fullName: '',
+      phoneNumber: '',
+      email: '',
+      preferredUniversity: '',
+      desiredMajor: '',
+      additionalMessage: ''
+    }
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+  const universities = [
+    'Sant\'Anna School of Advanced Studies (Pisa)',
+    'University of Milano-Bicocca',
+    'LIUC Business University',
+    'SRM Institute of Science and Technology (Chennai)',
+    'SRM University (Andhra Pradesh)',
+    'Babeș-Bolyai University (Cluj-Napoca)'
+  ];
+
+  const handleSubmit = async (data: any) => {
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    try {
+      // In a real application, this would send to alhusseinamjad904@gmail.com
+      console.log('Form submission to alhusseinamjad904@gmail.com:', data);
+      
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      setShowSuccess(true);
+      form.reset();
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => setShowSuccess(false), 5000);
+    } catch (error) {
+      console.error('Form submission error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  const whatsappNumber = "+963985453247";
 
   return (
     <div className="min-h-screen py-20">
@@ -27,64 +73,184 @@ const Contact = () => {
         </h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
+          {/* Enhanced Contact Form */}
           <Card className="shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl text-[#231F20]">
-                إرسال رسالة
+                احجز استشارة مجانية
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t('contact.form.name')}
-                  </label>
-                  <Input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full"
-                    dir={direction}
-                  />
+              {showSuccess && (
+                <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-md mb-6">
+                  تم إرسال طلبك بنجاح! سنتواصل معك قريباً.
                 </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t('contact.form.email')}
-                  </label>
-                  <Input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full"
+              )}
+              
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="fullName"
+                    rules={{ required: "الاسم الكامل مطلوب" }}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-gray-700">
+                          الاسم الكامل *
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            {...field} 
+                            className="w-full" 
+                            dir={direction}
+                            placeholder="أدخل اسمك الكامل"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t('contact.form.message')}
-                  </label>
-                  <textarea
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    rows={4}
-                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#EE3524] focus:border-transparent"
-                    dir={direction}
+                  
+                  <FormField
+                    control={form.control}
+                    name="phoneNumber"
+                    rules={{ required: "رقم الهاتف مطلوب" }}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-gray-700">
+                          رقم الهاتف *
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            {...field} 
+                            type="tel"
+                            className="w-full" 
+                            placeholder="+963xxxxxxxxx"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <Button 
-                  type="submit"
-                  className="w-full bg-[#EE3524] hover:bg-red-600 text-white font-semibold py-3"
-                >
-                  {t('contact.form.submit')}
-                </Button>
-              </form>
+                  
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    rules={{ 
+                      required: "البريد الإلكتروني مطلوب",
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: "البريد الإلكتروني غير صحيح"
+                      }
+                    }}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-gray-700">
+                          البريد الإلكتروني *
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            {...field} 
+                            type="email"
+                            className="w-full" 
+                            placeholder="example@email.com"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="preferredUniversity"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-gray-700">
+                          الجامعة المرغوبة
+                        </FormLabel>
+                        <FormControl>
+                          <select 
+                            {...field}
+                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#EE3524] focus:border-transparent"
+                            dir={direction}
+                          >
+                            <option value="">اختر الجامعة</option>
+                            {universities.map((university) => (
+                              <option key={university} value={university}>
+                                {university}
+                              </option>
+                            ))}
+                          </select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="desiredMajor"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-gray-700">
+                          التخصص المطلوب
+                        </FormLabel>
+                        <FormControl>
+                          <Input 
+                            {...field} 
+                            className="w-full" 
+                            dir={direction}
+                            placeholder="مثل: هندسة الحاسوب، إدارة الأعمال، الطب"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="additionalMessage"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-gray-700">
+                          رسالة إضافية (اختيارية)
+                        </FormLabel>
+                        <FormControl>
+                          <Textarea
+                            {...field}
+                            rows={4}
+                            className="w-full"
+                            dir={direction}
+                            placeholder="أي معلومات إضافية تود مشاركتها..."
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <Button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#EE3524] hover:bg-red-600 text-white font-semibold py-3 transition-all duration-300 disabled:opacity-50"
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        جاري الإرسال...
+                      </div>
+                    ) : (
+                      'إرسال الطلب'
+                    )}
+                  </Button>
+                </form>
+              </Form>
             </CardContent>
           </Card>
 
-          {/* Contact Info */}
+          {/* Contact Info - WhatsApp Only */}
           <div className="space-y-8">
             <Card className="shadow-lg">
               <CardContent className="p-8">
@@ -93,27 +259,20 @@ const Contact = () => {
                 </h3>
                 <div className="space-y-4">
                   <Button
-                    onClick={() => window.open('https://wa.me/+963123456789', '_blank')}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3"
+                    onClick={() => window.open(`https://wa.me/${whatsappNumber}`, '_blank')}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 transition-all duration-300"
                   >
                     تواصل عبر واتساب
                   </Button>
                   
-                  <Button
-                    onClick={() => window.open('https://facebook.com/travel.ltd', '_blank')}
-                    variant="outline"
-                    className="w-full border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3"
-                  >
-                    زر صفحتنا على فيسبوك
-                  </Button>
-                  
-                  <Button
-                    onClick={() => window.open('https://instagram.com/travel.ltd', '_blank')}
-                    variant="outline"
-                    className="w-full border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white font-semibold py-3"
-                  >
-                    تابعنا على إنستغرام
-                  </Button>
+                  <div className="text-center pt-4">
+                    <p className="text-gray-600">
+                      <strong>رقم الواتساب:</strong> {whatsappNumber}
+                    </p>
+                    <p className="text-gray-600 mt-2">
+                      <strong>البريد الإلكتروني:</strong> alhusseinamjad904@gmail.com
+                    </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>

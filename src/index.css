@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -84,10 +83,10 @@
     --tw-space-x-reverse: 1;
   }
 
-  /* Arabic Typography - Enhanced */
+  /* Enhanced Arabic Typography */
   [lang="ar"] {
-    font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-    font-size: 1.15em;
+    font-family: 'Noto Sans Arabic', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+    font-size: 1.25em; /* 18px base size for Arabic */
     line-height: 1.7;
     letter-spacing: 0.025em;
   }
@@ -102,10 +101,21 @@
   [lang="ar"] h2 { font-size: 2em; }
   [lang="ar"] h3 { font-size: 1.75em; }
 
-  /* English Typography */
+  /* Enhanced English Typography */
   [lang="en"] {
-    font-family: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+    font-family: 'Inter', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 1em; /* 14px base size for English */
     line-height: 1.6;
+  }
+
+  /* Enhanced Logo Styling */
+  .logo-hover {
+    @apply transition-all duration-300 hover:scale-105;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+  }
+
+  .logo-hover:hover {
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
   }
 
   /* Enhanced Navigation Styles */
@@ -151,6 +161,26 @@
     @apply transform -translate-x-1;
   }
 
+  /* University Cards Enhancement */
+  .university-card {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:scale-105;
+  }
+
+  /* Form Enhancement */
+  .enhanced-form-field:focus {
+    @apply ring-2 ring-[#EE3524] border-transparent;
+  }
+
+  /* Loading Spinner */
+  .loading-spinner {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
   /* Smooth transitions for language switching */
   html {
     transition: direction 0.4s ease;
@@ -185,11 +215,6 @@
   .card-hover {
     @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:scale-105;
   }
-
-  /* Logo animation */
-  .logo-hover {
-    @apply transition-transform duration-300 hover:scale-110;
-  }
 }
 
 /* Performance optimizations */
@@ -205,5 +230,22 @@
 
   .optimized-rendering {
     contain: layout style paint;
+  }
+
+  /* Enhanced Color Palette */
+  .text-university-blue {
+    color: #2E86AB;
+  }
+
+  .bg-university-blue {
+    background-color: #2E86AB;
+  }
+
+  .text-success-green {
+    color: #43AA8B;
+  }
+
+  .bg-success-green {
+    background-color: #43AA8B;
   }
 }
