@@ -1,9 +1,9 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import SEO from '@/components/SEO';
+import StudentStats from '@/components/StudentStats';
 
 const Blog = () => {
   const { direction } = useLanguage();
@@ -92,10 +92,10 @@ const Blog = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className={`text-center mb-16 ${direction === 'rtl' ? 'text-right' : 'text-left'}`}>
-            <h1 className="text-4xl lg:text-5xl font-bold text-[#231F20] mb-6">
+            <h1 className="text-4xl lg:text-5xl font-bold text-[#231F20] mb-6 animate-fade-in">
               {direction === 'rtl' ? 'مدونة Travel.Ltd' : 'Travel.Ltd Blog'}
             </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto animate-fade-in delay-200">
               {direction === 'rtl' 
                 ? 'دليلك الشامل للدراسة في الخارج والحصول على أفضل الفرص التعليمية'
                 : 'Your comprehensive guide to studying abroad and getting the best educational opportunities'
@@ -103,18 +103,21 @@ const Blog = () => {
             </p>
           </div>
 
+          {/* Student Statistics Component */}
+          <StudentStats />
+
           {/* Featured Post */}
           <div className="mb-16">
-            <Card className="overflow-hidden shadow-xl">
+            <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                <div className="relative h-64 lg:h-auto">
+                <div className="relative h-64 lg:h-auto overflow-hidden">
                   <img 
                     src={blogPosts[0].image}
                     alt={blogPosts[0].title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute top-4 right-4 bg-[#EE3524] text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  <div className="absolute top-4 right-4 bg-[#EE3524] text-white px-3 py-1 rounded-full text-sm font-semibold animate-pulse">
                     {direction === 'rtl' ? 'مميز' : 'Featured'}
                   </div>
                 </div>
@@ -129,13 +132,13 @@ const Blog = () => {
                       <span>{blogPosts[0].author}</span>
                     </span>
                   </div>
-                  <h2 className="text-2xl font-bold text-[#231F20] mb-4">
+                  <h2 className="text-2xl font-bold text-[#231F20] mb-4 hover:text-[#0018A8] transition-colors">
                     {blogPosts[0].title}
                   </h2>
                   <p className="text-gray-600 mb-6 leading-relaxed">
                     {blogPosts[0].excerpt}
                   </p>
-                  <Button className="bg-[#EE3524] hover:bg-red-600 self-start">
+                  <Button className="bg-[#EE3524] hover:bg-red-600 self-start transition-all duration-300 transform hover:scale-105">
                     {direction === 'rtl' ? 'اقرأ المزيد' : 'Read More'}
                     <ArrowRight className={`w-4 h-4 ${direction === 'rtl' ? 'mr-2' : 'ml-2'}`} />
                   </Button>
@@ -147,14 +150,15 @@ const Blog = () => {
           {/* Blog Posts Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.slice(1).map((post, index) => (
-              <Card key={index} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="relative h-48">
+              <Card key={index} className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:border-[#0018A8]/30">
+                <div className="relative h-48 overflow-hidden">
                   <img 
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                     loading="lazy"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
                 <CardHeader className="pb-3">
                   <div className="flex items-center space-x-4 rtl:space-x-reverse text-gray-500 text-xs mb-2">
@@ -167,7 +171,7 @@ const Blog = () => {
                       <span>{post.author}</span>
                     </span>
                   </div>
-                  <CardTitle className="text-lg leading-tight">
+                  <CardTitle className="text-lg leading-tight hover:text-[#0018A8] transition-colors cursor-pointer">
                     {post.title}
                   </CardTitle>
                 </CardHeader>
@@ -175,7 +179,7 @@ const Blog = () => {
                   <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                     {post.excerpt}
                   </p>
-                  <Button variant="outline" size="sm" className="text-[#EE3524] border-[#EE3524] hover:bg-[#EE3524] hover:text-white">
+                  <Button variant="outline" size="sm" className="text-[#EE3524] border-[#EE3524] hover:bg-[#EE3524] hover:text-white transition-all duration-300 transform hover:scale-105">
                     {direction === 'rtl' ? 'اقرأ المزيد' : 'Read More'}
                   </Button>
                 </CardContent>
@@ -184,25 +188,28 @@ const Blog = () => {
           </div>
 
           {/* Newsletter Signup */}
-          <div className="mt-20 bg-[#231F20] text-white rounded-2xl p-12 text-center">
-            <h2 className="text-3xl font-bold mb-4">
-              {direction === 'rtl' ? 'اشترك في نشرتنا الإخبارية' : 'Subscribe to Our Newsletter'}
-            </h2>
-            <p className="text-xl mb-8 opacity-90">
-              {direction === 'rtl' 
-                ? 'احصل على أحدث النصائح والمنح الدراسية مباشرة في بريدك الإلكتروني'
-                : 'Get the latest tips and scholarships directly in your email'
-              }
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder={direction === 'rtl' ? 'بريدك الإلكتروني' : 'Your email'}
-                className="px-4 py-3 rounded-lg text-[#231F20] flex-1"
-              />
-              <Button className="bg-[#EE3524] hover:bg-red-600 px-8">
-                {direction === 'rtl' ? 'اشتراك' : 'Subscribe'}
-              </Button>
+          <div className="mt-20 bg-gradient-to-r from-[#231F20] to-[#0018A8] text-white rounded-2xl p-12 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 animate-pulse"></div>
+            <div className="relative z-10">
+              <h2 className="text-3xl font-bold mb-4 animate-fade-in">
+                {direction === 'rtl' ? 'اشترك في نشرتنا الإخبارية' : 'Subscribe to Our Newsletter'}
+              </h2>
+              <p className="text-xl mb-8 opacity-90 animate-fade-in delay-200">
+                {direction === 'rtl' 
+                  ? 'احصل على أحدث النصائح والمنح الدراسية مباشرة في بريدك الإلكتروني'
+                  : 'Get the latest tips and scholarships directly in your email'
+                }
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                <input 
+                  type="email" 
+                  placeholder={direction === 'rtl' ? 'بريدك الإلكتروني' : 'Your email'}
+                  className="px-4 py-3 rounded-lg text-[#231F20] flex-1 border-2 border-white/20 focus:border-white transition-all duration-300"
+                />
+                <Button className="bg-[#EE3524] hover:bg-red-600 px-8 transition-all duration-300 transform hover:scale-105">
+                  {direction === 'rtl' ? 'اشتراك' : 'Subscribe'}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
