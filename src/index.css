@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -88,7 +87,7 @@
                 direction 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* RTL Support */
+  /* Enhanced RTL Support */
   [dir="rtl"] {
     text-align: right;
   }
@@ -99,16 +98,58 @@
 
   /* Enhanced Arabic Typography */
   [lang="ar"] {
-    font-family: 'Noto Sans Arabic', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-    font-size: 1.05em;
-    line-height: 1.7;
-    letter-spacing: 0.025em;
+    font-family: 'Noto Sans Arabic', 'Amiri', 'Times New Roman', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+    font-size: 1.1em;
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+    font-weight: 500;
   }
 
   [lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6 {
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.5;
     margin-bottom: 0.5em;
+    letter-spacing: 0.02em;
+  }
+
+  [lang="ar"] p {
+    line-height: 1.9;
+    margin-bottom: 1em;
+  }
+
+  [lang="ar"] .text-xl {
+    font-size: 1.35rem;
+    line-height: 1.7;
+  }
+
+  [lang="ar"] .text-lg {
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+
+  [lang="ar"] button {
+    font-weight: 600;
+    letter-spacing: 0.025em;
+  }
+
+  /* Enhanced Arabic Input Support */
+  [lang="ar"] input[type="text"],
+  [lang="ar"] input[type="email"],
+  [lang="ar"] textarea,
+  [lang="ar"] select {
+    font-family: 'Noto Sans Arabic', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+    font-size: 1.05em;
+    line-height: 1.6;
+    padding: 0.75rem 1rem;
+  }
+
+  [lang="ar"] textarea {
+    line-height: 1.8;
+  }
+
+  /* Arabic Number Display */
+  [lang="ar"] .arabic-numbers {
+    font-feature-settings: "lnum" 1;
   }
 
   /* Professional Color Palette */
@@ -166,6 +207,20 @@
 
   .nav-link.active::after {
     transform: scaleX(1);
+  }
+
+  /* Fixed Feedback Button */
+  .feedback-button-fixed {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1000;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+
+  [dir="rtl"] .feedback-button-fixed {
+    right: auto;
+    left: 24px;
   }
 
   /* Enhanced Button Hover Effects */
@@ -318,6 +373,25 @@
     to { transform: scale(1); opacity: 1; }
   }
 
+  /* Enhanced Arabic Animation Support */
+  @keyframes fadeInRTL {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeInLTR {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  [dir="rtl"] .animate-fade-in {
+    animation: fadeInRTL 0.6s ease-out forwards;
+  }
+
+  [dir="ltr"] .animate-fade-in {
+    animation: fadeInLTR 0.6s ease-out forwards;
+  }
+
   /* Language Switch Animation */
   @keyframes languageSwitch {
     0% { opacity: 1; }
@@ -327,6 +401,16 @@
 
   .language-switch-animation {
     animation: languageSwitch 0.3s ease-in-out;
+  }
+
+  /* Enhanced Dialog Support for RTL */
+  [dir="rtl"] .dialog-content {
+    text-align: right;
+  }
+
+  [dir="rtl"] .dialog-content input,
+  [dir="rtl"] .dialog-content textarea {
+    text-align: right;
   }
 }
 

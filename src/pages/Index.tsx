@@ -9,6 +9,7 @@ import OptimizedImage from '@/components/OptimizedImage';
 import UniversityBrowser from '@/components/services/UniversityBrowser';
 import HajjServices from '@/components/services/HajjServices';
 import SaudiScholarships from '@/components/services/SaudiScholarships';
+import FeedbackButton from '@/components/FeedbackButton';
 
 const Index = () => {
   const { t, direction } = useLanguage();
@@ -69,42 +70,36 @@ const Index = () => {
     }
   ];
 
-  const universityShowcase = [
+  const educationShowcase = [
     {
-      name: "University of Bologna",
-      country: "Italy",
-      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
-      description: "One of Europe's oldest universities with world-class programs"
+      name: "Graduate Achievement",
+      description: "Celebrating successful graduation moments",
+      image: "/lovable-uploads/fe6a4f68-f143-4f67-9542-a8e94d68c617.png"
     },
     {
-      name: "SRM Institute",
-      country: "India", 
-      image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&q=80",
-      description: "Leading technology and engineering education"
+      name: "University Campus Life", 
+      description: "Modern university campuses and student life",
+      image: "/lovable-uploads/c591c245-e976-4338-939b-f22ccec167ab.png"
     },
     {
-      name: "Polytechnic Milan",
-      country: "Italy",
-      image: "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=800&q=80",
-      description: "Premier architecture and design programs"
+      name: "Academic Excellence",
+      description: "Group graduation ceremony celebration",
+      image: "/lovable-uploads/0da782f9-59e2-4e1e-bd41-f215d98ff64e.png"
     },
     {
-      name: "Babeș-Bolyai",
-      country: "Romania",
-      image: "https://images.unsplash.com/photo-1580537659466-0a9bfa916a54?w=800&q=80",
-      description: "Excellence in medicine and research"
+      name: "Graduation Ceremony",
+      description: "Academic achievement and success",
+      image: "/lovable-uploads/4630380b-a0f4-4abc-9b99-a964aa5604a3.png"
     },
     {
-      name: "Cambridge University",
-      country: "UK",
-      image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80",
-      description: "World-renowned academic excellence"
+      name: "Historic University",
+      description: "Traditional academic architecture",
+      image: "/lovable-uploads/6b3b5567-fd2c-4b7a-9a5d-f064f7109719.png"
     },
     {
-      name: "Harvard University",
-      country: "USA",
-      image: "https://images.unsplash.com/photo-1459767129954-1b1c1f9b9ace?w=800&q=80",
-      description: "Global leader in higher education"
+      name: "Campus Journey",
+      description: "Students exploring university life",
+      image: "/lovable-uploads/a3ebc772-a1f3-42d0-9c45-03d9c677e2a6.png"
     }
   ];
 
@@ -123,7 +118,7 @@ const Index = () => {
         <section 
           className="relative bg-gradient-to-br from-[#1e40af] via-[#3b82f6] to-[#60a5fa] text-white py-20 overflow-hidden"
           style={{
-            backgroundImage: `linear-gradient(rgba(30, 64, 175, 0.9), rgba(59, 130, 246, 0.9)), url('https://images.unsplash.com/photo-1562774053-701939374585?w=1200&q=80')`,
+            backgroundImage: `linear-gradient(rgba(30, 64, 175, 0.9), rgba(59, 130, 246, 0.9)), url('/lovable-uploads/fe6a4f68-f143-4f67-9542-a8e94d68c617.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed'
@@ -250,36 +245,35 @@ const Index = () => {
           </div>
         </section>
 
-        {/* University Showcase */}
+        {/* Education Showcase */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                {direction === 'rtl' ? 'الجامعات الشريكة المرموقة' : 'Our Prestigious University Partners'}
+                {direction === 'rtl' ? 'رحلة التعليم والنجاح' : 'Educational Journey & Success'}
               </h2>
               <p className="text-xl text-gray-600 mb-8">
-                {direction === 'rtl' ? 'نتعاون مع أفضل الجامعات حول العالم لضمان حصولك على تعليم عالي الجودة' : 'We partner with top universities worldwide to ensure you receive quality education'}
+                {direction === 'rtl' ? 'من الحلم إلى التخرج - نرافقك في كل خطوة' : 'From dreams to graduation - we accompany you every step'}
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {universityShowcase.map((university, index) => (
+              {educationShowcase.map((item, index) => (
                 <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                   <div className="relative h-48">
                     <OptimizedImage
-                      src={university.image}
-                      alt={`${university.name} campus`}
+                      src={item.image}
+                      alt={item.name}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-lg font-semibold">{university.name}</h3>
-                      <p className="text-sm opacity-90">{university.country}</p>
+                      <h3 className="text-lg font-semibold">{item.name}</h3>
                     </div>
                   </div>
                   <CardContent className="p-6">
                     <p className="text-gray-600 text-sm leading-relaxed">
-                      {university.description}
+                      {item.description}
                     </p>
                     <Button className="w-full mt-4 bg-blue-600 hover:bg-blue-700">
                       Learn More
@@ -313,6 +307,9 @@ const Index = () => {
             </Button>
           </div>
         </section>
+
+        {/* Feedback Button */}
+        <FeedbackButton />
       </div>
     </>
   );

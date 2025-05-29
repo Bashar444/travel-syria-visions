@@ -37,12 +37,12 @@ const translations = {
     'services.visa.desc': 'مساعدة في إجراءات التأشيرة وتحضير الوثائق المطلوبة',
     'services.tours': 'الجولات التعليمية والتوجيه',
     'services.tours.desc': 'برامج توجيهية لفهم نظام التعليم في البلد المختار',
-    'services.price': '$1099 لكل خدمة',
+    'services.price': '١٠٩٩ دولار لكل خدمة',
     
     // About
     'about.title': 'عن Travel.Ltd',
     'about.mission': 'مهمتنا هي مساعدة الطلاب السوريين في تحقيق أحلامهم التعليمية',
-    'about.hours': 'ساعات العمل: 6 أيام في الأسبوع، من 6 صباحاً إلى 10 مساءً',
+    'about.hours': 'ساعات العمل: ٦ أيام في الأسبوع، من ٦ صباحاً إلى ١٠ مساءً',
     
     // Contact
     'contact.title': 'تواصل معنا',
@@ -54,6 +54,11 @@ const translations = {
     // Footer
     'footer.description': 'Travel.Ltd - شريكك الموثوق في رحلة التعليم الجامعي',
     'footer.rights': 'جميع الحقوق محفوظة',
+    
+    // Feedback
+    'feedback.title': 'تقييمك يهمنا',
+    'feedback.subtitle': 'شاركنا تجربتك أو استفساراتك',
+    'feedback.button': 'قدم تقييمك',
   },
   en: {
     // Navigation
@@ -97,6 +102,11 @@ const translations = {
     // Footer
     'footer.description': 'Travel.Ltd - Your trusted partner in university education journey',
     'footer.rights': 'All rights reserved',
+    
+    // Feedback
+    'feedback.title': 'Your Feedback Matters',
+    'feedback.subtitle': 'Share your experience or questions with us',
+    'feedback.button': 'Give Feedback',
   }
 };
 
@@ -124,6 +134,17 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     // Apply changes immediately with smooth transition
     document.documentElement.dir = direction;
     document.documentElement.lang = language;
+    
+    // Enhanced Arabic font support
+    if (language === 'ar') {
+      document.body.style.fontFamily = "'Noto Sans Arabic', 'Segoe UI', 'Tahoma', 'Arial', sans-serif";
+      document.body.style.fontSize = '1.1em';
+      document.body.style.lineHeight = '1.8';
+    } else {
+      document.body.style.fontFamily = "'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif";
+      document.body.style.fontSize = '1em';
+      document.body.style.lineHeight = '1.6';
+    }
     
     // Add class for CSS transitions
     document.documentElement.classList.add('language-switching');

@@ -45,8 +45,8 @@ const Contact = () => {
     
     // Simulate form submission
     try {
-      // In a real application, this would send to alhusseinamjad904@gmail.com
-      console.log('Form submission to alhusseinamjad904@gmail.com:', data);
+      // In a real application, this would send to privatelimitedtravel@gmail.com
+      console.log('Form submission to privatelimitedtravel@gmail.com:', data);
       
       // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 2000));
@@ -270,7 +270,7 @@ const Contact = () => {
                       <strong>رقم الواتساب:</strong> {whatsappNumber}
                     </p>
                     <p className="text-gray-600 mt-2">
-                      <strong>البريد الإلكتروني:</strong> alhusseinamjad904@gmail.com
+                      <strong>البريد الإلكتروني:</strong> privatelimitedtravel@gmail.com
                     </p>
                   </div>
                 </div>

@@ -28,7 +28,7 @@ const Footer = () => {
             </p>
             <div className="mt-4">
               <p className="text-[#EDF1F7] text-sm">
-                <strong>البريد الإلكتروني:</strong> alhusseinamjad904@gmail.com
+                <strong>البريد الإلكتروني:</strong> privatelimitedtravel@gmail.com
               </p>
             </div>
           </div>
