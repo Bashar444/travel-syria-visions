@@ -78,6 +78,16 @@
     scroll-behavior: smooth;
   }
 
+  /* Enhanced Language Switching */
+  html.language-switching {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html.language-switching * {
+    transition: text-align 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                direction 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   /* RTL Support */
   [dir="rtl"] {
     text-align: right;
@@ -90,7 +100,7 @@
   /* Enhanced Arabic Typography */
   [lang="ar"] {
     font-family: 'Noto Sans Arabic', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-    font-size: 1.1em;
+    font-size: 1.05em;
     line-height: 1.7;
     letter-spacing: 0.025em;
   }
@@ -251,6 +261,17 @@
     }
   }
 
+  /* Enhanced University Showcase */
+  .university-showcase {
+    @apply transition-all duration-500 hover:shadow-2xl hover:-translate-y-4;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  }
+
+  .university-showcase:hover {
+    transform: translateY(-16px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(30,64,175,0.15);
+  }
+
   /* SEO and Performance optimizations */
   img {
     @apply max-w-full h-auto;
@@ -295,6 +316,17 @@
   @keyframes scaleIn {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+  }
+
+  /* Language Switch Animation */
+  @keyframes languageSwitch {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+  }
+
+  .language-switch-animation {
+    animation: languageSwitch 0.3s ease-in-out;
   }
 }
 

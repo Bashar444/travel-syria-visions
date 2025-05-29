@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Users, Book, BookOpen, Calendar, MapPin, Star, TrendingUp, DollarSign, Plane } from 'lucide-react';
+import { Users, Book, BookOpen, Calendar, MapPin, Star, TrendingUp, DollarSign, Plane, Award, Globe } from 'lucide-react';
 import SEO from '@/components/SEO';
 import OptimizedImage from '@/components/OptimizedImage';
 import UniversityBrowser from '@/components/services/UniversityBrowser';
@@ -45,10 +45,10 @@ const Index = () => {
   ];
 
   const stats = [
-    { number: '500+', label: 'طالب حصل على قبول' },
-    { number: '150+', label: 'جامعة شريكة' },
-    { number: '95%', label: 'معدل النجاح' },
-    { number: '24/7', label: 'دعم العملاء' },
+    { number: '500+', label: direction === 'rtl' ? 'طالب حصل على قبول' : 'Successful Students' },
+    { number: '150+', label: direction === 'rtl' ? 'جامعة شريكة' : 'Partner Universities' },
+    { number: '95%', label: direction === 'rtl' ? 'معدل النجاح' : 'Success Rate' },
+    { number: '24/7', label: direction === 'rtl' ? 'دعم العملاء' : 'Customer Support' },
   ];
 
   const features = [
@@ -66,6 +66,45 @@ const Index = () => {
       title: 'Saudi Scholarships',
       description: 'Exclusive access to Saudi Arabia education opportunities',
       component: <SaudiScholarships />
+    }
+  ];
+
+  const universityShowcase = [
+    {
+      name: "University of Bologna",
+      country: "Italy",
+      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
+      description: "One of Europe's oldest universities with world-class programs"
+    },
+    {
+      name: "SRM Institute",
+      country: "India", 
+      image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&q=80",
+      description: "Leading technology and engineering education"
+    },
+    {
+      name: "Polytechnic Milan",
+      country: "Italy",
+      image: "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=800&q=80",
+      description: "Premier architecture and design programs"
+    },
+    {
+      name: "Babeș-Bolyai",
+      country: "Romania",
+      image: "https://images.unsplash.com/photo-1580537659466-0a9bfa916a54?w=800&q=80",
+      description: "Excellence in medicine and research"
+    },
+    {
+      name: "Cambridge University",
+      country: "UK",
+      image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80",
+      description: "World-renowned academic excellence"
+    },
+    {
+      name: "Harvard University",
+      country: "USA",
+      image: "https://images.unsplash.com/photo-1459767129954-1b1c1f9b9ace?w=800&q=80",
+      description: "Global leader in higher education"
     }
   ];
 
@@ -112,6 +151,7 @@ const Index = () => {
                     className="bg-white text-[#1e40af] hover:bg-blue-50 font-semibold px-8 py-4 text-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
                   >
+                    <Globe className="w-5 h-5 mr-2" />
                     Explore Services
                   </Button>
                   <Button 
@@ -120,6 +160,7 @@ const Index = () => {
                     className="border-2 border-white text-white hover:bg-white hover:text-[#1e40af] font-semibold px-8 py-4 text-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                     onClick={() => window.open('https://wa.me/+963985453247', '_blank')}
                   >
+                    <Award className="w-5 h-5 mr-2" />
                     {t('hero.whatsapp')}
                   </Button>
                 </div>
@@ -209,31 +250,43 @@ const Index = () => {
           </div>
         </section>
 
-        {/* University Partners */}
+        {/* University Showcase */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-gray-900 mb-12">
-                شركاؤنا من الجامعات المرموقة
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                {direction === 'rtl' ? 'الجامعات الشريكة المرموقة' : 'Our Prestigious University Partners'}
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-                {[
-                  { name: "Sant'Anna School", image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&q=80" },
-                  { name: "Milano-Bicocca", image: "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=400&q=80" },
-                  { name: "LIUC University", image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&q=80" },
-                  { name: "SRM Institute", image: "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?w=400&q=80" },
-                  { name: "SRM Andhra Pradesh", image: "https://images.unsplash.com/photo-1580537659466-0a9bfa916a54?w=400&q=80" },
-                  { name: "Babeș-Bolyai", image: "https://images.unsplash.com/photo-1466442929976-97f336a657be?w=400&q=80" },
-                ].map((university, index) => (
-                  <div key={index} className="bg-gray-50 h-20 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 border border-gray-200 hover:border-blue-300">
+              <p className="text-xl text-gray-600 mb-8">
+                {direction === 'rtl' ? 'نتعاون مع أفضل الجامعات حول العالم لضمان حصولك على تعليم عالي الجودة' : 'We partner with top universities worldwide to ensure you receive quality education'}
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {universityShowcase.map((university, index) => (
+                <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                  <div className="relative h-48">
                     <OptimizedImage
                       src={university.image}
-                      alt={`${university.name} University campus`}
-                      className="h-full w-full opacity-60 hover:opacity-80 transition-opacity duration-300"
+                      alt={`${university.name} campus`}
+                      className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-lg font-semibold">{university.name}</h3>
+                      <p className="text-sm opacity-90">{university.country}</p>
+                    </div>
                   </div>
-                ))}
-              </div>
+                  <CardContent className="p-6">
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {university.description}
+                    </p>
+                    <Button className="w-full mt-4 bg-blue-600 hover:bg-blue-700">
+                      Learn More
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>

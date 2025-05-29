@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Menu } from 'lucide-react';
+import { Menu, Languages, Globe } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,9 +15,9 @@ const Navbar = () => {
     { name: t('nav.home'), href: '/' },
     { name: t('nav.services'), href: '/services' },
     { name: t('nav.universities'), href: '/universities' },
-    { name: 'المدونة', href: '/blog' },
+    { name: direction === 'rtl' ? 'المدونة' : 'Blog', href: '/blog' },
     { name: t('nav.success-stories'), href: '/success-stories' },
-    { name: 'اعمل معنا', href: '/work-with-us' }, // Work with Us
+    { name: direction === 'rtl' ? 'اعمل معنا' : 'Work with Us', href: '/work-with-us' },
     { name: t('nav.about'), href: '/about' },
     { name: t('nav.contact'), href: '/contact' }
   ];
@@ -27,13 +27,20 @@ const Navbar = () => {
   };
 
   const handleLanguageSwitch = () => {
-    setLanguage(language === 'ar' ? 'en' : 'ar');
+    const newLanguage = language === 'ar' ? 'en' : 'ar';
+    setLanguage(newLanguage);
+    
+    // Add smooth transition effect
+    document.documentElement.style.transition = 'all 0.3s ease';
+    setTimeout(() => {
+      document.documentElement.style.transition = '';
+    }, 300);
   };
 
   const whatsappNumber = "+963985453247";
 
   return (
-    <nav className="bg-white shadow-lg border-b-2 border-[#0018A8] sticky top-0 z-50">
+    <nav className="bg-white shadow-lg border-b-2 border-[#0018A8] sticky top-0 z-50 backdrop-blur-sm bg-white/95">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
           {/* Logo */}
@@ -53,7 +60,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation with smooth block transitions */}
+          {/* Desktop Navigation */}
           <div className={`hidden md:flex items-center space-x-1 rtl:space-x-reverse ${direction === 'rtl' ? 'order-1' : 'order-2'}`}>
             {navigation.map((item) => (
               <Link
@@ -64,29 +71,28 @@ const Navbar = () => {
                     ? 'text-[#0018A8] bg-[#F6F8FC] shadow-md after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0018A8] after:content-[""] after:rounded-t-md'
                     : 'text-[#2B3A3E] hover:text-[#0018A8]'
                 }`}
-                style={{
-                  clipPath: isActivePage(item.href) ? 'polygon(0 0, 100% 0, 95% 100%, 5% 100%)' : 'none'
-                }}
               >
                 {item.name}
               </Link>
             ))}
             
-            {/* Language Switch */}
+            {/* Enhanced Language Switch */}
             <Button 
               variant="outline" 
               size="sm" 
               onClick={handleLanguageSwitch} 
-              className="border-[#0018A8] transition-all duration-300 hover:shadow-md hover:-translate-y-1 mx-2 text-white text-base font-normal bg-[#00A3E0] hover:bg-[#0018A8]"
+              className="border-[#0018A8] transition-all duration-300 hover:shadow-md hover:-translate-y-1 mx-2 text-white text-base font-normal bg-[#00A3E0] hover:bg-[#0018A8] min-w-[80px] flex items-center gap-2"
             >
+              <Languages className="w-4 h-4" />
               {language === 'ar' ? 'EN' : 'عربي'}
             </Button>
 
             {/* WhatsApp CTA */}
             <Button 
               onClick={() => window.open(`https://wa.me/${whatsappNumber}`, '_blank')} 
-              className="text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-1 transform text-base bg-[#0018A8] hover:bg-[#00A3E0]"
+              className="text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-1 transform text-base bg-[#0018A8] hover:bg-[#00A3E0] flex items-center gap-2"
             >
+              <Globe className="w-4 h-4" />
               {t('hero.whatsapp')}
             </Button>
           </div>
@@ -133,18 +139,20 @@ const Navbar = () => {
                     <Button 
                       variant="outline" 
                       onClick={handleLanguageSwitch} 
-                      className="border-[#0018A8] text-[#0018A8] hover:bg-[#0018A8] hover:text-white w-full mb-3 transition-all duration-200"
+                      className="border-[#0018A8] text-[#0018A8] hover:bg-[#0018A8] hover:text-white w-full mb-3 transition-all duration-200 flex items-center justify-center gap-2"
                     >
+                      <Languages className="w-4 h-4" />
                       {language === 'ar' ? 'English' : 'عربي'}
                     </Button>
 
                     <Button 
-                      className="bg-[#0018A8] hover:bg-[#00A3E0] text-white w-full transition-all duration-200" 
+                      className="bg-[#0018A8] hover:bg-[#00A3E0] text-white w-full transition-all duration-200 flex items-center justify-center gap-2" 
                       onClick={() => {
                         window.open(`https://wa.me/${whatsappNumber}`, '_blank');
                         setIsOpen(false);
                       }}
                     >
+                      <Globe className="w-4 h-4" />
                       {t('hero.whatsapp')}
                     </Button>
                   </div>

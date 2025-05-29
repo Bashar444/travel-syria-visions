@@ -37,7 +37,7 @@ const translations = {
     'services.visa.desc': 'مساعدة في إجراءات التأشيرة وتحضير الوثائق المطلوبة',
     'services.tours': 'الجولات التعليمية والتوجيه',
     'services.tours.desc': 'برامج توجيهية لفهم نظام التعليم في البلد المختار',
-    'services.price': '$800 لكل قبول ناجح',
+    'services.price': '$1099 لكل خدمة',
     
     // About
     'about.title': 'عن Travel.Ltd',
@@ -80,7 +80,7 @@ const translations = {
     'services.visa.desc': 'Assistance with visa procedures and required document preparation',
     'services.tours': 'Educational Tours and Orientation',
     'services.tours.desc': 'Orientation programs to understand the education system in your chosen country',
-    'services.price': '$800 per successful admission',
+    'services.price': '$1099 per service',
     
     // About
     'about.title': 'About Travel.Ltd',
@@ -103,20 +103,37 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('ar');
+  const [language, setLanguage] = useState<Language>(() => {
+    // Check for saved language preference
+    const saved = localStorage.getItem('preferred-language');
+    return (saved as Language) || 'ar';
+  });
+  
   const direction: Direction = language === 'ar' ? 'rtl' : 'ltr';
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations['ar']] || key;
   };
 
+  const handleSetLanguage = (lang: Language) => {
+    setLanguage(lang);
+    localStorage.setItem('preferred-language', lang);
+  };
+
   useEffect(() => {
+    // Apply changes immediately with smooth transition
     document.documentElement.dir = direction;
     document.documentElement.lang = language;
+    
+    // Add class for CSS transitions
+    document.documentElement.classList.add('language-switching');
+    setTimeout(() => {
+      document.documentElement.classList.remove('language-switching');
+    }, 300);
   }, [direction, language]);
 
   return (
-    <LanguageContext.Provider value={{ language, direction, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, direction, setLanguage: handleSetLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
