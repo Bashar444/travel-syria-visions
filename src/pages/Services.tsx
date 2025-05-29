@@ -13,11 +13,11 @@ const Services = () => {
       description: t('services.admission.desc'),
       icon: BookOpen,
       features: [
-        'تقييم الملف الأكاديمي',
-        'اختيار الجامعات المناسبة',
-        'إعداد السيرة الذاتية',
-        'كتابة خطاب الدافع',
-        'متابعة طلبات القبول'
+        direction === 'rtl' ? 'تقييم الملف الأكاديمي' : 'Academic file assessment',
+        direction === 'rtl' ? 'اختيار الجامعات المناسبة' : 'Choosing suitable universities',
+        direction === 'rtl' ? 'إعداد السيرة الذاتية' : 'CV preparation',
+        direction === 'rtl' ? 'كتابة خطاب الدافع' : 'Motivation letter writing',
+        direction === 'rtl' ? 'متابعة طلبات القبول' : 'Application follow-up'
       ]
     },
     {
@@ -25,11 +25,11 @@ const Services = () => {
       description: t('services.scholarship.desc'),
       icon: Book,
       features: [
-        'البحث عن المنح المتاحة',
-        'تقييم الأهلية للمنح',
-        'إعداد طلبات المنح',
-        'كتابة المقالات المطلوبة',
-        'متابعة النتائج'
+        direction === 'rtl' ? 'البحث عن المنح المتاحة' : 'Finding available scholarships',
+        direction === 'rtl' ? 'تقييم الأهلية للمنح' : 'Eligibility assessment',
+        direction === 'rtl' ? 'إعداد طلبات المنح' : 'Scholarship applications',
+        direction === 'rtl' ? 'كتابة المقالات المطلوبة' : 'Required essay writing',
+        direction === 'rtl' ? 'متابعة النتائج' : 'Results follow-up'
       ]
     },
     {
@@ -37,11 +37,11 @@ const Services = () => {
       description: t('services.visa.desc'),
       icon: Calendar,
       features: [
-        'إعداد ملف التأشيرة',
-        'حجز موعد السفارة',
-        'التحضير للمقابلة',
-        'ترجمة الوثائق',
-        'متابعة الطلب'
+        direction === 'rtl' ? 'إعداد ملف التأشيرة' : 'Visa file preparation',
+        direction === 'rtl' ? 'حجز موعد السفارة' : 'Embassy appointment booking',
+        direction === 'rtl' ? 'التحضير للمقابلة' : 'Interview preparation',
+        direction === 'rtl' ? 'ترجمة الوثائق' : 'Document translation',
+        direction === 'rtl' ? 'متابعة الطلب' : 'Application tracking'
       ]
     },
     {
@@ -49,11 +49,11 @@ const Services = () => {
       description: t('services.tours.desc'),
       icon: Users,
       features: [
-        'جولات في الجامعات',
-        'التعريف بالنظام التعليمي',
-        'المساعدة في السكن',
-        'التوجيه الثقافي',
-        'الدعم المستمر'
+        direction === 'rtl' ? 'جولات في الجامعات' : 'University tours',
+        direction === 'rtl' ? 'التعريف بالنظام التعليمي' : 'Education system introduction',
+        direction === 'rtl' ? 'المساعدة في السكن' : 'Accommodation assistance',
+        direction === 'rtl' ? 'التوجيه الثقافي' : 'Cultural orientation',
+        direction === 'rtl' ? 'الدعم المستمر' : 'Ongoing support'
       ]
     }
   ];
@@ -67,7 +67,10 @@ const Services = () => {
             {t('services.title')}
           </h1>
           <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
-            نقدم خدمات شاملة ومتخصصة لضمان حصولك على أفضل الفرص التعليمية
+            {direction === 'rtl' 
+              ? 'نقدم خدمات شاملة ومتخصصة لضمان حصولك على أفضل الفرص التعليمية'
+              : 'We provide comprehensive and specialized services to ensure you get the best educational opportunities'
+            }
           </p>
           <div className="bg-[#EE3524] text-white px-8 py-4 rounded-lg inline-block">
             <span className="text-2xl font-bold">{t('services.price')}</span>
@@ -108,14 +111,30 @@ const Services = () => {
         {/* Process Section */}
         <div className="bg-gray-50 rounded-2xl p-12 mb-20">
           <h2 className="text-3xl font-bold text-[#231F20] text-center mb-12">
-            كيف نعمل معك؟
+            {direction === 'rtl' ? 'كيف نعمل معك؟' : 'How do we work with you?'}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
-              { step: '1', title: 'الاستشارة المجانية', desc: 'تقييم أولي لملفك وأهدافك' },
-              { step: '2', title: 'وضع الخطة', desc: 'تحديد الجامعات والبرامج المناسبة' },
-              { step: '3', title: 'التنفيذ', desc: 'تحضير الطلبات والوثائق' },
-              { step: '4', title: 'المتابعة', desc: 'متابعة النتائج والدعم المستمر' }
+              { 
+                step: '1', 
+                title: direction === 'rtl' ? 'الاستشارة المجانية' : 'Free Consultation', 
+                desc: direction === 'rtl' ? 'تقييم أولي لملفك وأهدافك' : 'Initial assessment of your profile and goals' 
+              },
+              { 
+                step: '2', 
+                title: direction === 'rtl' ? 'وضع الخطة' : 'Planning', 
+                desc: direction === 'rtl' ? 'تحديد الجامعات والبرامج المناسبة' : 'Identifying suitable universities and programs' 
+              },
+              { 
+                step: '3', 
+                title: direction === 'rtl' ? 'التنفيذ' : 'Implementation', 
+                desc: direction === 'rtl' ? 'تحضير الطلبات والوثائق' : 'Preparing applications and documents' 
+              },
+              { 
+                step: '4', 
+                title: direction === 'rtl' ? 'المتابعة' : 'Follow-up', 
+                desc: direction === 'rtl' ? 'متابعة النتائج والدعم المستمر' : 'Following results and ongoing support' 
+              }
             ].map((item, index) => (
               <div key={index} className="text-center">
                 <div className="bg-[#EE3524] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
@@ -135,10 +154,13 @@ const Services = () => {
         {/* CTA Section */}
         <div className="text-center">
           <h2 className="text-3xl font-bold text-[#231F20] mb-6">
-            جاهز لبدء رحلتك؟
+            {direction === 'rtl' ? 'جاهز لبدء رحلتك؟' : 'Ready to start your journey?'}
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            احجز استشارة مجانية واكتشف كيف يمكننا مساعدتك
+            {direction === 'rtl' 
+              ? 'احجز استشارة مجانية واكتشف كيف يمكننا مساعدتك'
+              : 'Book a free consultation and discover how we can help you'
+            }
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -151,7 +173,7 @@ const Services = () => {
               size="lg"
               variant="outline"
               className="border-2 border-[#EE3524] text-[#EE3524] hover:bg-[#EE3524] hover:text-white font-semibold px-12 py-4 text-lg"
-              onClick={() => window.open('https://wa.me/+963123456789', '_blank')}
+              onClick={() => window.open('https://wa.me/+963985453247', '_blank')}
             >
               {t('hero.whatsapp')}
             </Button>
