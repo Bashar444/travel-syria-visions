@@ -1,3 +1,8 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,63 +10,57 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
@@ -69,411 +68,129 @@
   * {
     @apply border-border;
   }
-
+  
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-    line-height: 1.6;
-    scroll-behavior: smooth;
+    transition: all 0.3s ease;
   }
 
-  /* Enhanced Language Switching */
-  html.language-switching {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  html.language-switching * {
-    transition: text-align 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                direction 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Enhanced RTL Support */
-  [dir="rtl"] {
+  /* Language-specific styles */
+  html[lang="ar"] {
+    direction: rtl;
     text-align: right;
   }
 
-  [dir="rtl"] .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 1;
-  }
-
-  /* Enhanced Arabic Typography */
-  [lang="ar"] {
-    font-family: 'Noto Sans Arabic', 'Amiri', 'Times New Roman', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-    font-size: 1.1em;
-    line-height: 1.8;
-    letter-spacing: 0.03em;
-    font-weight: 500;
-  }
-
-  [lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3, [lang="ar"] h4, [lang="ar"] h5, [lang="ar"] h6 {
-    font-weight: 700;
-    line-height: 1.5;
-    margin-bottom: 0.5em;
-    letter-spacing: 0.02em;
-  }
-
-  [lang="ar"] p {
-    line-height: 1.9;
-    margin-bottom: 1em;
-  }
-
-  [lang="ar"] .text-xl {
-    font-size: 1.35rem;
-    line-height: 1.7;
-  }
-
-  [lang="ar"] .text-lg {
-    font-size: 1.2rem;
-    line-height: 1.7;
-  }
-
-  [lang="ar"] button {
-    font-weight: 600;
-    letter-spacing: 0.025em;
-  }
-
-  /* Enhanced Arabic Input Support */
-  [lang="ar"] input[type="text"],
-  [lang="ar"] input[type="email"],
-  [lang="ar"] textarea,
-  [lang="ar"] select {
-    font-family: 'Noto Sans Arabic', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-    font-size: 1.05em;
-    line-height: 1.6;
-    padding: 0.75rem 1rem;
-  }
-
-  [lang="ar"] textarea {
-    line-height: 1.8;
-  }
-
-  /* Arabic Number Display */
-  [lang="ar"] .arabic-numbers {
-    font-feature-settings: "lnum" 1;
-  }
-
-  /* Professional Color Palette */
-  .professional-primary {
-    background-color: #1e40af;
-    color: white;
-  }
-
-  .professional-secondary {
-    background-color: #3b82f6;
-    color: white;
-  }
-
-  .professional-accent {
-    background-color: #60a5fa;
-    color: white;
-  }
-
-  .professional-success {
-    background-color: #059669;
-    color: white;
-  }
-
-  .professional-light {
-    background-color: #f8fafc;
-    color: #334155;
-  }
-
-  /* Enhanced Logo Styling */
-  .logo-hover {
-    @apply transition-all duration-300 hover:scale-105;
-    filter: drop-shadow(0 2px 8px rgba(30,64,175,0.1));
-  }
-
-  .logo-hover:hover {
-    filter: drop-shadow(0 4px 12px rgba(30,64,175,0.15));
-  }
-
-  /* Enhanced Navigation Styles */
-  .nav-link {
-    @apply relative transition-all duration-300;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: #1e40af;
-    transform: scaleX(0);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .nav-link.active::after {
-    transform: scaleX(1);
-  }
-
-  /* Fixed Feedback Button */
-  .feedback-button-fixed {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 1000;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  }
-
-  [dir="rtl"] .feedback-button-fixed {
-    right: auto;
-    left: 24px;
-  }
-
-  /* Enhanced Button Hover Effects */
-  .enhanced-hover {
-    @apply transition-all duration-300 transform hover:shadow-lg hover:-translate-y-1;
-  }
-
-  .enhanced-hover:active {
-    @apply translate-y-0 shadow-md;
-  }
-
-  /* University Cards Enhancement */
-  .university-card {
-    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:scale-105;
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    border: 1px solid #e2e8f0;
-  }
-
-  .university-card:hover {
-    border-color: #1e40af;
-    box-shadow: 0 10px 30px rgba(30,64,175,0.1);
-  }
-
-  /* Form Enhancement */
-  .enhanced-form-field:focus {
-    @apply ring-2 ring-blue-500 border-transparent;
-    background-color: #f8fafc;
-  }
-
-  /* Loading Spinner */
-  .loading-spinner {
-    animation: spin 1s linear infinite;
-    border-color: #1e40af;
-    border-top-color: transparent;
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  html[lang="en"] {
+    direction: ltr;
+    text-align: left;
   }
 
   /* Smooth transitions for language switching */
-  html {
-    transition: direction 0.4s ease;
+  html.language-switching {
+    transition: all 0.3s ease-in-out;
   }
 
-  /* Enhanced Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
+  html.language-switching * {
+    transition: all 0.3s ease-in-out;
   }
 
-  ::-webkit-scrollbar-track {
-    background: #f1f5f9;
-    border-radius: 4px;
+  /* Arabic-specific font improvements */
+  html[lang="ar"] body {
+    font-family: 'Noto Sans Arabic', 'Cairo', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+    line-height: 1.8;
+    font-size: 1.1em;
   }
 
-  ::-webkit-scrollbar-thumb {
-    background: #1e40af;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+  html[lang="ar"] .text-sm {
+    font-size: 0.9rem;
   }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: #3b82f6;
+  html[lang="ar"] .text-lg {
+    font-size: 1.2rem;
   }
 
-  /* Focus states for accessibility */
-  .focus-enhanced:focus-visible {
-    @apply ring-2 ring-blue-500 ring-offset-2 outline-none;
+  html[lang="ar"] .text-xl {
+    font-size: 1.35rem;
   }
 
-  /* Card hover effects */
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:scale-105;
+  html[lang="ar"] .text-2xl {
+    font-size: 1.6rem;
   }
 
-  .card-hover:hover {
-    box-shadow: 0 20px 40px rgba(30,64,175,0.1);
+  html[lang="ar"] .text-3xl {
+    font-size: 2rem;
   }
 
-  /* Mobile optimizations */
-  @media (max-width: 768px) {
-    .mobile-padding {
-      @apply px-4 py-2;
-    }
-    
-    .mobile-text {
-      @apply text-sm leading-relaxed;
-    }
-    
-    .mobile-button {
-      @apply w-full py-3 text-base;
-    }
+  html[lang="ar"] .text-4xl {
+    font-size: 2.5rem;
   }
 
-  /* Enhanced University Showcase */
-  .university-showcase {
-    @apply transition-all duration-500 hover:shadow-2xl hover:-translate-y-4;
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  /* RTL-specific adjustments */
+  html[lang="ar"] .space-x-2 > * + * {
+    margin-right: 0.5rem;
+    margin-left: 0;
   }
 
-  .university-showcase:hover {
-    transform: translateY(-16px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(30,64,175,0.15);
+  html[lang="ar"] .space-x-3 > * + * {
+    margin-right: 0.75rem;
+    margin-left: 0;
   }
 
-  /* SEO and Performance optimizations */
-  img {
-    @apply max-w-full h-auto;
+  html[lang="ar"] .space-x-4 > * + * {
+    margin-right: 1rem;
+    margin-left: 0;
   }
 
-  /* Accessibility improvements */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+  /* Feedback button positioning for RTL */
+  html[lang="ar"] .feedback-button {
+    left: 20px;
+    right: auto;
   }
 
-  /* Animation keyframes */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes slideIn {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  .animate-slide-in {
-    animation: slideIn 0.5s ease-out forwards;
-  }
-
-  .animate-scale-in {
-    animation: scaleIn 0.5s ease-out forwards;
-  }
-
-  @keyframes scaleIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
-
-  /* Enhanced Arabic Animation Support */
-  @keyframes fadeInRTL {
-    from { opacity: 0; transform: translateX(20px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  @keyframes fadeInLTR {
-    from { opacity: 0; transform: translateX(-20px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-
-  [dir="rtl"] .animate-fade-in {
-    animation: fadeInRTL 0.6s ease-out forwards;
-  }
-
-  [dir="ltr"] .animate-fade-in {
-    animation: fadeInLTR 0.6s ease-out forwards;
-  }
-
-  /* Language Switch Animation */
-  @keyframes languageSwitch {
-    0% { opacity: 1; }
-    50% { opacity: 0.7; }
-    100% { opacity: 1; }
-  }
-
-  .language-switch-animation {
-    animation: languageSwitch 0.3s ease-in-out;
-  }
-
-  /* Enhanced Dialog Support for RTL */
-  [dir="rtl"] .dialog-content {
-    text-align: right;
-  }
-
-  [dir="rtl"] .dialog-content input,
-  [dir="rtl"] .dialog-content textarea {
-    text-align: right;
+  html[lang="en"] .feedback-button {
+    right: 20px;
+    left: auto;
   }
 }
 
-/* Performance optimizations */
-@layer utilities {
-  .gpu-accelerated {
-    transform: translateZ(0);
-    will-change: transform;
-  }
-
-  .smooth-scroll {
-    scroll-behavior: smooth;
-  }
-
-  .optimized-rendering {
-    contain: layout style paint;
-  }
-
-  /* Professional Color Utilities */
-  .text-professional-primary {
-    color: #1e40af;
-  }
-
-  .bg-professional-primary {
-    background-color: #1e40af;
-  }
-
-  .text-professional-secondary {
-    color: #3b82f6;
-  }
-
-  .bg-professional-secondary {
-    background-color: #3b82f6;
-  }
-
-  .border-professional {
-    border-color: #e2e8f0;
-  }
-
-  /* Mobile-first responsive utilities */
-  .mobile-container {
-    @apply max-w-sm mx-auto px-4;
-  }
-
-  .tablet-container {
-    @apply max-w-4xl mx-auto px-6;
-  }
-
-  .desktop-container {
-    @apply max-w-7xl mx-auto px-8;
-  }
+/* Global styles */
+.logo-hover {
+  transition: transform 0.3s ease;
 }
 
-/* Print styles for better SEO */
-@media print {
-  .no-print {
-    display: none !important;
-  }
-  
-  body {
-    font-size: 12pt;
-    line-height: 1.4;
-    color: black;
-    background: white;
-  }
+.logo-hover:hover {
+  transform: scale(1.05);
+}
+
+.university-card {
+  transition: all 0.3s ease;
+}
+
+.university-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Feedback button styles */
+.feedback-button {
+  position: fixed;
+  bottom: 20px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.feedback-button:hover {
+  transform: scale(1.05);
+}
+
+/* Debug styles for language switching */
+.debug-language {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  z-index: 9999;
 }

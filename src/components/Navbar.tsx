@@ -15,9 +15,9 @@ const Navbar = () => {
     { name: t('nav.home'), href: '/' },
     { name: t('nav.services'), href: '/services' },
     { name: t('nav.universities'), href: '/universities' },
-    { name: direction === 'rtl' ? 'المدونة' : 'Blog', href: '/blog' },
+    { name: t('nav.blog'), href: '/blog' },
     { name: t('nav.success-stories'), href: '/success-stories' },
-    { name: direction === 'rtl' ? 'اعمل معنا' : 'Work with Us', href: '/work-with-us' },
+    { name: t('nav.work-with-us'), href: '/work-with-us' },
     { name: t('nav.about'), href: '/about' },
     { name: t('nav.contact'), href: '/contact' }
   ];
@@ -28,6 +28,7 @@ const Navbar = () => {
 
   const handleLanguageSwitch = () => {
     const newLanguage = language === 'ar' ? 'en' : 'ar';
+    console.log(`Language button clicked. Current: ${language}, Switching to: ${newLanguage}`);
     setLanguage(newLanguage);
     
     // Add smooth transition effect
@@ -64,7 +65,7 @@ const Navbar = () => {
           <div className={`hidden md:flex items-center space-x-1 rtl:space-x-reverse ${direction === 'rtl' ? 'order-1' : 'order-2'}`}>
             {navigation.map((item) => (
               <Link
-                key={item.name}
+                key={item.href}
                 to={item.href}
                 className={`relative px-4 py-3 rounded-md text-sm font-medium transition-all duration-300 hover:bg-[#F6F8FC] hover:shadow-sm transform hover:-translate-y-1 hover:scale-105 ${
                   isActivePage(item.href)
@@ -82,6 +83,7 @@ const Navbar = () => {
               size="sm" 
               onClick={handleLanguageSwitch} 
               className="border-[#0018A8] transition-all duration-300 hover:shadow-md hover:-translate-y-1 mx-2 text-white text-base font-normal bg-[#00A3E0] hover:bg-[#0018A8] min-w-[80px] flex items-center gap-2"
+              title={`Switch to ${language === 'ar' ? 'English' : 'Arabic'}`}
             >
               <Languages className="w-4 h-4" />
               {language === 'ar' ? 'EN' : 'عربي'}
@@ -122,7 +124,7 @@ const Navbar = () => {
 
                   {navigation.map((item) => (
                     <Link
-                      key={item.name}
+                      key={item.href}
                       to={item.href}
                       onClick={() => setIsOpen(false)}
                       className={`px-4 py-3 rounded-md text-base font-medium transition-all duration-200 ${
@@ -140,6 +142,7 @@ const Navbar = () => {
                       variant="outline" 
                       onClick={handleLanguageSwitch} 
                       className="border-[#0018A8] text-[#0018A8] hover:bg-[#0018A8] hover:text-white w-full mb-3 transition-all duration-200 flex items-center justify-center gap-2"
+                      title={`Switch to ${language === 'ar' ? 'English' : 'Arabic'}`}
                     >
                       <Languages className="w-4 h-4" />
                       {language === 'ar' ? 'English' : 'عربي'}
