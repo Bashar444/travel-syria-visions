@@ -66,7 +66,7 @@ const Contact = () => {
   const whatsappNumber = "+963985453247";
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen py-20" dir={direction}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold text-[#231F20] text-center mb-12">
           {t('contact.title')}
@@ -77,13 +77,13 @@ const Contact = () => {
           <Card className="shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl text-[#231F20]">
-                احجز استشارة مجانية
+                {t('contact.free-consultation')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               {showSuccess && (
                 <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-md mb-6">
-                  تم إرسال طلبك بنجاح! سنتواصل معك قريباً.
+                  {t('contact.success-message')}
                 </div>
               )}
               
@@ -92,18 +92,18 @@ const Contact = () => {
                   <FormField
                     control={form.control}
                     name="fullName"
-                    rules={{ required: "الاسم الكامل مطلوب" }}
+                    rules={{ required: t('contact.full-name-required') }}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-sm font-medium text-gray-700">
-                          الاسم الكامل *
+                          {t('contact.full-name')} *
                         </FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
                             className="w-full" 
                             dir={direction}
-                            placeholder="أدخل اسمك الكامل"
+                            placeholder={t('contact.full-name-placeholder')}
                           />
                         </FormControl>
                         <FormMessage />
@@ -114,11 +114,11 @@ const Contact = () => {
                   <FormField
                     control={form.control}
                     name="phoneNumber"
-                    rules={{ required: "رقم الهاتف مطلوب" }}
+                    rules={{ required: t('contact.phone-required') }}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-sm font-medium text-gray-700">
-                          رقم الهاتف *
+                          {t('contact.phone')} *
                         </FormLabel>
                         <FormControl>
                           <Input 
@@ -137,16 +137,16 @@ const Contact = () => {
                     control={form.control}
                     name="email"
                     rules={{ 
-                      required: "البريد الإلكتروني مطلوب",
+                      required: t('contact.email-required'),
                       pattern: {
                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "البريد الإلكتروني غير صحيح"
+                        message: t('contact.email-invalid')
                       }
                     }}
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-sm font-medium text-gray-700">
-                          البريد الإلكتروني *
+                          {t('contact.email')} *
                         </FormLabel>
                         <FormControl>
                           <Input 
@@ -167,7 +167,7 @@ const Contact = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-sm font-medium text-gray-700">
-                          الجامعة المرغوبة
+                          {t('contact.preferred-university')}
                         </FormLabel>
                         <FormControl>
                           <select 
@@ -175,7 +175,7 @@ const Contact = () => {
                             className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#EE3524] focus:border-transparent"
                             dir={direction}
                           >
-                            <option value="">اختر الجامعة</option>
+                            <option value="">{t('contact.select-university')}</option>
                             {universities.map((university) => (
                               <option key={university} value={university}>
                                 {university}
@@ -194,14 +194,14 @@ const Contact = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-sm font-medium text-gray-700">
-                          التخصص المطلوب
+                          {t('contact.desired-major')}
                         </FormLabel>
                         <FormControl>
                           <Input 
                             {...field} 
                             className="w-full" 
                             dir={direction}
-                            placeholder="مثل: هندسة الحاسوب، إدارة الأعمال، الطب"
+                            placeholder={t('contact.major-placeholder')}
                           />
                         </FormControl>
                         <FormMessage />
@@ -215,7 +215,7 @@ const Contact = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-sm font-medium text-gray-700">
-                          رسالة إضافية (اختيارية)
+                          {t('contact.additional-message')}
                         </FormLabel>
                         <FormControl>
                           <Textarea
@@ -223,7 +223,7 @@ const Contact = () => {
                             rows={4}
                             className="w-full"
                             dir={direction}
-                            placeholder="أي معلومات إضافية تود مشاركتها..."
+                            placeholder={t('contact.message-placeholder')}
                           />
                         </FormControl>
                         <FormMessage />
@@ -239,10 +239,10 @@ const Contact = () => {
                     {isSubmitting ? (
                       <div className="flex items-center justify-center">
                         <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                        جاري الإرسال...
+                        {t('contact.sending')}
                       </div>
                     ) : (
-                      'إرسال الطلب'
+                      t('contact.submit')
                     )}
                   </Button>
                 </form>
@@ -255,22 +255,22 @@ const Contact = () => {
             <Card className="shadow-lg">
               <CardContent className="p-8">
                 <h3 className="text-xl font-semibold text-[#231F20] mb-4">
-                  تواصل معنا مباشرة
+                  {t('contact.direct-contact')}
                 </h3>
                 <div className="space-y-4">
                   <Button
                     onClick={() => window.open(`https://wa.me/${whatsappNumber}`, '_blank')}
                     className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 transition-all duration-300"
                   >
-                    تواصل عبر واتساب
+                    {t('contact.whatsapp')}
                   </Button>
                   
                   <div className="text-center pt-4">
                     <p className="text-gray-600">
-                      <strong>رقم الواتساب:</strong> {whatsappNumber}
+                      <strong>{t('contact.whatsapp-number')}:</strong> {whatsappNumber}
                     </p>
                     <p className="text-gray-600 mt-2">
-                      <strong>البريد الإلكتروني:</strong> privatelimitedtravel@gmail.com
+                      <strong>{t('contact.email-label')}:</strong> privatelimitedtravel@gmail.com
                     </p>
                   </div>
                 </div>
@@ -280,7 +280,7 @@ const Contact = () => {
             <Card className="shadow-lg">
               <CardContent className="p-8">
                 <h3 className="text-xl font-semibold text-[#231F20] mb-4">
-                  ساعات العمل
+                  {t('contact.working-hours')}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
                   {t('about.hours')}
