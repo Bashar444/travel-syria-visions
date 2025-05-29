@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -21,7 +20,7 @@ const UniversityBrowser = () => {
       programs: ["Engineering", "Medicine", "Business"],
       scholarships: true,
       rating: 4.5,
-      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&q=80"
+      image: "/lovable-uploads/6b3b5567-fd2c-4b7a-9a5d-f064f7109719.png"
     },
     {
       id: 2,
@@ -33,7 +32,7 @@ const UniversityBrowser = () => {
       programs: ["Computer Science", "Engineering", "Management"],
       scholarships: true,
       rating: 4.2,
-      image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=400&q=80"
+      image: "/lovable-uploads/c591c245-e976-4338-939b-f22ccec167ab.png"
     },
     {
       id: 3,
@@ -45,7 +44,7 @@ const UniversityBrowser = () => {
       programs: ["Medicine", "Psychology", "Economics"],
       scholarships: true,
       rating: 4.3,
-      image: "https://images.unsplash.com/photo-1580537659466-0a9bfa916a54?w=400&q=80"
+      image: "/lovable-uploads/a3ebc772-a1f3-42d0-9c45-03d9c677e2a6.png"
     },
     {
       id: 4,
@@ -57,7 +56,7 @@ const UniversityBrowser = () => {
       programs: ["Architecture", "Design", "Engineering"],
       scholarships: true,
       rating: 4.6,
-      image: "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=400&q=80"
+      image: "/lovable-uploads/fe6a4f68-f143-4f67-9542-a8e94d68c617.png"
     }
   ];
 
