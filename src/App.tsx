@@ -15,6 +15,7 @@ import SuccessStories from "./pages/SuccessStories";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
+import WorkWithUs from "./pages/WorkWithUs";
 import Sitemap from "./components/Sitemap";
 import NotFound from "./pages/NotFound";
 
@@ -39,6 +40,7 @@ const App = () => (
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/blog" element={<Blog />} />
+                  <Route path="/work-with-us" element={<WorkWithUs />} />
                   <Route path="/sitemap" element={<Sitemap />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
