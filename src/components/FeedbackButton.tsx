@@ -1,36 +1,40 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { MessageCircle, Send, Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useForm } from 'react-hook-form';
+import { useSecureForm } from '@/hooks/useSecureForm';
+import { createHoneypot } from '@/utils/security';
 
 const FeedbackButton = () => {
   const { t, direction, language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [rating, setRating] = useState(0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const form = useForm({
-    defaultValues: {
-      name: '',
-      email: '',
-      feedback: '',
-      serviceType: ''
-    }
-  });
+  const honeypotProps = createHoneypot();
 
-  const handleSubmit = async (data: any) => {
-    setIsSubmitting(true);
-    
-    try {
+  const {
+    formData,
+    honeypot,
+    setHoneypot,
+    isSubmitting,
+    getFieldProps,
+    handleSubmit
+  } = useSecureForm({
+    fields: {
+      name: { type: 'name', required: false },
+      email: { type: 'email', required: false },
+      feedback: { type: 'text', required: true },
+      serviceType: { type: 'text', required: false }
+    },
+    onSubmit: async (data) => {
       // Simulate feedback submission to privatelimitedtravel@gmail.com
-      console.log('Feedback submission to privatelimitedtravel@gmail.com:', {
+      console.log('Secure feedback submission to privatelimitedtravel@gmail.com:', {
         ...data,
         rating,
         timestamp: new Date().toISOString()
@@ -39,19 +43,14 @@ const FeedbackButton = () => {
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       setShowSuccess(true);
-      form.reset();
       setRating(0);
       
       setTimeout(() => {
         setShowSuccess(false);
         setIsOpen(false);
       }, 2000);
-    } catch (error) {
-      console.error('Feedback submission error:', error);
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  });
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -93,7 +92,14 @@ const FeedbackButton = () => {
             </CardContent>
           </Card>
         ) : (
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Honeypot field */}
+            <input
+              {...honeypotProps}
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+            />
+
             {/* Star Rating */}
             <div className="space-y-2">
               <label className="text-sm font-medium">
@@ -121,10 +127,13 @@ const FeedbackButton = () => {
                 {language === 'ar' ? 'الاسم (اختياري)' : 'Name (Optional)'}
               </label>
               <Input
-                {...form.register('name')}
+                {...getFieldProps('name')}
                 placeholder={language === 'ar' ? 'اسمك' : 'Your name'}
                 dir={direction}
               />
+              {formData.name?.error && (
+                <p className="text-sm text-red-600">{formData.name.error}</p>
+              )}
             </div>
 
             {/* Email */}
@@ -133,11 +142,14 @@ const FeedbackButton = () => {
                 {language === 'ar' ? 'البريد الإلكتروني (اختياري)' : 'Email (Optional)'}
               </label>
               <Input
-                {...form.register('email')}
+                {...getFieldProps('email')}
                 type="email"
                 placeholder={language === 'ar' ? 'بريدك الإلكتروني' : 'Your email'}
                 dir={direction}
               />
+              {formData.email?.error && (
+                <p className="text-sm text-red-600">{formData.email.error}</p>
+              )}
             </div>
 
             {/* Service Type */}
@@ -146,7 +158,8 @@ const FeedbackButton = () => {
                 {language === 'ar' ? 'نوع الخدمة' : 'Service Type'}
               </label>
               <select
-                {...form.register('serviceType')}
+                value={formData.serviceType?.value || ''}
+                onChange={(e) => getFieldProps('serviceType').onChange(e)}
                 className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 dir={direction}
               >
@@ -177,7 +190,7 @@ const FeedbackButton = () => {
                 {language === 'ar' ? 'تعليقك أو استفسارك' : 'Your Feedback or Question'}
               </label>
               <Textarea
-                {...form.register('feedback', { required: true })}
+                {...getFieldProps('feedback')}
                 placeholder={language === 'ar' 
                   ? 'شاركنا تجربتك أو اطرح استفسارك...' 
                   : 'Share your experience or ask a question...'
@@ -186,11 +199,14 @@ const FeedbackButton = () => {
                 dir={direction}
                 className="resize-none"
               />
+              {formData.feedback?.error && (
+                <p className="text-sm text-red-600">{formData.feedback.error}</p>
+              )}
             </div>
 
             <Button
               type="submit"
-              disabled={isSubmitting || !form.watch('feedback')}
+              disabled={isSubmitting || !formData.feedback?.value}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 disabled:opacity-50"
             >
               {isSubmitting ? (

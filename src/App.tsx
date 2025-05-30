@@ -8,6 +8,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { LanguageProvider } from "./contexts/LanguageContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import FeedbackButton from "./components/FeedbackButton";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import Universities from "./pages/Universities";
@@ -46,6 +47,7 @@ const App = () => (
                 </Routes>
               </main>
               <Footer />
+              <FeedbackButton />
             </div>
           </BrowserRouter>
         </LanguageProvider>

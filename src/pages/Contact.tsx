@@ -5,31 +5,12 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Textarea } from '@/components/ui/textarea';
-import { 
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
+import { useSecureForm } from '@/hooks/useSecureForm';
+import { createHoneypot } from '@/utils/security';
 
 const Contact = () => {
   const { t, direction } = useLanguage();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-
-  const form = useForm({
-    defaultValues: {
-      fullName: '',
-      phoneNumber: '',
-      email: '',
-      preferredUniversity: '',
-      desiredMajor: '',
-      additionalMessage: ''
-    }
-  });
 
   const universities = [
     'Sant\'Anna School of Advanced Studies (Pisa)',
@@ -40,28 +21,35 @@ const Contact = () => {
     'Babeș-Bolyai University (Cluj-Napoca)'
   ];
 
-  const handleSubmit = async (data: any) => {
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    try {
-      // In a real application, this would send to privatelimitedtravel@gmail.com
-      console.log('Form submission to privatelimitedtravel@gmail.com:', data);
+  const honeypotProps = createHoneypot();
+
+  const {
+    formData,
+    honeypot,
+    setHoneypot,
+    isSubmitting,
+    getFieldProps,
+    handleSubmit
+  } = useSecureForm({
+    fields: {
+      fullName: { type: 'name', required: true },
+      phoneNumber: { type: 'phone', required: true },
+      email: { type: 'email', required: true },
+      preferredUniversity: { type: 'text', required: false },
+      desiredMajor: { type: 'text', required: false },
+      additionalMessage: { type: 'text', required: false }
+    },
+    onSubmit: async (data) => {
+      // In a real application, this would send to privatelimitedtravel@gmail.com via Supabase
+      console.log('Secure form submission to privatelimitedtravel@gmail.com:', data);
       
       // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       setShowSuccess(true);
-      form.reset();
-      
-      // Hide success message after 5 seconds
       setTimeout(() => setShowSuccess(false), 5000);
-    } catch (error) {
-      console.error('Form submission error:', error);
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  });
 
   const whatsappNumber = "+963985453247";
 
@@ -87,166 +75,118 @@ const Contact = () => {
                 </div>
               )}
               
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="fullName"
-                    rules={{ required: t('contact.full-name-required') }}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-700">
-                          {t('contact.full-name')} *
-                        </FormLabel>
-                        <FormControl>
-                          <Input 
-                            {...field} 
-                            className="w-full" 
-                            dir={direction}
-                            placeholder={t('contact.full-name-placeholder')}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot field for bot detection */}
+                <input
+                  {...honeypotProps}
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">
+                    {t('contact.full-name')} *
+                  </label>
+                  <Input 
+                    {...getFieldProps('fullName')}
+                    className="w-full" 
+                    dir={direction}
+                    placeholder={t('contact.full-name-placeholder')}
                   />
-                  
-                  <FormField
-                    control={form.control}
-                    name="phoneNumber"
-                    rules={{ required: t('contact.phone-required') }}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-700">
-                          {t('contact.phone')} *
-                        </FormLabel>
-                        <FormControl>
-                          <Input 
-                            {...field} 
-                            type="tel"
-                            className="w-full" 
-                            placeholder="+963xxxxxxxxx"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                  {formData.fullName?.error && (
+                    <p className="text-sm text-red-600">{formData.fullName.error}</p>
+                  )}
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">
+                    {t('contact.phone')} *
+                  </label>
+                  <Input 
+                    {...getFieldProps('phoneNumber')}
+                    type="tel"
+                    className="w-full" 
+                    placeholder="+963xxxxxxxxx"
                   />
-                  
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    rules={{ 
-                      required: t('contact.email-required'),
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: t('contact.email-invalid')
-                      }
-                    }}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-700">
-                          {t('contact.email')} *
-                        </FormLabel>
-                        <FormControl>
-                          <Input 
-                            {...field} 
-                            type="email"
-                            className="w-full" 
-                            placeholder="example@email.com"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                  {formData.phoneNumber?.error && (
+                    <p className="text-sm text-red-600">{formData.phoneNumber.error}</p>
+                  )}
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">
+                    {t('contact.email')} *
+                  </label>
+                  <Input 
+                    {...getFieldProps('email')}
+                    type="email"
+                    className="w-full" 
+                    placeholder="example@email.com"
                   />
-                  
-                  <FormField
-                    control={form.control}
-                    name="preferredUniversity"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-700">
-                          {t('contact.preferred-university')}
-                        </FormLabel>
-                        <FormControl>
-                          <select 
-                            {...field}
-                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#EE3524] focus:border-transparent"
-                            dir={direction}
-                          >
-                            <option value="">{t('contact.select-university')}</option>
-                            {universities.map((university) => (
-                              <option key={university} value={university}>
-                                {university}
-                              </option>
-                            ))}
-                          </select>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="desiredMajor"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-700">
-                          {t('contact.desired-major')}
-                        </FormLabel>
-                        <FormControl>
-                          <Input 
-                            {...field} 
-                            className="w-full" 
-                            dir={direction}
-                            placeholder={t('contact.major-placeholder')}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="additionalMessage"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-sm font-medium text-gray-700">
-                          {t('contact.additional-message')}
-                        </FormLabel>
-                        <FormControl>
-                          <Textarea
-                            {...field}
-                            rows={4}
-                            className="w-full"
-                            dir={direction}
-                            placeholder={t('contact.message-placeholder')}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <Button 
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-[#EE3524] hover:bg-red-600 text-white font-semibold py-3 transition-all duration-300 disabled:opacity-50"
+                  {formData.email?.error && (
+                    <p className="text-sm text-red-600">{formData.email.error}</p>
+                  )}
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">
+                    {t('contact.preferred-university')}
+                  </label>
+                  <select 
+                    value={formData.preferredUniversity?.value || ''}
+                    onChange={(e) => getFieldProps('preferredUniversity').onChange(e)}
+                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#EE3524] focus:border-transparent"
+                    dir={direction}
                   >
-                    {isSubmitting ? (
-                      <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                        {t('contact.sending')}
-                      </div>
-                    ) : (
-                      t('contact.submit')
-                    )}
-                  </Button>
-                </form>
-              </Form>
+                    <option value="">{t('contact.select-university')}</option>
+                    {universities.map((university) => (
+                      <option key={university} value={university}>
+                        {university}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">
+                    {t('contact.desired-major')}
+                  </label>
+                  <Input 
+                    {...getFieldProps('desiredMajor')}
+                    className="w-full" 
+                    dir={direction}
+                    placeholder={t('contact.major-placeholder')}
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">
+                    {t('contact.additional-message')}
+                  </label>
+                  <Textarea
+                    {...getFieldProps('additionalMessage')}
+                    rows={4}
+                    className="w-full"
+                    dir={direction}
+                    placeholder={t('contact.message-placeholder')}
+                  />
+                </div>
+                
+                <Button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#EE3524] hover:bg-red-600 text-white font-semibold py-3 transition-all duration-300 disabled:opacity-50"
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      {t('contact.sending')}
+                    </div>
+                  ) : (
+                    t('contact.submit')
+                  )}
+                </Button>
+              </form>
             </CardContent>
           </Card>
 
