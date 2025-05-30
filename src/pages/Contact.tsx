@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -29,6 +28,7 @@ const Contact = () => {
     setHoneypot,
     isSubmitting,
     getFieldProps,
+    getSelectFieldProps,
     handleSubmit
   } = useSecureForm({
     fields: {
@@ -133,8 +133,7 @@ const Contact = () => {
                     {t('contact.preferred-university')}
                   </label>
                   <select 
-                    value={formData.preferredUniversity?.value || ''}
-                    onChange={(e) => getFieldProps('preferredUniversity').onChange(e)}
+                    {...getSelectFieldProps('preferredUniversity')}
                     className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#EE3524] focus:border-transparent"
                     dir={direction}
                   >

@@ -24,6 +24,7 @@ const FeedbackButton = () => {
     setHoneypot,
     isSubmitting,
     getFieldProps,
+    getSelectFieldProps,
     handleSubmit
   } = useSecureForm({
     fields: {
@@ -152,14 +153,13 @@ const FeedbackButton = () => {
               )}
             </div>
 
-            {/* Service Type */}
+            {/* Service Type - Updated to use getSelectFieldProps */}
             <div className="space-y-2">
               <label className="text-sm font-medium">
                 {language === 'ar' ? 'نوع الخدمة' : 'Service Type'}
               </label>
               <select
-                value={formData.serviceType?.value || ''}
-                onChange={(e) => getFieldProps('serviceType').onChange(e)}
+                {...getSelectFieldProps('serviceType')}
                 className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 dir={direction}
               >

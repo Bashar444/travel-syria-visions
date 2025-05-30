@@ -142,5 +142,11 @@ export const useSecureForm = ({ fields, onSubmit }: UseSecureFormProps) => {
         updateField(name, e.target.value),
       error: formData[name]?.error,
     }),
+    getSelectFieldProps: (name: string) => ({
+      value: formData[name]?.value || '',
+      onChange: (e: React.ChangeEvent<HTMLSelectElement>) => 
+        updateField(name, e.target.value),
+      error: formData[name]?.error,
+    }),
   };
 };
