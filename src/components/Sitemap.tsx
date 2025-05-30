@@ -10,67 +10,75 @@ const Sitemap = () => {
       priority: '1.0', 
       changefreq: 'daily',
       title: direction === 'rtl' ? 'الصفحة الرئيسية' : 'Home',
-      description: direction === 'rtl' ? 'الصفحة الرئيسية لموقع Travel.Ltd' : 'Travel.Ltd main homepage'
+      description: direction === 'rtl' ? 'الصفحة الرئيسية لموقع Syria Travel Visions' : 'Syria Travel Visions main homepage'
     },
     { 
       url: '/services', 
       priority: '0.9', 
       changefreq: 'weekly',
       title: direction === 'rtl' ? 'خدماتنا' : 'Our Services',
-      description: direction === 'rtl' ? 'خدمات القبولات الجامعية والاستشارات التعليمية' : 'University admissions and educational consulting services'
+      description: direction === 'rtl' ? 'خدمات السفر والجولات السياحية في سوريا' : 'Travel services and tourism tours in Syria'
     },
     { 
       url: '/universities', 
       priority: '0.9', 
       changefreq: 'weekly',
       title: direction === 'rtl' ? 'الجامعات والشراكات' : 'Universities & Partnerships',
-      description: direction === 'rtl' ? 'شراكاتنا مع الجامعات في إيطاليا والهند ورومانيا' : 'Our partnerships with universities in Italy, India, and Romania'
+      description: direction === 'rtl' ? 'شراكاتنا مع المؤسسات التعليمية والثقافية' : 'Our partnerships with educational and cultural institutions'
     },
     { 
       url: '/blog', 
       priority: '0.8', 
       changefreq: 'weekly',
       title: direction === 'rtl' ? 'المدونة' : 'Blog',
-      description: direction === 'rtl' ? 'نصائح وإرشادات للدراسة في الخارج' : 'Tips and guidance for studying abroad'
-    },
-    { 
-      url: '/work-with-us', 
-      priority: '0.7', 
-      changefreq: 'monthly',
-      title: direction === 'rtl' ? 'اعمل معنا' : 'Work with Us',
-      description: direction === 'rtl' ? 'فرص عمل في مجال الاستشارات التعليمية' : 'Job opportunities in educational consulting'
-    },
-    { 
-      url: '/success-stories', 
-      priority: '0.7', 
-      changefreq: 'monthly',
-      title: direction === 'rtl' ? 'قصص النجاح' : 'Success Stories',
-      description: direction === 'rtl' ? 'قصص نجاح طلابنا' : 'Our students success stories'
-    },
-    { 
-      url: '/about', 
-      priority: '0.6', 
-      changefreq: 'monthly',
-      title: direction === 'rtl' ? 'معلومات عنا' : 'About Us',
-      description: direction === 'rtl' ? 'معلومات عن شركة Travel.Ltd' : 'Information about Travel.Ltd company'
+      description: direction === 'rtl' ? 'مقالات وأدلة السفر إلى سوريا' : 'Travel articles and guides to Syria'
     },
     { 
       url: '/contact', 
       priority: '0.8', 
       changefreq: 'monthly',
       title: direction === 'rtl' ? 'اتصل بنا' : 'Contact Us',
-      description: direction === 'rtl' ? 'تواصل معنا للاستشارات والاستفسارات' : 'Contact us for consultations and inquiries'
+      description: direction === 'rtl' ? 'تواصل معنا للاستفسارات والحجوزات' : 'Contact us for inquiries and bookings'
+    },
+    { 
+      url: '/work-with-us', 
+      priority: '0.7', 
+      changefreq: 'monthly',
+      title: direction === 'rtl' ? 'اعمل معنا' : 'Work with Us',
+      description: direction === 'rtl' ? 'فرص عمل في مجال السياحة والسفر' : 'Job opportunities in tourism and travel'
+    },
+    { 
+      url: '/success-stories', 
+      priority: '0.7', 
+      changefreq: 'monthly',
+      title: direction === 'rtl' ? 'قصص النجاح' : 'Success Stories',
+      description: direction === 'rtl' ? 'تجارب ناجحة من رحلاتنا السياحية' : 'Successful experiences from our tours'
+    },
+    { 
+      url: '/about', 
+      priority: '0.6', 
+      changefreq: 'monthly',
+      title: direction === 'rtl' ? 'معلومات عنا' : 'About Us',
+      description: direction === 'rtl' ? 'معلومات عن Syria Travel Visions' : 'Information about Syria Travel Visions'
+    },
+    { 
+      url: '/sitemap', 
+      priority: '0.5', 
+      changefreq: 'monthly',
+      title: direction === 'rtl' ? 'خريطة الموقع' : 'Sitemap',
+      description: direction === 'rtl' ? 'خريطة الموقع وجميع الصفحات' : 'Site map and all pages'
     }
   ];
 
   const generateSitemap = () => {
+    const currentDate = new Date().toISOString().split('T')[0];
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes.map(route => `  <url>
-    <loc>https://travel-ltd.com${route.url}</loc>
+    <loc>https://syriantravel.in${route.url}</loc>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
     <priority>${route.priority}</priority>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
   </url>`).join('\n')}
 </urlset>`;
 
@@ -97,7 +105,7 @@ ${routes.map(route => `  <url>
           <div className="space-y-2 text-gray-700">
             <p>
               <strong>{direction === 'rtl' ? 'رابط الملف الثابت:' : 'Static File URL:'}</strong>{' '}
-              <code className="bg-gray-200 px-2 py-1 rounded">https://your-domain.com/sitemap.xml</code>
+              <code className="bg-gray-200 px-2 py-1 rounded">https://syriantravel.in/sitemap.xml</code>
             </p>
             <p>
               <strong>{direction === 'rtl' ? 'موقع الملف:' : 'File Location:'}</strong>{' '}
@@ -150,34 +158,48 @@ ${routes.map(route => `  <url>
 
         <div className="mt-12 bg-green-50 p-6 rounded-lg">
           <h2 className="text-2xl font-semibold mb-4 text-green-800">
-            {direction === 'rtl' ? 'كيفية استخدام خريطة الموقع:' : 'How to Use the Sitemap:'}
+            {direction === 'rtl' ? 'كيفية إرسال خريطة الموقع إلى Google:' : 'How to Submit Sitemap to Google:'}
           </h2>
           <ol className="list-decimal list-inside space-y-2 text-gray-700">
             <li>
               {direction === 'rtl' 
-                ? 'انقر على زر "تحميل خريطة الموقع XML" أعلاه'
-                : 'Click the "Download XML Sitemap" button above'
+                ? 'اذهب إلى Google Search Console'
+                : 'Go to Google Search Console'
               }
             </li>
             <li>
               {direction === 'rtl' 
-                ? 'ارفع الملف إلى Google Search Console'
-                : 'Upload the file to Google Search Console'
+                ? 'انقر على "Sitemaps" في القائمة الجانبية'
+                : 'Click on "Sitemaps" in the sidebar'
               }
             </li>
             <li>
               {direction === 'rtl' 
-                ? 'قدم الرابط إلى محركات البحث الأخرى مثل Bing'
-                : 'Submit the URL to other search engines like Bing'
+                ? 'أدخل "sitemap.xml" في حقل الإدخال'
+                : 'Enter "sitemap.xml" in the input field'
               }
             </li>
             <li>
               {direction === 'rtl' 
-                ? 'استخدم الملف للتحقق من موقعك في Google AdSense'
-                : 'Use the file to verify your site in Google AdSense'
+                ? 'انقر على "Submit" أو "إرسال"'
+                : 'Click "Submit"'
+              }
+            </li>
+            <li>
+              {direction === 'rtl' 
+                ? 'تحقق من حالة الإرسال في نفس الصفحة'
+                : 'Check the submission status on the same page'
               }
             </li>
           </ol>
+          <div className="mt-4 p-4 bg-yellow-100 rounded-lg">
+            <p className="text-yellow-800 font-semibold">
+              {direction === 'rtl' 
+                ? '⚠️ تأكد من أن موقعك منشور على syriantravel.in قبل إرسال خريطة الموقع'
+                : '⚠️ Make sure your site is live on syriantravel.in before submitting the sitemap'
+              }
+            </p>
+          </div>
         </div>
       </div>
     </div>
