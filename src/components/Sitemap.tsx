@@ -10,14 +10,14 @@ const Sitemap = () => {
       priority: '1.0', 
       changefreq: 'daily',
       title: direction === 'rtl' ? 'الصفحة الرئيسية' : 'Home',
-      description: direction === 'rtl' ? 'الصفحة الرئيسية لموقع Syria Travel Visions' : 'Syria Travel Visions main homepage'
+      description: direction === 'rtl' ? 'الصفحة الرئيسية لموقع Travel.Ltd' : 'Travel.Ltd main homepage'
     },
     { 
       url: '/services', 
       priority: '0.9', 
       changefreq: 'weekly',
       title: direction === 'rtl' ? 'خدماتنا' : 'Our Services',
-      description: direction === 'rtl' ? 'خدمات السفر والجولات السياحية في سوريا' : 'Travel services and tourism tours in Syria'
+      description: direction === 'rtl' ? 'خدمات القبول الجامعي والاستشارات التعليمية' : 'University admission services and educational consulting'
     },
     { 
       url: '/universities', 
@@ -31,7 +31,7 @@ const Sitemap = () => {
       priority: '0.8', 
       changefreq: 'weekly',
       title: direction === 'rtl' ? 'المدونة' : 'Blog',
-      description: direction === 'rtl' ? 'مقالات وأدلة السفر إلى سوريا' : 'Travel articles and guides to Syria'
+      description: direction === 'rtl' ? 'مقالات وأدلة التعليم والدراسة في الخارج' : 'Educational articles and study abroad guides'
     },
     { 
       url: '/contact', 
@@ -41,25 +41,39 @@ const Sitemap = () => {
       description: direction === 'rtl' ? 'تواصل معنا للاستفسارات والحجوزات' : 'Contact us for inquiries and bookings'
     },
     { 
+      url: '/privacy', 
+      priority: '0.8', 
+      changefreq: 'monthly',
+      title: direction === 'rtl' ? 'سياسة الخصوصية' : 'Privacy Policy',
+      description: direction === 'rtl' ? 'سياسة الخصوصية وحماية البيانات' : 'Privacy policy and data protection'
+    },
+    { 
+      url: '/terms', 
+      priority: '0.8', 
+      changefreq: 'monthly',
+      title: direction === 'rtl' ? 'شروط الخدمة' : 'Terms of Service',
+      description: direction === 'rtl' ? 'شروط وأحكام استخدام الخدمات' : 'Terms and conditions for using our services'
+    },
+    { 
       url: '/work-with-us', 
       priority: '0.7', 
       changefreq: 'monthly',
       title: direction === 'rtl' ? 'اعمل معنا' : 'Work with Us',
-      description: direction === 'rtl' ? 'فرص عمل في مجال السياحة والسفر' : 'Job opportunities in tourism and travel'
+      description: direction === 'rtl' ? 'فرص عمل في مجال التعليم والاستشارات' : 'Job opportunities in education and consulting'
     },
     { 
       url: '/success-stories', 
       priority: '0.7', 
       changefreq: 'monthly',
       title: direction === 'rtl' ? 'قصص النجاح' : 'Success Stories',
-      description: direction === 'rtl' ? 'تجارب ناجحة من رحلاتنا السياحية' : 'Successful experiences from our tours'
+      description: direction === 'rtl' ? 'تجارب ناجحة من طلابنا' : 'Successful experiences from our students'
     },
     { 
       url: '/about', 
       priority: '0.6', 
       changefreq: 'monthly',
       title: direction === 'rtl' ? 'معلومات عنا' : 'About Us',
-      description: direction === 'rtl' ? 'معلومات عن Syria Travel Visions' : 'Information about Syria Travel Visions'
+      description: direction === 'rtl' ? 'معلومات عن Travel.Ltd' : 'Information about Travel.Ltd'
     },
     { 
       url: '/sitemap', 
@@ -200,6 +214,34 @@ ${routes.map(route => `  <url>
               }
             </p>
           </div>
+        </div>
+
+        <div className="mt-12 bg-blue-50 p-6 rounded-lg">
+          <h2 className="text-2xl font-semibold mb-4 text-[#0018A8]">
+            {direction === 'rtl' ? 'متطلبات AdSense المكتملة:' : 'AdSense Requirements Completed:'}
+          </h2>
+          <ul className="space-y-2 text-gray-700">
+            <li className="flex items-center">
+              <span className="text-green-600 mr-2">✓</span>
+              {direction === 'rtl' ? 'سياسة الخصوصية' : 'Privacy Policy'}
+            </li>
+            <li className="flex items-center">
+              <span className="text-green-600 mr-2">✓</span>
+              {direction === 'rtl' ? 'شروط الخدمة' : 'Terms of Service'}
+            </li>
+            <li className="flex items-center">
+              <span className="text-green-600 mr-2">✓</span>
+              {direction === 'rtl' ? 'ملف ads.txt' : 'ads.txt file'}
+            </li>
+            <li className="flex items-center">
+              <span className="text-green-600 mr-2">✓</span>
+              {direction === 'rtl' ? 'كود AdSense' : 'AdSense code'}
+            </li>
+            <li className="flex items-center">
+              <span className="text-green-600 mr-2">✓</span>
+              {direction === 'rtl' ? 'خريطة الموقع' : 'Sitemap'}
+            </li>
+          </ul>
         </div>
       </div>
     </div>
