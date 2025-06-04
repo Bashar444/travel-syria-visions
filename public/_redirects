@@ -1,0 +1,18 @@
+
+# Netlify redirects file for Single Page Application (SPA)
+# This ensures that all routes are handled by React Router instead of returning 404 errors
+
+# Redirect all non-file requests to index.html with a 200 status code
+# This allows React Router to handle client-side routing
+/* /index.html 200
+
+# Optional: Redirect specific routes if needed (examples)
+# /admin/* /admin/index.html 200
+# /api/* https://api.example.com/:splat 200
+
+# Force HTTPS (optional but recommended)
+# http://syriantravel.in/* https://syriantravel.in/:splat 301!
+# http://www.syriantravel.in/* https://syriantravel.in/:splat 301!
+
+# Redirect www to non-www (optional)
+# https://www.syriantravel.in/* https://syriantravel.in/:splat 301!
