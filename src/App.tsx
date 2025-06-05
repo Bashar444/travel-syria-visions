@@ -9,6 +9,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FeedbackButton from "./components/FeedbackButton";
+import CookieConsent from "./components/CookieConsent";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import Universities from "./pages/Universities";
@@ -52,6 +53,7 @@ const App = () => (
               </main>
               <Footer />
               <FeedbackButton />
+              <CookieConsent />
             </div>
           </BrowserRouter>
         </LanguageProvider>

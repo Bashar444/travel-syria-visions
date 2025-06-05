@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -10,6 +9,7 @@ import UniversityBrowser from '@/components/services/UniversityBrowser';
 import HajjServices from '@/components/services/HajjServices';
 import SaudiScholarships from '@/components/services/SaudiScholarships';
 import FeedbackButton from '@/components/FeedbackButton';
+import FAQ from '@/components/FAQ';
 
 const Index = () => {
   const { t, direction } = useLanguage();
@@ -282,6 +282,13 @@ const Index = () => {
                 </Card>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FAQ />
           </div>
         </section>
 
