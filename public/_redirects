@@ -1,5 +1,4 @@
 
-
 # Netlify redirects file for Single Page Application (SPA)
 # Static files should be served directly, not redirected to React app
 
@@ -7,6 +6,9 @@
 /robots.txt /robots.txt 200
 /ads.txt /ads.txt 200
 /favicon.ico /favicon.ico 200
+
+# Google AdSense verification file
+/googlea9821ecb17b703f8.html /googlea9821ecb17b703f8.html 200
 
 # Serve uploaded images and assets directly
 /lovable-uploads/* /lovable-uploads/:splat 200
@@ -23,4 +25,3 @@ https://www.syriantravel.in/* https://syriantravel.in/:splat 301!
 # SPA catch-all redirect - MUST be last rule
 # This ensures that all other routes are handled by React Router
 /* /index.html 200
-
