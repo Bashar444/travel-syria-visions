@@ -14,8 +14,8 @@ const SEO = ({
   title = "Travel.Ltd - University Admissions, Hajj Services & Educational Consulting for Syrian Students",
   description = "Professional university admission services, visa processing, Hajj & Umrah packages, and Saudi scholarships for Syrian students. Expert educational consulting with 95% success rate. Transparent pricing from $1099.",
   keywords = "university admissions Syria, study abroad Syrian students, visa processing Damascus, Hajj services Syria, Umrah packages, Saudi scholarships, educational consulting Syria, study in Italy India Romania, Syrian education services, university applications",
-  image = "/og-image.jpg",
-  url = "https://travel-ltd.com",
+  image = "https://syriantravel.in/lovable-uploads/d7939d67-66f6-4e0d-9ecb-b43d2e214eda.png",
+  url = "https://syriantravel.in",
   type = "website"
 }: SEOProps) => {
   const siteTitle = "Travel.Ltd";
@@ -89,7 +89,7 @@ const SEO = ({
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       
       {/* Google AdSense Meta Tags */}
-      <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX" />
+      <meta name="google-adsense-account" content="ca-pub-5225376190298570" />
       <meta name="google-site-verification" content="your-verification-code" />
       
       {/* Open Graph */}
