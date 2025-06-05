@@ -1,9 +1,9 @@
 
+
 # Netlify redirects file for Single Page Application (SPA)
 # Static files should be served directly, not redirected to React app
 
 # Serve static files directly (these should NOT be redirected to index.html)
-/sitemap.xml /sitemap.xml 200
 /robots.txt /robots.txt 200
 /ads.txt /ads.txt 200
 /favicon.ico /favicon.ico 200
