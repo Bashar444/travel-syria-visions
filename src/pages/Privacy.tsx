@@ -1,4 +1,3 @@
-
 import { useLanguage } from '@/contexts/LanguageContext';
 import SEO from '@/components/SEO';
 
@@ -58,7 +57,7 @@ const Privacy = () => {
           items: [
             "بموافقتك الصريحة والمستنيرة",
             "لتقديم الخدمات المطلوبة مع شركائنا الموثوقين (مثل الجامعات الشريكة)",
-            "للامتثال للمتطلبات القانونية أو أوامر المحكمة",
+            "لامتثال للمتطلبات القانونية أو أوامر المحكمة",
             "لحماية حقوقنا وسلامة المستخدمين والأمن العام",
             "مع مقدمي الخدمات الذين يساعدوننا في تشغيل موقعنا (مثل Google Analytics)"
           ]
@@ -190,7 +189,7 @@ const Privacy = () => {
         title={`${currentContent.title} | Travel.Ltd`}
         description="Comprehensive Privacy Policy for Travel.Ltd - Learn how we collect, use, and protect your personal information when using our university admission services. GDPR compliant with Google AdSense integration."
         keywords="privacy policy, data protection, GDPR, Travel.Ltd, university admissions, personal information, cookies, Google AdSense, data rights"
-        canonical="/privacy"
+        url="https://syriantravel.in/privacy"
       />
       
       {/* Breadcrumb Navigation */}

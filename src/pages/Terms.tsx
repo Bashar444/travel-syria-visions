@@ -1,4 +1,3 @@
-
 import { useLanguage } from '@/contexts/LanguageContext';
 import SEO from '@/components/SEO';
 
@@ -212,7 +211,7 @@ const Terms = () => {
         title={`${currentContent.title} | Travel.Ltd`}
         description="Comprehensive Terms of Service for Travel.Ltd - Read our terms and conditions for using our university admission and educational consulting services. Legal compliance and user rights."
         keywords="terms of service, terms and conditions, Travel.Ltd, university admissions, educational services, legal terms, user agreement, liability, intellectual property"
-        canonical="/terms"
+        url="https://syriantravel.in/terms"
       />
       
       {/* Breadcrumb Navigation */}
