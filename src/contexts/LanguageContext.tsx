@@ -85,6 +85,19 @@ const translations = {
     'footer.rights': 'All rights reserved.',
     'footer.privacy': 'Privacy Policy',
     'footer.terms': 'Terms of Service',
+
+    // New mobile header translations
+    'mobile.language-prompt': 'Change Website Language?',
+    'mobile.language-confirm': 'Would you like to switch to Arabic?',
+    'mobile.language-confirm-ar': 'Would you like to switch to English?',
+    'mobile.change-to-arabic': 'Change to Arabic',
+    'mobile.change-to-english': 'Change to English',
+    'mobile.cancel': 'Cancel',
+    'mobile.confirm': 'Confirm',
+    'mobile.call-now': 'Call Now',
+    'mobile.apply-now': 'Apply Now',
+    'mobile.notifications': 'Notifications',
+    'mobile.quick-contact': 'Quick Contact',
   },
   ar: {
     'nav.home': 'الرئيسية',
@@ -157,6 +170,19 @@ const translations = {
     'footer.rights': 'جميع الحقوق محفوظة.',
     'footer.privacy': 'سياسة الخصوصية',
     'footer.terms': 'شروط الخدمة',
+
+    // New mobile header translations
+    'mobile.language-prompt': 'تغيير لغة الموقع؟',
+    'mobile.language-confirm': 'هل تريد التبديل إلى اللغة الإنجليزية؟',
+    'mobile.language-confirm-ar': 'هل تريد التبديل إلى اللغة العربية؟',
+    'mobile.change-to-arabic': 'التغيير إلى العربية',
+    'mobile.change-to-english': 'التغيير إلى الإنجليزية',
+    'mobile.cancel': 'إلغاء',
+    'mobile.confirm': 'تأكيد',
+    'mobile.call-now': 'اتصل الآن',
+    'mobile.apply-now': 'قدم الآن',
+    'mobile.notifications': 'الإشعارات',
+    'mobile.quick-contact': 'تواصل سريع',
   }
 };
 
