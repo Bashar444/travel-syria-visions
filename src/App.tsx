@@ -19,6 +19,7 @@ import SuccessStories from "./pages/SuccessStories";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import WorkWithUs from "./pages/WorkWithUs";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";

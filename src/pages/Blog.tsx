@@ -1,7 +1,9 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Calendar, User, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import SEO from '@/components/SEO';
 import StudentStats from '@/components/StudentStats';
 
@@ -19,39 +21,6 @@ const Blog = () => {
       author: direction === 'rtl' ? "فريق Travel.Ltd" : "Travel.Ltd Team",
       slug: "guide-to-italian-universities",
       keywords: direction === 'rtl' ? "الجامعات الإيطالية, الدراسة في إيطاليا, المنح الدراسية" : "Italian universities, studying in Italy, scholarships"
-    },
-    {
-      title: direction === 'rtl' ? "المنح الدراسية المتاحة للطلاب السوريين 2024" : "Available Scholarships for Syrian Students 2024",
-      excerpt: direction === 'rtl' 
-        ? "قائمة شاملة بأفضل المنح الدراسية المتاحة للطلاب السوريين في أوروبا وآسيا."
-        : "Comprehensive list of the best scholarships available for Syrian students in Europe and Asia.",
-      image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&q=80",
-      date: "2024-01-10",
-      author: direction === 'rtl' ? "فريق Travel.Ltd" : "Travel.Ltd Team",
-      slug: "scholarships-for-syrian-students",
-      keywords: direction === 'rtl' ? "المنح الدراسية, الطلاب السوريين, التعليم المجاني" : "scholarships, Syrian students, free education"
-    },
-    {
-      title: direction === 'rtl' ? "كيفية كتابة خطاب الدافع المثالي" : "How to Write the Perfect Motivation Letter",
-      excerpt: direction === 'rtl' 
-        ? "نصائح مهمة وأمثلة عملية لكتابة خطاب دافع قوي يزيد من فرص قبولك الجامعي."
-        : "Important tips and practical examples for writing a strong motivation letter that increases your university acceptance chances.",
-      image: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=800&q=80",
-      date: "2024-01-05",
-      author: direction === 'rtl' ? "فريق Travel.Ltd" : "Travel.Ltd Team",
-      slug: "perfect-motivation-letter",
-      keywords: direction === 'rtl' ? "خطاب الدافع, القبول الجامعي, كتابة الطلبات" : "motivation letter, university admission, application writing"
-    },
-    {
-      title: direction === 'rtl' ? "الحياة الطلابية في الجامعات الهندية" : "Student Life in Indian Universities",
-      excerpt: direction === 'rtl' 
-        ? "تعرف على تجربة الطلاب العرب في الجامعات الهندية والثقافة المحلية والتكاليف."
-        : "Learn about the experience of Arab students in Indian universities, local culture, and costs.",
-      image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&q=80",
-      date: "2023-12-28",
-      author: direction === 'rtl' ? "فريق Travel.Ltd" : "Travel.Ltd Team",
-      slug: "student-life-indian-universities",
-      keywords: direction === 'rtl' ? "الجامعات الهندية, الحياة الطلابية, الطلاب العرب" : "Indian universities, student life, Arab students"
     },
     {
       title: direction === 'rtl' ? "متطلبات التأشيرة الطلابية للدول الأوروبية" : "Student Visa Requirements for European Countries",
@@ -74,6 +43,17 @@ const Blog = () => {
       author: direction === 'rtl' ? "فريق Travel.Ltd" : "Travel.Ltd Team",
       slug: "best-majors-syrian-students-2024",
       keywords: direction === 'rtl' ? "التخصصات الجامعية, فرص العمل, الطلاب السوريين" : "university majors, job opportunities, Syrian students"
+    },
+    {
+      title: direction === 'rtl' ? "الحياة الطلابية في الجامعات الهندية" : "Student Life in Indian Universities",
+      excerpt: direction === 'rtl' 
+        ? "تعرف على تجربة الطلاب العرب في الجامعات الهندية والثقافة المحلية والتكاليف."
+        : "Learn about the experience of Arab students in Indian universities, local culture, and costs.",
+      image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&q=80",
+      date: "2023-12-28",
+      author: direction === 'rtl' ? "فريق Travel.Ltd" : "Travel.Ltd Team",
+      slug: "student-life-indian-universities",
+      keywords: direction === 'rtl' ? "الجامعات الهندية, الحياة الطلابية, الطلاب العرب" : "Indian universities, student life, Arab students"
     }
   ];
 
@@ -138,10 +118,12 @@ const Blog = () => {
                   <p className="text-gray-600 mb-6 leading-relaxed">
                     {blogPosts[0].excerpt}
                   </p>
-                  <Button className="bg-[#EE3524] hover:bg-red-600 self-start transition-all duration-300 transform hover:scale-105">
-                    {direction === 'rtl' ? 'اقرأ المزيد' : 'Read More'}
-                    <ArrowRight className={`w-4 h-4 ${direction === 'rtl' ? 'mr-2' : 'ml-2'}`} />
-                  </Button>
+                  <Link to={`/blog/${blogPosts[0].slug}`}>
+                    <Button className="bg-[#EE3524] hover:bg-red-600 self-start transition-all duration-300 transform hover:scale-105">
+                      {direction === 'rtl' ? 'اقرأ المزيد' : 'Read More'}
+                      <ArrowRight className={`w-4 h-4 ${direction === 'rtl' ? 'mr-2' : 'ml-2'}`} />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </Card>
@@ -172,16 +154,20 @@ const Blog = () => {
                     </span>
                   </div>
                   <CardTitle className="text-lg leading-tight hover:text-[#0018A8] transition-colors cursor-pointer">
-                    {post.title}
+                    <Link to={`/blog/${post.slug}`}>
+                      {post.title}
+                    </Link>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
                   <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                     {post.excerpt}
                   </p>
-                  <Button variant="outline" size="sm" className="text-[#EE3524] border-[#EE3524] hover:bg-[#EE3524] hover:text-white transition-all duration-300 transform hover:scale-105">
-                    {direction === 'rtl' ? 'اقرأ المزيد' : 'Read More'}
-                  </Button>
+                  <Link to={`/blog/${post.slug}`}>
+                    <Button variant="outline" size="sm" className="text-[#EE3524] border-[#EE3524] hover:bg-[#EE3524] hover:text-white transition-all duration-300 transform hover:scale-105">
+                      {direction === 'rtl' ? 'اقرأ المزيد' : 'Read More'}
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
