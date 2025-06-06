@@ -74,7 +74,7 @@
     transition: all 0.3s ease;
   }
 
-  /* Language-specific styles */
+  /* Language-specific styles with proper text direction */
   html[lang="ar"] {
     direction: rtl;
     text-align: right;
@@ -85,6 +85,37 @@
     text-align: left;
   }
 
+  /* Ensure proper punctuation and text direction for English */
+  html[lang="en"] * {
+    direction: ltr;
+    unicode-bidi: embed;
+    text-align: left;
+  }
+
+  /* Specific fixes for punctuation in English content */
+  html[lang="en"] .text-content,
+  html[lang="en"] p,
+  html[lang="en"] li,
+  html[lang="en"] h1,
+  html[lang="en"] h2,
+  html[lang="en"] h3,
+  html[lang="en"] h4,
+  html[lang="en"] h5,
+  html[lang="en"] h6 {
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: normal !important;
+  }
+
+  /* Override any RTL interference for English punctuation */
+  html[lang="en"] .list-disc,
+  html[lang="en"] .list-inside,
+  html[lang="en"] ul,
+  html[lang="en"] ol {
+    direction: ltr !important;
+    text-align: left !important;
+  }
+
   /* Smooth transitions for language switching */
   html.language-switching {
     transition: all 0.3s ease-in-out;
@@ -92,6 +123,43 @@
 
   html.language-switching * {
     transition: all 0.3s ease-in-out;
+  }
+
+  /* English-specific font improvements */
+  html[lang="en"] body {
+    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+
+  html[lang="en"] .text-sm {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  html[lang="en"] .text-lg {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+
+  html[lang="en"] .text-xl {
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
+
+  html[lang="en"] .text-2xl {
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
+
+  html[lang="en"] .text-3xl {
+    font-size: 1.875rem;
+    line-height: 1.3;
+  }
+
+  html[lang="en"] .text-4xl {
+    font-size: 2.25rem;
+    line-height: 1.2;
   }
 
   /* Arabic-specific font improvements */
@@ -125,6 +193,31 @@
     font-size: 2.5rem;
   }
 
+  /* Enhanced spacing utilities for better readability */
+  html[lang="en"] .content-spacing {
+    margin-bottom: 1.5rem;
+  }
+
+  html[lang="en"] .content-spacing:last-child {
+    margin-bottom: 0;
+  }
+
+  /* English-specific list styling */
+  html[lang="en"] .space-x-2 > * + * {
+    margin-left: 0.5rem;
+    margin-right: 0;
+  }
+
+  html[lang="en"] .space-x-3 > * + * {
+    margin-left: 0.75rem;
+    margin-right: 0;
+  }
+
+  html[lang="en"] .space-x-4 > * + * {
+    margin-left: 1rem;
+    margin-right: 0;
+  }
+
   /* RTL-specific adjustments */
   html[lang="ar"] .space-x-2 > * + * {
     margin-right: 0.5rem;
@@ -139,6 +232,21 @@
   html[lang="ar"] .space-x-4 > * + * {
     margin-right: 1rem;
     margin-left: 0;
+  }
+
+  /* Improved paragraph spacing for better readability */
+  html[lang="en"] p {
+    margin-bottom: 1rem;
+  }
+
+  html[lang="en"] p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Better heading spacing */
+  html[lang="en"] h1, html[lang="en"] h2, html[lang="en"] h3, html[lang="en"] h4, html[lang="en"] h5, html[lang="en"] h6 {
+    margin-bottom: 0.75rem;
+    font-weight: 600;
   }
 
   /* Feedback button positioning for RTL */
@@ -193,4 +301,19 @@
   border-radius: 5px;
   font-size: 12px;
   z-index: 9999;
+}
+
+/* Enhanced content styling for better readability */
+.content-wrapper {
+  max-width: none;
+}
+
+html[lang="en"] .content-wrapper {
+  text-align: left;
+  direction: ltr;
+}
+
+html[lang="ar"] .content-wrapper {
+  text-align: right;
+  direction: rtl;
 }

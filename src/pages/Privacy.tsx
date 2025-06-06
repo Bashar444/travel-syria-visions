@@ -1,3 +1,4 @@
+
 import { useLanguage } from '@/contexts/LanguageContext';
 import SEO from '@/components/SEO';
 
@@ -104,78 +105,78 @@ const Privacy = () => {
           title: "Information We Collect",
           content: "We collect the following information legally and transparently:",
           items: [
-            "Personal Information: Full name, email address, phone number, postal address",
-            "Academic Information: Educational qualifications, grades, certificates, desired specialization",
-            "Technical Information: IP address, browser type, operating system, visit times, pages viewed",
-            "Cookies: To improve user experience and personalize content and advertisements",
-            "Usage Information: Site interactions, content preferences, session duration"
+            "Personal Information: Full name, email address, phone number, and postal address",
+            "Academic Information: Educational qualifications, grades, certificates, and desired specialization",
+            "Technical Information: IP address, browser type, operating system, visit times, and pages viewed",
+            "Cookies: Used to improve user experience and personalize content and advertisements",
+            "Usage Information: Site interactions, content preferences, and session duration"
           ]
         },
         usage: {
-          title: "How We Use Information",
+          title: "How We Use Your Information",
           content: "We use your information for the following purposes:",
           items: [
             "Provide specialized university admission and educational consulting services",
             "Communicate with you about service requests, updates, and relevant offers",
-            "Improve our services, website, and user experience",
-            "Display personalized and relevant advertisements",
-            "Conduct analytics and research to develop our services",
-            "Comply with legal and regulatory requirements"
+            "Improve our services, website functionality, and overall user experience",
+            "Display personalized and relevant advertisements based on your interests",
+            "Conduct analytics and research to develop and enhance our services",
+            "Comply with legal and regulatory requirements as mandated by law"
           ]
         },
         adsense: {
-          title: "Google AdSense and Cookies",
-          content: "Our website uses Google AdSense to display relevant advertisements. Google uses cookies and other tracking technologies to serve personalized ads based on your interests and prior visits. These advertisements help us provide free, high-quality content. You can manage your ad preferences or opt out of personalized advertising by visiting Google's Ads Settings or using available opt-out tools."
+          title: "Google AdSense and Cookie Usage",
+          content: "Our website uses Google AdSense to display relevant advertisements to our visitors. Google uses cookies and other tracking technologies to serve personalized ads based on your interests and prior website visits. These advertisements help us provide free, high-quality content and services. You can manage your ad preferences or opt out of personalized advertising by visiting Google's Ads Settings or using available opt-out tools provided by Google."
         },
         cookies: {
-          title: "Cookie Policy",
-          content: "We use different types of cookies:",
+          title: "Cookie Policy and Types",
+          content: "We use different types of cookies to enhance your browsing experience:",
           items: [
-            "Essential Cookies: Necessary for basic website functionality",
-            "Analytics Cookies: To understand how the website is used",
-            "Functional Cookies: To remember your preferences and language",
-            "Advertising Cookies: To display relevant advertisements",
-            "Third-party Cookies: From services like Google Analytics and AdSense"
+            "Essential Cookies: Necessary for basic website functionality and navigation",
+            "Analytics Cookies: Help us understand how visitors use and interact with our website",
+            "Functional Cookies: Remember your preferences, language settings, and user choices",
+            "Advertising Cookies: Used to display relevant advertisements and measure ad effectiveness",
+            "Third-party Cookies: From external services like Google Analytics and AdSense"
           ]
         },
         sharing: {
-          title: "Information Sharing",
-          content: "We do not sell, rent, or share your personal information with third parties except in the following specified cases:",
+          title: "Information Sharing and Disclosure",
+          content: "We do not sell, rent, or share your personal information with third parties except in the following specified circumstances:",
           items: [
-            "With your explicit and informed consent",
-            "To provide requested services with our trusted partners (such as partner universities)",
-            "To comply with legal requirements or court orders",
-            "To protect our rights, user safety, and public security",
+            "With your explicit and informed consent for specific purposes",
+            "To provide requested services through our trusted partners (such as partner universities)",
+            "To comply with legal requirements, court orders, or government regulations",
+            "To protect our rights, user safety, and maintain public security",
             "With service providers who help us operate our website (such as Google Analytics)"
           ]
         },
         security: {
           title: "Information Security and Protection",
-          content: "We implement strict and comprehensive security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. This includes encryption, firewalls, restricted access, and continuous monitoring. However, please note that no internet transmission or electronic storage can be guaranteed to be completely secure."
+          content: "We implement strict and comprehensive security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. This includes encryption protocols, secure firewalls, restricted access controls, and continuous monitoring systems. However, please note that no internet transmission or electronic storage method can be guaranteed to be completely secure."
         },
         rights: {
           title: "Your Data Protection Rights",
-          content: "Under data protection laws, you have the following rights:",
+          content: "Under applicable data protection laws, you have the following rights regarding your personal data:",
           items: [
-            "Right to Access: Request a copy of your personal data",
-            "Right to Rectification: Update or correct your information",
-            "Right to Erasure: Request deletion of your personal data",
-            "Right to Restrict Processing: Limit how your data is used",
-            "Right to Data Portability: Obtain your data in a readable format",
-            "Right to Object: Refuse processing of your data for certain purposes",
-            "Right to Withdraw Consent: Cancel your consent at any time"
+            "Right to Access: Request a copy of your personal data that we hold",
+            "Right to Rectification: Update or correct any inaccurate information",
+            "Right to Erasure: Request deletion of your personal data under certain conditions",
+            "Right to Restrict Processing: Limit how your data is used or processed",
+            "Right to Data Portability: Obtain your data in a readable and transferable format",
+            "Right to Object: Refuse processing of your data for certain specific purposes",
+            "Right to Withdraw Consent: Cancel your consent at any time without penalty"
           ]
         },
         retention: {
-          title: "Data Retention",
-          content: "We retain your personal data only as long as necessary for the specified purposes or as required by law. Typically, we retain data for 7 years after the last interaction, unless you request deletion or local laws require different retention periods."
+          title: "Data Retention Policy",
+          content: "We retain your personal data only as long as necessary for the specified purposes or as required by applicable law. Typically, we retain data for 7 years after the last interaction, unless you request deletion or local laws require different retention periods for specific types of information."
         },
         contact: {
-          title: "Contact Us",
-          content: "If you have any questions about this Privacy Policy or wish to exercise your rights, please contact us at:",
+          title: "Contact Information",
+          content: "If you have any questions about this Privacy Policy or wish to exercise your data protection rights, please contact us using the information below:",
           email: "privatelimitedtravel@gmail.com",
           phone: "+963985453247",
-          dataProtection: "Data Protection Officer is available through the same contact channels."
+          dataProtection: "Our Data Protection Officer is available through the same contact channels listed above."
         }
       }
     }
@@ -184,7 +185,7 @@ const Privacy = () => {
   const currentContent = content[language as keyof typeof content];
 
   return (
-    <div className="min-h-screen bg-gray-50" dir={direction}>
+    <div className="min-h-screen bg-gray-50 content-wrapper" dir={direction}>
       <SEO 
         title={`${currentContent.title} | Travel.Ltd`}
         description="Comprehensive Privacy Policy for Travel.Ltd - Learn how we collect, use, and protect your personal information when using our university admission services. GDPR compliant with Google AdSense integration."
@@ -198,12 +199,12 @@ const Privacy = () => {
           <nav className="text-sm">
             <ol className="flex items-center space-x-2 rtl:space-x-reverse">
               <li>
-                <a href="/" className="text-[#0018A8] hover:underline">
+                <a href="/" className="text-[#0018A8] hover:underline text-content">
                   {language === 'ar' ? 'الرئيسية' : 'Home'}
                 </a>
               </li>
               <span className="text-gray-500">{'>'}</span>
-              <li className="text-gray-700">{currentContent.title}</li>
+              <li className="text-gray-700 text-content">{currentContent.title}</li>
             </ol>
           </nav>
         </div>
@@ -212,136 +213,136 @@ const Privacy = () => {
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <header className="mb-8">
-            <h1 className="text-4xl font-bold text-[#0018A8] mb-4">{currentContent.title}</h1>
-            <p className="text-gray-600 text-lg">{currentContent.lastUpdated}</p>
+            <h1 className="text-4xl font-bold text-[#0018A8] mb-4 text-content">{currentContent.title}</h1>
+            <p className="text-gray-600 text-lg text-content">{currentContent.lastUpdated}</p>
           </header>
 
           <div className="space-y-8">
             {/* Introduction */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.intro.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed text-lg text-content">
                 {currentContent.sections.intro.content}
               </p>
             </section>
 
             {/* Information Collection */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.collection.title}
               </h2>
-              <p className="text-gray-700 mb-4">{currentContent.sections.collection.content}</p>
+              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.collection.content}</p>
               <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
                 {currentContent.sections.collection.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed">{item}</li>
+                  <li key={index} className="leading-relaxed text-content">{item}</li>
                 ))}
               </ul>
             </section>
 
             {/* Information Usage */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.usage.title}
               </h2>
-              <p className="text-gray-700 mb-4">{currentContent.sections.usage.content}</p>
+              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.usage.content}</p>
               <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
                 {currentContent.sections.usage.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed">{item}</li>
+                  <li key={index} className="leading-relaxed text-content">{item}</li>
                 ))}
               </ul>
             </section>
 
             {/* AdSense */}
-            <section className="bg-blue-50 p-6 rounded-lg border-l-4 border-[#0018A8]">
-              <h2 className="text-2xl font-semibold text-[#0018A8] mb-4">
+            <section className="bg-blue-50 p-6 rounded-lg border-l-4 border-[#0018A8] content-spacing">
+              <h2 className="text-2xl font-semibold text-[#0018A8] mb-4 text-content">
                 {currentContent.sections.adsense.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed text-lg text-content">
                 {currentContent.sections.adsense.content}
               </p>
             </section>
 
             {/* Cookie Policy */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.cookies.title}
               </h2>
-              <p className="text-gray-700 mb-4">{currentContent.sections.cookies.content}</p>
+              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.cookies.content}</p>
               <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
                 {currentContent.sections.cookies.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed">{item}</li>
+                  <li key={index} className="leading-relaxed text-content">{item}</li>
                 ))}
               </ul>
             </section>
 
             {/* Information Sharing */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.sharing.title}
               </h2>
-              <p className="text-gray-700 mb-4">{currentContent.sections.sharing.content}</p>
+              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.sharing.content}</p>
               <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
                 {currentContent.sections.sharing.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed">{item}</li>
+                  <li key={index} className="leading-relaxed text-content">{item}</li>
                 ))}
               </ul>
             </section>
 
             {/* Security */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.security.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed text-lg text-content">
                 {currentContent.sections.security.content}
               </p>
             </section>
 
             {/* User Rights */}
-            <section className="bg-gray-50 p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="bg-gray-50 p-6 rounded-lg content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.rights.title}
               </h2>
-              <p className="text-gray-700 mb-4">{currentContent.sections.rights.content}</p>
+              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.rights.content}</p>
               <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
                 {currentContent.sections.rights.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed">{item}</li>
+                  <li key={index} className="leading-relaxed text-content">{item}</li>
                 ))}
               </ul>
             </section>
 
             {/* Data Retention */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.retention.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed text-lg text-content">
                 {currentContent.sections.retention.content}
               </p>
             </section>
 
             {/* Contact */}
             <section className="bg-[#0018A8] text-white p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold mb-4">
+              <h2 className="text-2xl font-semibold mb-4 text-content">
                 {currentContent.sections.contact.title}
               </h2>
-              <p className="mb-4 text-lg">{currentContent.sections.contact.content}</p>
+              <p className="mb-4 text-lg text-content">{currentContent.sections.contact.content}</p>
               <div className="space-y-3">
-                <p className="flex items-center gap-2">
+                <p className="flex items-center gap-2 text-content">
                   <strong>{language === 'ar' ? 'البريد الإلكتروني:' : 'Email:'}</strong> 
                   <a href={`mailto:${currentContent.sections.contact.email}`} className="hover:underline">
                     {currentContent.sections.contact.email}
                   </a>
                 </p>
-                <p className="flex items-center gap-2">
+                <p className="flex items-center gap-2 text-content">
                   <strong>{language === 'ar' ? 'الهاتف:' : 'Phone:'}</strong> 
                   <a href={`tel:${currentContent.sections.contact.phone}`} className="hover:underline">
                     {currentContent.sections.contact.phone}
                   </a>
                 </p>
-                <p className="text-sm opacity-90">{currentContent.sections.contact.dataProtection}</p>
+                <p className="text-sm opacity-90 text-content">{currentContent.sections.contact.dataProtection}</p>
               </div>
             </section>
           </div>

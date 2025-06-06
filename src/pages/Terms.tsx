@@ -1,3 +1,4 @@
+
 import { useLanguage } from '@/contexts/LanguageContext';
 import SEO from '@/components/SEO';
 
@@ -112,92 +113,92 @@ const Terms = () => {
           content: "Welcome to Travel.Ltd. By using our website and services, you agree to comply with these Terms of Service and related policies. Please read them carefully before using our services. If you do not agree with these terms, please do not use our services."
         },
         definitions: {
-          title: "Definitions",
+          title: "Definitions and Terminology",
           content: "In these terms, the following definitions apply:",
           items: [
             "\"Company\", \"we\", or \"Travel.Ltd\": Travel.Ltd and its associates",
             "\"User\" or \"you\": Any person using our website or services",
-            "\"Services\": All services provided through our website",
-            "\"Content\": Any text, images, or other materials on the website",
+            "\"Services\": All services provided through our website and platforms",
+            "\"Content\": Any text, images, or other materials available on the website",
             "\"Personal Data\": Any information that identifies you personally"
           ]
         },
         services: {
           title: "Our Services and Scope of Work",
-          content: "Travel.Ltd provides a comprehensive range of educational services:",
+          content: "Travel.Ltd provides a comprehensive range of educational and consulting services:",
           items: [
-            "Specialized university admission services and educational consulting",
-            "Visa processing and official document handling",
-            "Hajj and Umrah services with certified guides",
-            "Saudi and international scholarship programs",
-            "Specialized educational and career consulting",
-            "Translation and legal documentation services",
-            "International test preparation programs"
+            "Specialized university admission services and educational consulting worldwide",
+            "Professional visa processing and official document handling services",
+            "Hajj and Umrah pilgrimage services with certified and experienced guides",
+            "Saudi and international scholarship programs and application assistance",
+            "Specialized educational and career consulting for students and professionals",
+            "Translation and legal documentation services for academic purposes",
+            "International test preparation programs and coaching services"
           ]
         },
         user_responsibilities: {
           title: "User Responsibilities and Obligations",
-          content: "As a user of our services, you agree to comply with the following:",
+          content: "As a user of our services, you agree to comply with the following requirements:",
           items: [
-            "Provide accurate, truthful, and up-to-date information at all times",
-            "Not use the website or services for illegal or harmful purposes",
-            "Respect intellectual property rights of all content and materials",
-            "Not attempt unauthorized access to systems or data",
-            "Pay all required fees and costs within specified timeframes",
-            "Cooperate with our team and provide required documents correctly",
-            "Respect the terms and conditions of partner universities and institutions"
+            "Provide accurate, truthful, and up-to-date information at all times during the application process",
+            "Not use the website or services for illegal, harmful, or fraudulent purposes",
+            "Respect intellectual property rights of all content, materials, and proprietary information",
+            "Not attempt unauthorized access to systems, data, or confidential information",
+            "Pay all required fees and costs within specified timeframes as agreed",
+            "Cooperate with our team and provide required documents correctly and promptly",
+            "Respect the terms and conditions of partner universities and educational institutions"
           ]
         },
         fees: {
           title: "Fees and Payment Policy",
-          content: "Our service fees start from $1099 USD and vary depending on service type and destination. Fees are non-refundable except under exceptional circumstances as defined in our refund policy. All payments are processed through secure and protected channels."
+          content: "Our service fees start from $1,099 USD and vary depending on service type, destination country, and program complexity. Fees are non-refundable except under exceptional circumstances as defined in our refund policy. All payments are processed through secure and protected channels with industry-standard encryption."
         },
         limitations: {
           title: "Liability Limitations and Warranty Disclaimers",
-          content: "Travel.Ltd operates as an educational intermediary and is not responsible for:",
+          content: "Travel.Ltd operates as an educational intermediary and consulting service. We are not responsible for:",
           items: [
             "Admission or rejection decisions made by universities or educational institutions",
-            "Visa application delays or rejections by government authorities",
-            "Changes in university, government policies, or local laws",
-            "Indirect, consequential, or incidental losses or damages",
-            "Force majeure events such as natural disasters, pandemics, or wars",
-            "Errors or delays from third parties such as shipping companies or banks"
+            "Visa application delays or rejections by government authorities or embassies",
+            "Changes in university policies, government regulations, or local laws",
+            "Indirect, consequential, or incidental losses or damages of any kind",
+            "Force majeure events such as natural disasters, pandemics, wars, or political instability",
+            "Errors or delays from third parties such as shipping companies, banks, or government agencies"
           ]
         },
         termination: {
           title: "Service and Account Termination",
           content: "We reserve the right to immediately terminate or suspend your account and services if you:",
           items: [
-            "Violate any of these Terms of Service or applicable policies",
-            "Provide false, misleading, or fraudulent information",
-            "Fail to pay fees or costs due within specified timeframes",
-            "Use the service for illegal or harmful purposes",
-            "Display inappropriate or abusive behavior toward our team",
-            "Violate third-party rights or applicable laws"
+            "Violate any of these Terms of Service or applicable policies and guidelines",
+            "Provide false, misleading, or fraudulent information during the application process",
+            "Fail to pay fees or costs due within specified timeframes as agreed",
+            "Use the service for illegal, harmful, or fraudulent purposes",
+            "Display inappropriate or abusive behavior toward our team or partners",
+            "Violate third-party rights or applicable laws in your jurisdiction"
           ]
         },
         intellectual_property: {
           title: "Intellectual Property and Copyright",
-          content: "All content, trademarks, logos, and educational materials on our website are exclusive intellectual property of Travel.Ltd or licensed to us by third parties. Use, copying, or distribution without explicit written permission is prohibited."
+          content: "All content, trademarks, logos, and educational materials on our website are exclusive intellectual property of Travel.Ltd or licensed to us by third parties. Use, copying, or distribution without explicit written permission is strictly prohibited and may result in legal action."
         },
         privacy: {
           title: "Privacy and Data Protection",
-          content: "Your use of our services is also subject to our Privacy Policy, which forms an integral part of these terms. We are committed to protecting your personal data according to the highest standards of security and transparency."
+          content: "Your use of our services is also subject to our comprehensive Privacy Policy, which forms an integral part of these terms. We are committed to protecting your personal data according to the highest standards of security, transparency, and international compliance regulations."
         },
         changes: {
           title: "Terms and Conditions Modification",
-          content: "We reserve the right to modify these Terms of Service at any time to improve our services or comply with new laws. You will be notified of any material changes via email or website notice. Your continued use of services after modifications constitutes acceptance of the updated terms."
+          content: "We reserve the right to modify these Terms of Service at any time to improve our services, comply with new laws, or adapt to changing business requirements. You will be notified of any material changes via email or website notice. Your continued use of services after modifications constitutes acceptance of the updated terms."
         },
         governing_law: {
           title: "Governing Law and Dispute Resolution",
-          content: "These terms are governed by the laws applicable in the United Kingdom. Any disputes arising from these terms will first be resolved through direct negotiation, and if unsuccessful, through arbitration or competent courts."
+          content: "These terms are governed by the laws applicable in the United Kingdom. Any disputes arising from these terms will first be resolved through direct negotiation and mediation. If unsuccessful, disputes will be resolved through arbitration or competent courts as determined by applicable law."
         },
         contact: {
-          title: "Contact Us",
-          content: "If you have any questions or inquiries about these Terms of Service, please contact us at:",
+          title: "Contact Information and Support",
+          content: "If you have any questions or inquiries about these Terms of Service, please contact us using the information provided below:",
           email: "privatelimitedtravel@gmail.com",
           phone: "+963985453247",
-          support: "Support team is available Monday to Friday, 10:00 AM - 6:00 PM (Damascus Time)"
+          support: "Our support team is available Monday to Friday, 10:00 AM - 6:00 PM (Damascus Time) for assistance."
         }
       }
     }
@@ -206,7 +207,7 @@ const Terms = () => {
   const currentContent = content[language as keyof typeof content];
 
   return (
-    <div className="min-h-screen bg-gray-50" dir={direction}>
+    <div className="min-h-screen bg-gray-50 content-wrapper" dir={direction}>
       <SEO 
         title={`${currentContent.title} | Travel.Ltd`}
         description="Comprehensive Terms of Service for Travel.Ltd - Read our terms and conditions for using our university admission and educational consulting services. Legal compliance and user rights."
@@ -220,12 +221,12 @@ const Terms = () => {
           <nav className="text-sm">
             <ol className="flex items-center space-x-2 rtl:space-x-reverse">
               <li>
-                <a href="/" className="text-[#0018A8] hover:underline">
+                <a href="/" className="text-[#0018A8] hover:underline text-content">
                   {language === 'ar' ? 'الرئيسية' : 'Home'}
                 </a>
               </li>
               <span className="text-gray-500">{'>'}</span>
-              <li className="text-gray-700">{currentContent.title}</li>
+              <li className="text-gray-700 text-content">{currentContent.title}</li>
             </ol>
           </nav>
         </div>
@@ -234,156 +235,156 @@ const Terms = () => {
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <header className="mb-8">
-            <h1 className="text-4xl font-bold text-[#0018A8] mb-4">{currentContent.title}</h1>
-            <p className="text-gray-600 text-lg">{currentContent.lastUpdated}</p>
+            <h1 className="text-4xl font-bold text-[#0018A8] mb-4 text-content">{currentContent.title}</h1>
+            <p className="text-gray-600 text-lg text-content">{currentContent.lastUpdated}</p>
           </header>
 
           <div className="space-y-8">
             {/* Introduction */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.intro.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed text-lg text-content">
                 {currentContent.sections.intro.content}
               </p>
             </section>
 
             {/* Definitions */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.definitions.title}
               </h2>
-              <p className="text-gray-700 mb-4">{currentContent.sections.definitions.content}</p>
+              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.definitions.content}</p>
               <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
                 {currentContent.sections.definitions.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed">{item}</li>
+                  <li key={index} className="leading-relaxed text-content">{item}</li>
                 ))}
               </ul>
             </section>
 
             {/* Services */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.services.title}
               </h2>
-              <p className="text-gray-700 mb-4">{currentContent.sections.services.content}</p>
+              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.services.content}</p>
               <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
                 {currentContent.sections.services.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed">{item}</li>
+                  <li key={index} className="leading-relaxed text-content">{item}</li>
                 ))}
               </ul>
             </section>
 
             {/* User Responsibilities */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.user_responsibilities.title}
               </h2>
-              <p className="text-gray-700 mb-4">{currentContent.sections.user_responsibilities.content}</p>
+              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.user_responsibilities.content}</p>
               <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
                 {currentContent.sections.user_responsibilities.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed">{item}</li>
+                  <li key={index} className="leading-relaxed text-content">{item}</li>
                 ))}
               </ul>
             </section>
 
             {/* Fees */}
-            <section className="bg-blue-50 p-6 rounded-lg border-l-4 border-[#0018A8]">
-              <h2 className="text-2xl font-semibold text-[#0018A8] mb-4">
+            <section className="bg-blue-50 p-6 rounded-lg border-l-4 border-[#0018A8] content-spacing">
+              <h2 className="text-2xl font-semibold text-[#0018A8] mb-4 text-content">
                 {currentContent.sections.fees.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed text-lg text-content">
                 {currentContent.sections.fees.content}
               </p>
             </section>
 
             {/* Limitations */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.limitations.title}
               </h2>
-              <p className="text-gray-700 mb-4">{currentContent.sections.limitations.content}</p>
+              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.limitations.content}</p>
               <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
                 {currentContent.sections.limitations.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed">{item}</li>
+                  <li key={index} className="leading-relaxed text-content">{item}</li>
                 ))}
               </ul>
             </section>
 
             {/* Termination */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.termination.title}
               </h2>
-              <p className="text-gray-700 mb-4">{currentContent.sections.termination.content}</p>
+              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.termination.content}</p>
               <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
                 {currentContent.sections.termination.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed">{item}</li>
+                  <li key={index} className="leading-relaxed text-content">{item}</li>
                 ))}
               </ul>
             </section>
 
             {/* Intellectual Property */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.intellectual_property.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed text-lg text-content">
                 {currentContent.sections.intellectual_property.content}
               </p>
             </section>
 
             {/* Privacy */}
-            <section className="bg-gray-50 p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="bg-gray-50 p-6 rounded-lg content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.privacy.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed text-lg text-content">
                 {currentContent.sections.privacy.content}
               </p>
             </section>
 
             {/* Changes */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.changes.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed text-lg text-content">
                 {currentContent.sections.changes.content}
               </p>
             </section>
 
             {/* Governing Law */}
-            <section>
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4">
+            <section className="content-spacing">
+              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
                 {currentContent.sections.governing_law.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed text-lg text-content">
                 {currentContent.sections.governing_law.content}
               </p>
             </section>
 
             {/* Contact */}
             <section className="bg-[#0018A8] text-white p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold mb-4">
+              <h2 className="text-2xl font-semibold mb-4 text-content">
                 {currentContent.sections.contact.title}
               </h2>
-              <p className="mb-4 text-lg">{currentContent.sections.contact.content}</p>
+              <p className="mb-4 text-lg text-content">{currentContent.sections.contact.content}</p>
               <div className="space-y-3">
-                <p className="flex items-center gap-2">
+                <p className="flex items-center gap-2 text-content">
                   <strong>{language === 'ar' ? 'البريد الإلكتروني:' : 'Email:'}</strong> 
                   <a href={`mailto:${currentContent.sections.contact.email}`} className="hover:underline">
                     {currentContent.sections.contact.email}
                   </a>
                 </p>
-                <p className="flex items-center gap-2">
+                <p className="flex items-center gap-2 text-content">
                   <strong>{language === 'ar' ? 'الهاتف:' : 'Phone:'}</strong> 
                   <a href={`tel:${currentContent.sections.contact.phone}`} className="hover:underline">
                     {currentContent.sections.contact.phone}
                   </a>
                 </p>
-                <p className="text-sm opacity-90">{currentContent.sections.contact.support}</p>
+                <p className="text-sm opacity-90 text-content">{currentContent.sections.contact.support}</p>
               </div>
             </section>
           </div>

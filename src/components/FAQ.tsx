@@ -41,31 +41,31 @@ const FAQ = () => {
     },
     en: {
       title: 'Frequently Asked Questions',
-      subtitle: 'Answers to the most common questions about our services',
+      subtitle: 'Find answers to the most common questions about our services',
       questions: [
         {
           q: 'What services do you provide?',
-          a: 'We offer comprehensive services including university admissions, visa processing, Hajj & Umrah services, and Saudi scholarships. All our services are specifically designed for Syrian students seeking to study abroad.'
+          a: 'We offer comprehensive services including university admissions, visa processing, Hajj & Umrah services, and Saudi scholarship programs. All our services are specifically designed for Syrian students seeking to study abroad and pursue their educational goals.'
         },
         {
           q: 'How long does the university admission process take?',
-          a: 'University admission processing takes 4-8 weeks depending on the university and program. We track your application step by step and keep you constantly updated on developments.'
+          a: 'The university admission processing typically takes 4-8 weeks, depending on the specific university and program requirements. We track your application every step of the way and keep you constantly updated on all developments and progress.'
         },
         {
           q: 'What documents are required for application?',
-          a: 'Basic documents include: high school or university certificate, transcript, passport, English proficiency certificate, motivation letter, and recommendation letters. Requirements may vary by university and major.'
+          a: 'The essential documents include: high school or university certificates, academic transcripts, valid passport, English proficiency certificates (IELTS/TOEFL), motivation letter, and recommendation letters. Specific requirements may vary depending on the chosen university and academic program.'
         },
         {
           q: 'Do you guarantee admission acceptance?',
-          a: 'We achieve a 95% success rate in obtaining university admissions. While we cannot guarantee 100% acceptance, our extensive experience and university partnerships significantly increase your chances of success.'
+          a: 'We maintain a 95% success rate in securing university admissions for our students. While we cannot guarantee 100% acceptance due to university policies, our extensive experience and strong partnerships with educational institutions significantly increase your chances of successful admission.'
         },
         {
-          q: 'What are your service costs?',
-          a: 'Our services cost $1099 USD, which includes all university admission and visa processing services. This price is comprehensive with no hidden additional fees.'
+          q: 'What are your service fees?',
+          a: 'Our comprehensive service package costs $1,099 USD, which includes all university admission services and visa processing assistance. This is an all-inclusive price with no hidden additional fees or surprise charges.'
         },
         {
           q: 'Which countries can I study in?',
-          a: 'We help you apply to universities in Italy, India, Romania, and several other countries. We select universities based on your academic preferences and financial capabilities.'
+          a: 'We help students apply to universities in Italy, India, Romania, and several other countries worldwide. We carefully select universities based on your academic preferences, career goals, and financial capabilities to ensure the best possible match.'
         }
       ]
     }
@@ -74,33 +74,35 @@ const FAQ = () => {
   const currentData = faqData[language as keyof typeof faqData];
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
-      <CardHeader className="text-center">
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <HelpCircle className="w-6 h-6 text-blue-600" />
-          <CardTitle className="text-2xl font-bold text-gray-900">
-            {currentData.title}
-          </CardTitle>
-        </div>
-        <p className="text-gray-600">
-          {currentData.subtitle}
-        </p>
-      </CardHeader>
-      <CardContent>
-        <Accordion type="single" collapsible className="w-full">
-          {currentData.questions.map((item, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left font-medium text-gray-900 hover:text-blue-600">
-                {item.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-gray-600 leading-relaxed">
-                {item.a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </CardContent>
-    </Card>
+    <div className="content-wrapper" dir={direction}>
+      <Card className="w-full max-w-4xl mx-auto">
+        <CardHeader className="text-center">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <HelpCircle className="w-6 h-6 text-blue-600" />
+            <CardTitle className="text-2xl font-bold text-gray-900 text-content">
+              {currentData.title}
+            </CardTitle>
+          </div>
+          <p className="text-gray-600 text-content content-spacing">
+            {currentData.subtitle}
+          </p>
+        </CardHeader>
+        <CardContent>
+          <Accordion type="single" collapsible className="w-full">
+            {currentData.questions.map((item, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="font-medium text-gray-900 hover:text-blue-600 text-content text-left">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 leading-relaxed text-content content-spacing">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 
