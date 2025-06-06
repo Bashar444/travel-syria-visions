@@ -23,6 +23,9 @@ const translations = {
     'nav.success-stories': 'Success Stories',
     'nav.about': 'About',
     'nav.contact': 'Contact',
+    'nav.terms-privacy': 'Terms & Privacy',
+    'nav.terms': 'Terms of Service',
+    'nav.privacy': 'Privacy Policy',
 
     'hero.title': 'Unlock Your Future with Global Education',
     'hero.subtitle': 'Your gateway to international universities and scholarships',
@@ -92,8 +95,11 @@ const translations = {
     'nav.success-stories': 'قصص النجاح',
     'nav.about': 'معلومات عنا',
     'nav.contact': 'اتصل بنا',
+    'nav.terms-privacy': 'الشروط والخصوصية',
+    'nav.terms': 'شروط الخدمة',
+    'nav.privacy': 'سياسة الخصوصية',
 
-     'hero.title': 'اطلق العنان لمستقبلك مع التعليم العالمي',
+    'hero.title': 'اطلق العنان لمستقبلك مع التعليم العالمي',
     'hero.subtitle': 'بوابتك إلى الجامعات والمنح الدراسية الدولية',
     'hero.services': 'اكتشف خدماتنا',
     'hero.whatsapp': 'تواصل معنا على واتساب',

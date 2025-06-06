@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Menu, Languages, Globe } from 'lucide-react';
+import { Menu, Languages, Globe, ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,8 +23,17 @@ const Navbar = () => {
     { name: t('nav.contact'), href: '/contact' }
   ];
 
+  const legalPages = [
+    { name: t('nav.terms'), href: '/terms' },
+    { name: t('nav.privacy'), href: '/privacy' }
+  ];
+
   const isActivePage = (href: string) => {
     return location.pathname === href;
+  };
+
+  const isLegalPageActive = () => {
+    return legalPages.some(page => location.pathname === page.href);
   };
 
   const handleLanguageSwitch = () => {
@@ -76,6 +86,39 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
+            
+            {/* Terms & Privacy Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button 
+                  variant="ghost" 
+                  className={`relative px-4 py-3 rounded-md text-sm font-medium transition-all duration-300 hover:bg-[#F6F8FC] hover:shadow-sm transform hover:-translate-y-1 hover:scale-105 flex items-center gap-1 ${
+                    isLegalPageActive()
+                      ? 'text-[#0018A8] bg-[#F6F8FC] shadow-md after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0018A8] after:content-[""] after:rounded-t-md'
+                      : 'text-[#2B3A3E] hover:text-[#0018A8]'
+                  }`}
+                >
+                  {t('nav.terms-privacy')}
+                  <ChevronDown className="w-4 h-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-white border border-[#747474] shadow-lg z-50" align={direction === 'rtl' ? 'end' : 'start'}>
+                {legalPages.map((page) => (
+                  <DropdownMenuItem key={page.href} asChild>
+                    <Link
+                      to={page.href}
+                      className={`w-full px-4 py-2 text-sm transition-colors duration-200 cursor-pointer ${
+                        isActivePage(page.href)
+                          ? 'text-[#0018A8] bg-[#F6F8FC]'
+                          : 'text-[#2B3A3E] hover:text-[#0018A8] hover:bg-[#F6F8FC]'
+                      }`}
+                    >
+                      {page.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             
             {/* Enhanced Language Switch */}
             <Button 
@@ -136,6 +179,27 @@ const Navbar = () => {
                       {item.name}
                     </Link>
                   ))}
+
+                  {/* Legal Pages in Mobile Menu */}
+                  <div className="pt-2 border-t border-[#747474] mt-2">
+                    <div className="px-4 py-2 text-sm font-semibold text-[#0018A8]">
+                      {t('nav.terms-privacy')}
+                    </div>
+                    {legalPages.map((page) => (
+                      <Link
+                        key={page.href}
+                        to={page.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 block ${
+                          isActivePage(page.href)
+                            ? 'text-[#0018A8] bg-[#F6F8FC] border-r-2 border-[#0018A8]'
+                            : 'text-[#2B3A3E] hover:text-[#0018A8] hover:bg-[#F6F8FC]'
+                        }`}
+                      >
+                        {page.name}
+                      </Link>
+                    ))}
+                  </div>
                   
                   <div className="pt-4 border-t border-[#747474] mt-4">
                     <Button 
