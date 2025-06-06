@@ -1,6 +1,9 @@
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import SEO from '@/components/SEO';
+import TermsHeader from '@/components/terms/TermsHeader';
+import TermsSection from '@/components/terms/TermsSection';
+import TermsContact from '@/components/terms/TermsContact';
 
 const Terms = () => {
   const { direction, language } = useLanguage();
@@ -215,178 +218,74 @@ const Terms = () => {
         url="https://syriantravel.in/terms"
       />
       
-      {/* Breadcrumb Navigation */}
-      <div className="bg-white border-b">
-        <div className="max-w-4xl mx-auto px-4 py-3">
-          <nav className="text-sm">
-            <ol className="flex items-center space-x-2 rtl:space-x-reverse">
-              <li>
-                <a href="/" className="text-[#0018A8] hover:underline text-content">
-                  {language === 'ar' ? 'الرئيسية' : 'Home'}
-                </a>
-              </li>
-              <span className="text-gray-500">{'>'}</span>
-              <li className="text-gray-700 text-content">{currentContent.title}</li>
-            </ol>
-          </nav>
-        </div>
-      </div>
+      <TermsHeader title={currentContent.title} lastUpdated={currentContent.lastUpdated} />
       
       <div className="max-w-4xl mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <header className="mb-8">
-            <h1 className="text-4xl font-bold text-[#0018A8] mb-4 text-content">{currentContent.title}</h1>
-            <p className="text-gray-600 text-lg text-content">{currentContent.lastUpdated}</p>
-          </header>
-
           <div className="space-y-8">
-            {/* Introduction */}
-            <section className="content-spacing">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
-                {currentContent.sections.intro.title}
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-lg text-content">
-                {currentContent.sections.intro.content}
-              </p>
-            </section>
+            <TermsSection 
+              title={currentContent.sections.intro.title}
+              content={currentContent.sections.intro.content}
+            />
 
-            {/* Definitions */}
-            <section className="content-spacing">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
-                {currentContent.sections.definitions.title}
-              </h2>
-              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.definitions.content}</p>
-              <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
-                {currentContent.sections.definitions.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed text-content">{item}</li>
-                ))}
-              </ul>
-            </section>
+            <TermsSection 
+              title={currentContent.sections.definitions.title}
+              content={currentContent.sections.definitions.content}
+              items={currentContent.sections.definitions.items}
+            />
 
-            {/* Services */}
-            <section className="content-spacing">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
-                {currentContent.sections.services.title}
-              </h2>
-              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.services.content}</p>
-              <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
-                {currentContent.sections.services.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed text-content">{item}</li>
-                ))}
-              </ul>
-            </section>
+            <TermsSection 
+              title={currentContent.sections.services.title}
+              content={currentContent.sections.services.content}
+              items={currentContent.sections.services.items}
+            />
 
-            {/* User Responsibilities */}
-            <section className="content-spacing">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
-                {currentContent.sections.user_responsibilities.title}
-              </h2>
-              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.user_responsibilities.content}</p>
-              <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
-                {currentContent.sections.user_responsibilities.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed text-content">{item}</li>
-                ))}
-              </ul>
-            </section>
+            <TermsSection 
+              title={currentContent.sections.user_responsibilities.title}
+              content={currentContent.sections.user_responsibilities.content}
+              items={currentContent.sections.user_responsibilities.items}
+            />
 
-            {/* Fees */}
-            <section className="bg-blue-50 p-6 rounded-lg border-l-4 border-[#0018A8] content-spacing">
-              <h2 className="text-2xl font-semibold text-[#0018A8] mb-4 text-content">
-                {currentContent.sections.fees.title}
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-lg text-content">
-                {currentContent.sections.fees.content}
-              </p>
-            </section>
+            <TermsSection 
+              title={currentContent.sections.fees.title}
+              content={currentContent.sections.fees.content}
+              highlighted={true}
+            />
 
-            {/* Limitations */}
-            <section className="content-spacing">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
-                {currentContent.sections.limitations.title}
-              </h2>
-              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.limitations.content}</p>
-              <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
-                {currentContent.sections.limitations.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed text-content">{item}</li>
-                ))}
-              </ul>
-            </section>
+            <TermsSection 
+              title={currentContent.sections.limitations.title}
+              content={currentContent.sections.limitations.content}
+              items={currentContent.sections.limitations.items}
+            />
 
-            {/* Termination */}
-            <section className="content-spacing">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
-                {currentContent.sections.termination.title}
-              </h2>
-              <p className="text-gray-700 mb-4 text-content">{currentContent.sections.termination.content}</p>
-              <ul className="list-disc list-inside space-y-3 text-gray-700 ml-4">
-                {currentContent.sections.termination.items.map((item, index) => (
-                  <li key={index} className="leading-relaxed text-content">{item}</li>
-                ))}
-              </ul>
-            </section>
+            <TermsSection 
+              title={currentContent.sections.termination.title}
+              content={currentContent.sections.termination.content}
+              items={currentContent.sections.termination.items}
+            />
 
-            {/* Intellectual Property */}
-            <section className="content-spacing">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
-                {currentContent.sections.intellectual_property.title}
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-lg text-content">
-                {currentContent.sections.intellectual_property.content}
-              </p>
-            </section>
+            <TermsSection 
+              title={currentContent.sections.intellectual_property.title}
+              content={currentContent.sections.intellectual_property.content}
+            />
 
-            {/* Privacy */}
-            <section className="bg-gray-50 p-6 rounded-lg content-spacing">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
-                {currentContent.sections.privacy.title}
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-lg text-content">
-                {currentContent.sections.privacy.content}
-              </p>
-            </section>
+            <TermsSection 
+              title={currentContent.sections.privacy.title}
+              content={currentContent.sections.privacy.content}
+              bgColor="bg-gray-50"
+            />
 
-            {/* Changes */}
-            <section className="content-spacing">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
-                {currentContent.sections.changes.title}
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-lg text-content">
-                {currentContent.sections.changes.content}
-              </p>
-            </section>
+            <TermsSection 
+              title={currentContent.sections.changes.title}
+              content={currentContent.sections.changes.content}
+            />
 
-            {/* Governing Law */}
-            <section className="content-spacing">
-              <h2 className="text-2xl font-semibold text-[#231F20] mb-4 text-content">
-                {currentContent.sections.governing_law.title}
-              </h2>
-              <p className="text-gray-700 leading-relaxed text-lg text-content">
-                {currentContent.sections.governing_law.content}
-              </p>
-            </section>
+            <TermsSection 
+              title={currentContent.sections.governing_law.title}
+              content={currentContent.sections.governing_law.content}
+            />
 
-            {/* Contact */}
-            <section className="bg-[#0018A8] text-white p-6 rounded-lg">
-              <h2 className="text-2xl font-semibold mb-4 text-content">
-                {currentContent.sections.contact.title}
-              </h2>
-              <p className="mb-4 text-lg text-content">{currentContent.sections.contact.content}</p>
-              <div className="space-y-3">
-                <p className="flex items-center gap-2 text-content">
-                  <strong>{language === 'ar' ? 'البريد الإلكتروني:' : 'Email:'}</strong> 
-                  <a href={`mailto:${currentContent.sections.contact.email}`} className="hover:underline">
-                    {currentContent.sections.contact.email}
-                  </a>
-                </p>
-                <p className="flex items-center gap-2 text-content">
-                  <strong>{language === 'ar' ? 'الهاتف:' : 'Phone:'}</strong> 
-                  <a href={`tel:${currentContent.sections.contact.phone}`} className="hover:underline">
-                    {currentContent.sections.contact.phone}
-                  </a>
-                </p>
-                <p className="text-sm opacity-90 text-content">{currentContent.sections.contact.support}</p>
-              </div>
-            </section>
+            <TermsContact contactSection={currentContent.sections.contact} />
           </div>
         </div>
       </div>
