@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { Analytics } from "@vercel/analytics/react";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import UrlHandler from "./components/UrlHandler";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FeedbackButton from "./components/FeedbackButton";
@@ -34,6 +35,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <UrlHandler />
             <div className="min-h-screen flex flex-col">
               <Navbar />
               <main className="flex-1">
