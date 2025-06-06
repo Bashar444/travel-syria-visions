@@ -1,8 +1,11 @@
-
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Sitemap = () => {
   const { direction } = useLanguage();
+  
+  const getCurrentDate = () => {
+    return new Date().toISOString().split('T')[0];
+  };
   
   const routes = [
     { 
@@ -85,14 +88,16 @@ const Sitemap = () => {
   ];
 
   const generateSitemap = () => {
-    const currentDate = new Date().toISOString().split('T')[0];
+    const currentDate = getCurrentDate();
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
 ${routes.map(route => `  <url>
     <loc>https://syriantravel.in${route.url}</loc>
     <lastmod>${currentDate}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
     <priority>${route.priority}</priority>
+    <mobile:mobile/>
   </url>`).join('\n')}
 </urlset>`;
 
@@ -112,6 +117,34 @@ ${routes.map(route => `  <url>
           {direction === 'rtl' ? 'خريطة الموقع' : 'Sitemap'}
         </h1>
         
+        <div className="mb-8 bg-green-50 p-6 rounded-lg border border-green-200">
+          <h2 className="text-xl font-semibold mb-4 text-green-800">
+            {direction === 'rtl' ? '✅ تحسين Vercel مكتمل:' : '✅ Vercel Optimization Complete:'}
+          </h2>
+          <div className="space-y-2 text-gray-700">
+            <p className="flex items-center">
+              <span className="text-green-600 mr-2">✓</span>
+              <strong>{direction === 'rtl' ? 'ملف vercel.json:' : 'vercel.json file:'}</strong>{' '}
+              <span className="text-sm ml-2">{direction === 'rtl' ? 'تم إنشاؤه للتوجيه الصحيح' : 'Created for proper routing'}</span>
+            </p>
+            <p className="flex items-center">
+              <span className="text-green-600 mr-2">✓</span>
+              <strong>{direction === 'rtl' ? 'ملف sitemap.xml:' : 'sitemap.xml file:'}</strong>{' '}
+              <span className="text-sm ml-2">{direction === 'rtl' ? 'محدث للتاريخ الحالي' : 'Updated with current date'}</span>
+            </p>
+            <p className="flex items-center">
+              <span className="text-green-600 mr-2">✓</span>
+              <strong>{direction === 'rtl' ? 'توافق Vercel:' : 'Vercel compatibility:'}</strong>{' '}
+              <span className="text-sm ml-2">{direction === 'rtl' ? 'إزالة ملفات Netlify' : 'Netlify files removed'}</span>
+            </p>
+            <p className="flex items-center">
+              <span className="text-green-600 mr-2">✓</span>
+              <strong>{direction === 'rtl' ? 'تحسينات SEO:' : 'SEO optimizations:'}</strong>{' '}
+              <span className="text-sm ml-2">{direction === 'rtl' ? 'رؤوس وبيانات منظمة' : 'Headers and structured data'}</span>
+            </p>
+          </div>
+        </div>
+
         <div className="mb-8 bg-blue-50 p-6 rounded-lg">
           <h2 className="text-xl font-semibold mb-4 text-[#0018A8]">
             {direction === 'rtl' ? 'معلومات مهمة للمطورين:' : 'Important Information for Developers:'}
@@ -124,6 +157,10 @@ ${routes.map(route => `  <url>
             <p>
               <strong>{direction === 'rtl' ? 'موقع الملف:' : 'File Location:'}</strong>{' '}
               <code className="bg-gray-200 px-2 py-1 rounded">public/sitemap.xml</code>
+            </p>
+            <p>
+              <strong>{direction === 'rtl' ? 'إعداد Vercel:' : 'Vercel Configuration:'}</strong>{' '}
+              <code className="bg-gray-200 px-2 py-1 rounded">vercel.json</code>
             </p>
             <p className="text-sm text-gray-600">
               {direction === 'rtl' 
@@ -139,12 +176,12 @@ ${routes.map(route => `  <url>
             onClick={generateSitemap}
             className="bg-[#EE3524] text-white px-8 py-4 rounded-lg hover:bg-red-600 transition-colors font-semibold text-lg"
           >
-            {direction === 'rtl' ? 'تحميل خريطة الموقع XML' : 'Download XML Sitemap'}
+            {direction === 'rtl' ? 'تحميل خريطة الموقع XML محدثة' : 'Download Updated XML Sitemap'}
           </button>
           <p className="text-sm text-gray-600 mt-2">
             {direction === 'rtl' 
-              ? 'انقر لتحميل ملف XML يمكن رفعه إلى محركات البحث'
-              : 'Click to download XML file that can be uploaded to search engines'
+              ? 'انقر لتحميل ملف XML بالتاريخ الحالي يمكن رفعه إلى محركات البحث'
+              : 'Click to download XML file with current date that can be uploaded to search engines'
             }
           </p>
         </div>
@@ -240,6 +277,10 @@ ${routes.map(route => `  <url>
             <li className="flex items-center">
               <span className="text-green-600 mr-2">✓</span>
               {direction === 'rtl' ? 'خريطة الموقع' : 'Sitemap'}
+            </li>
+            <li className="flex items-center">
+              <span className="text-green-600 mr-2">✓</span>
+              {direction === 'rtl' ? 'تحسين Vercel' : 'Vercel optimization'}
             </li>
           </ul>
         </div>
