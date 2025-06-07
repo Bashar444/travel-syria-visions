@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { 
   validateInput, 
@@ -15,10 +15,11 @@ interface FormField {
   error?: string;
   type: keyof typeof VALIDATION_PATTERNS;
   required?: boolean;
+  touched?: boolean; // Track if field has been interacted with
 }
 
 interface UseSecureFormProps {
-  fields: Record<string, Omit<FormField, 'value' | 'error'>>;
+  fields: Record<string, Omit<FormField, 'value' | 'error' | 'touched'>>;
   onSubmit: (data: Record<string, string>) => Promise<void>;
 }
 
@@ -27,7 +28,7 @@ export const useSecureForm = ({ fields, onSubmit }: UseSecureFormProps) => {
   const [formData, setFormData] = useState<Record<string, FormField>>(() => {
     const initialData: Record<string, FormField> = {};
     Object.keys(fields).forEach(key => {
-      initialData[key] = { value: '', ...fields[key] };
+      initialData[key] = { value: '', touched: false, ...fields[key] };
     });
     return initialData;
   });
@@ -35,19 +36,29 @@ export const useSecureForm = ({ fields, onSubmit }: UseSecureFormProps) => {
   const [honeypot, setHoneypot] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const updateField = (name: string, value: string) => {
+  const updateField = useCallback((name: string, value: string, shouldValidate: boolean = false) => {
     const sanitized = sanitizeInput(value);
-    const validation = validateInput(sanitized, formData[name].type, formData[name].required);
     
-    setFormData(prev => ({
-      ...prev,
-      [name]: {
-        ...prev[name],
+    setFormData(prev => {
+      const field = prev[name];
+      const newField = {
+        ...field,
         value: sanitized,
-        error: validation.isValid ? undefined : validation.error
+        touched: true
+      };
+
+      // Only validate if field was touched and we should validate, or if there's an existing error
+      if (shouldValidate || field.error) {
+        const validation = validateInput(sanitized, field.type, field.required);
+        newField.error = validation.isValid ? undefined : validation.error;
       }
-    }));
-  };
+
+      return {
+        ...prev,
+        [name]: newField
+      };
+    });
+  }, []);
 
   const validateForm = (): boolean => {
     let isValid = true;
@@ -57,8 +68,13 @@ export const useSecureForm = ({ fields, onSubmit }: UseSecureFormProps) => {
       const field = formData[key];
       const validation = validateInput(field.value, field.type, field.required);
       
+      updatedFormData[key] = {
+        ...field,
+        touched: true,
+        error: validation.isValid ? undefined : validation.error
+      };
+
       if (!validation.isValid) {
-        updatedFormData[key] = { ...field, error: validation.error };
         isValid = false;
       }
     });
@@ -90,8 +106,8 @@ export const useSecureForm = ({ fields, onSubmit }: UseSecureFormProps) => {
     // Validate form
     if (!validateForm()) {
       toast({
-        title: "Validation Error",
-        description: "Please fix the errors in the form before submitting.",
+        title: "Please check your input",
+        description: "Some fields contain errors. Please review and try again.",
         variant: "destructive",
       });
       return;
@@ -112,7 +128,7 @@ export const useSecureForm = ({ fields, onSubmit }: UseSecureFormProps) => {
       // Reset form on success
       const resetData: Record<string, FormField> = {};
       Object.keys(fields).forEach(key => {
-        resetData[key] = { value: '', ...fields[key] };
+        resetData[key] = { value: '', touched: false, ...fields[key] };
       });
       setFormData(resetData);
       setHoneypot('');
@@ -139,13 +155,19 @@ export const useSecureForm = ({ fields, onSubmit }: UseSecureFormProps) => {
     getFieldProps: (name: string) => ({
       value: formData[name]?.value || '',
       onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => 
-        updateField(name, e.target.value),
+        updateField(name, e.target.value, false),
+      onBlur: () => {
+        const field = formData[name];
+        if (field?.touched) {
+          updateField(name, field.value, true);
+        }
+      },
       error: formData[name]?.error,
     }),
     getSelectFieldProps: (name: string) => ({
       value: formData[name]?.value || '',
       onChange: (e: React.ChangeEvent<HTMLSelectElement>) => 
-        updateField(name, e.target.value),
+        updateField(name, e.target.value, true),
       error: formData[name]?.error,
     }),
   };

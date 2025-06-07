@@ -1,12 +1,12 @@
 
 import DOMPurify from 'dompurify';
 
-// Input validation patterns
+// Input validation patterns - Updated to be more flexible
 export const VALIDATION_PATTERNS = {
   email: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-  phone: /^[\+]?[0-9\s\-\(\)]{10,15}$/,
-  name: /^[a-zA-Z\u0600-\u06FF\s]{2,50}$/,
-  text: /^[a-zA-Z0-9\u0600-\u06FF\s\.,!?\-]{1,500}$/,
+  phone: /^[\+]?[0-9\s\-\(\)]{8,20}$/, // More flexible phone validation
+  name: /^[a-zA-Z\u0600-\u06FF\s\'\-\.]{2,50}$/, // Allow apostrophes, hyphens, periods
+  text: /^[a-zA-Z0-9\u0600-\u06FF\s\.,!?\-@#$%&*+=/:;'"()[\]{}|\\~`]{1,500}$/, // More punctuation allowed
 };
 
 // Input length limits
@@ -17,6 +17,16 @@ export const INPUT_LIMITS = {
   message: 500,
   university: 100,
   major: 100,
+};
+
+// Better error messages with specific guidance
+export const ERROR_MESSAGES = {
+  required: 'This field is required',
+  email: 'Please enter a valid email address (e.g., user@example.com)',
+  phone: 'Please enter a valid phone number (8-20 digits, +, spaces, hyphens allowed)',
+  name: 'Name should contain 2-50 letters, spaces, apostrophes, hyphens, or periods only',
+  text: 'Text contains invalid characters. Letters, numbers, and common punctuation are allowed',
+  tooLong: (limit: number) => `Input too long (maximum ${limit} characters)`,
 };
 
 // Sanitize HTML input
@@ -31,7 +41,7 @@ export const validateInput = (
   required: boolean = false
 ): { isValid: boolean; error?: string } => {
   if (!value && required) {
-    return { isValid: false, error: 'This field is required' };
+    return { isValid: false, error: ERROR_MESSAGES.required };
   }
 
   if (!value && !required) {
@@ -40,12 +50,13 @@ export const validateInput = (
 
   const sanitized = sanitizeInput(value);
   
-  if (sanitized.length > INPUT_LIMITS[type as keyof typeof INPUT_LIMITS]) {
-    return { isValid: false, error: `Input too long (max ${INPUT_LIMITS[type as keyof typeof INPUT_LIMITS]} characters)` };
+  const limit = INPUT_LIMITS[type as keyof typeof INPUT_LIMITS];
+  if (limit && sanitized.length > limit) {
+    return { isValid: false, error: ERROR_MESSAGES.tooLong(limit) };
   }
 
   if (!VALIDATION_PATTERNS[type].test(sanitized)) {
-    return { isValid: false, error: 'Invalid format' };
+    return { isValid: false, error: ERROR_MESSAGES[type] || 'Invalid format' };
   }
 
   return { isValid: true };
