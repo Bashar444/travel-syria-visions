@@ -18,35 +18,61 @@ serve(async (req) => {
     const { message, language, context, userType } = await req.json();
     console.log('Received chat request:', { message, language, context, userType });
 
-    // Enhanced system prompt for educational services
+    // Enhanced system prompt for Travel.Ltd services
     const systemPrompt = language === 'ar' ? `
-أنت مساعد ذكي متخصص في الخدمات التعليمية لشركة Travel.Ltd. تساعد الطلاب السوريين في:
-- القبولات الجامعية (إيطاليا، الهند، رومانيا، تركيا)
-- معالجة التأشيرات
-- خدمات الحج والعمرة
-- المنح السعودية
-- الاستشارات التعليمية
+أنت مساعد ذكي متخصص في شركة Travel.Ltd للخدمات التعليمية والسياحية. معلومات مهمة:
 
-كن مفيداً ومهنياً ومتجاوباً. إذا لم تعرف شيئاً، اطلب من المستخدم التواصل مع فريق الخبراء.
-رقم الواتساب: +963985453247
+الخدمات الرئيسية:
+- القبولات الجامعية في إيطاليا، الهند، رومانيا، تركيا
+- معالجة التأشيرات للدراسة في الخارج
+- المنح السعودية للدراسة في السعودية
+- خدمات الحج والعمرة المتكاملة
+
+معلومات التواصل:
+- واتساب: +963985453247
+- هاتف: +963985453247
+- إيميل: info@travel.ltd
+- موقع: www.travel.ltd
+
+أقسام الموقع:
+- /services: جميع الخدمات
+- /universities: الجامعات المتاحة
+- /success-stories: قصص نجاح الطلاب
+- /contact: نموذج التواصل
+- /about: عن الشركة
+
+كن مفيداً ومهنياً. وجه العملاء إلى الأقسام المناسبة أو معلومات التواصل. لا تقل أبداً أن الخدمة غير متوفرة، بل وجههم للتواصل المباشر للحصول على مساعدة شخصية.
 ` : `
-You are an AI assistant specialized in educational services for Travel.Ltd. You help Syrian students with:
-- University admissions (Italy, India, Romania, Turkey)
-- Visa processing
-- Hajj & Umrah services  
-- Saudi scholarships
-- Educational consulting
+You are an AI assistant specialized in Travel.Ltd educational and tourism services. Important information:
 
-Be helpful, professional, and responsive. If you don't know something, ask the user to contact our expert team.
-WhatsApp: +963985453247
+Main Services:
+- University admissions in Italy, India, Romania, Turkey
+- Visa processing for studying abroad
+- Saudi scholarships for studying in Saudi Arabia
+- Comprehensive Hajj & Umrah services
+
+Contact Information:
+- WhatsApp: +963985453247
+- Phone: +963985453247
+- Email: info@travel.ltd
+- Website: www.travel.ltd
+
+Website Sections:
+- /services: All services
+- /universities: Available universities
+- /success-stories: Student success stories
+- /contact: Contact form
+- /about: About us
+
+Be helpful and professional. Direct clients to appropriate sections or contact information. Never say services are unavailable, instead direct them to contact us directly for personalized assistance.
 `;
 
     if (!OPENAI_API_KEY) {
       console.error('OpenAI API key not found');
       return new Response(JSON.stringify({ 
         response: language === 'ar' 
-          ? 'عذراً، الخدمة غير متوفرة حالياً. يرجى التواصل معنا على +963985453247'
-          : 'Sorry, service is temporarily unavailable. Please contact us at +963985453247'
+          ? 'للحصول على مساعدة شخصية، يرجى التواصل معنا على +963985453247 أو زيارة قسم التواصل على موقعنا.'
+          : 'For personalized assistance, please contact us at +963985453247 or visit our contact section.'
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -64,8 +90,8 @@ WhatsApp: +963985453247
           { role: 'system', content: systemPrompt },
           { role: 'user', content: message }
         ],
-        max_tokens: 300,
-        temperature: 0.7,
+        max_tokens: 400,
+        temperature: 0.8,
       }),
     });
 
@@ -76,8 +102,8 @@ WhatsApp: +963985453247
     const data = await response.json();
     const aiResponse = data.choices[0]?.message?.content || (
       language === 'ar' 
-        ? 'عذراً، لم أتمكن من معالجة طلبك. يرجى المحاولة مرة أخرى.'
-        : 'Sorry, I couldn\'t process your request. Please try again.'
+        ? 'أعتذر، للحصول على إجابة دقيقة يرجى التواصل معنا مباشرة على +963985453247 أو زيارة موقعنا.'
+        : 'I apologize, for an accurate answer please contact us directly at +963985453247 or visit our website.'
     );
 
     console.log('AI response generated successfully');
@@ -90,13 +116,14 @@ WhatsApp: +963985453247
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            type: 'chat_message',
+            type: 'chat_interaction',
             userMessage: message,
             aiResponse,
             language,
             timestamp: new Date().toISOString(),
             context,
-            userType
+            userType,
+            intent: 'educational_services'
           })
         });
       }
@@ -114,8 +141,8 @@ WhatsApp: +963985453247
     return new Response(JSON.stringify({ 
       error: 'Internal server error',
       response: language === 'ar' 
-        ? 'عذراً، حدث خطأ تقني. يرجى المحاولة لاحقاً أو التواصل معنا مباشرة على +963985453247'
-        : 'Sorry, a technical error occurred. Please try again later or contact us directly at +963985453247'
+        ? 'للحصول على المساعدة المطلوبة، يرجى التواصل معنا مباشرة على واتساب +963985453247 أو الاتصال بنا أو ملء نموذج التواصل على موقعنا.'
+        : 'For the assistance you need, please contact us directly on WhatsApp +963985453247, call us, or fill out the contact form on our website.'
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

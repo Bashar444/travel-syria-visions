@@ -14,6 +14,18 @@ interface Message {
   isUser: boolean;
   timestamp: Date;
   isTyping?: boolean;
+  interactive?: {
+    links?: Array<{
+      text: string;
+      url: string;
+      type?: 'internal' | 'external' | 'whatsapp' | 'email' | 'phone';
+    }>;
+    quickActions?: Array<{
+      text: string;
+      action: () => void;
+      variant?: 'default' | 'outline';
+    }>;
+  };
 }
 
 const ChatWidget = () => {
@@ -24,10 +36,17 @@ const ChatWidget = () => {
     {
       id: '1',
       text: language === 'ar' 
-        ? 'مرحباً! أنا مساعدك الذكي. كيف يمكنني مساعدتك اليوم؟' 
-        : 'Hello! I\'m your AI assistant. How can I help you today?',
+        ? 'مرحباً! أنا مساعدك الذكي في Travel.Ltd. كيف يمكنني مساعدتك اليوم؟' 
+        : 'Hello! I\'m your AI assistant at Travel.Ltd. How can I help you today?',
       isUser: false,
-      timestamp: new Date()
+      timestamp: new Date(),
+      interactive: {
+        links: [
+          { text: language === 'ar' ? 'الخدمات' : 'Services', url: '/services', type: 'internal' },
+          { text: language === 'ar' ? 'الجامعات' : 'Universities', url: '/universities', type: 'internal' },
+          { text: language === 'ar' ? 'واتساب' : 'WhatsApp', url: '', type: 'whatsapp' }
+        ]
+      }
     }
   ]);
   
@@ -41,6 +60,10 @@ const ChatWidget = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  const handleQuickAction = (action: string) => {
+    handleSendMessage(action);
+  };
 
   const handleSendMessage = async (text: string) => {
     const userMessage: Message = {
@@ -68,12 +91,14 @@ const ChatWidget = () => {
       // Remove typing indicator and add response
       setMessages(prev => {
         const filtered = prev.filter(msg => msg.id !== 'typing');
-        return [...filtered, {
+        const newMessage: Message = {
           id: Date.now().toString(),
-          text: response,
+          text: response.text || response,
           isUser: false,
-          timestamp: new Date()
-        }];
+          timestamp: new Date(),
+          interactive: response.interactive
+        };
+        return [...filtered, newMessage];
       });
     } catch (error) {
       console.error('Chat error:', error);
@@ -82,10 +107,16 @@ const ChatWidget = () => {
         return [...filtered, {
           id: Date.now().toString(),
           text: language === 'ar' 
-            ? 'عذراً، حدث خطأ. يرجى المحاولة مرة أخرى.' 
-            : 'Sorry, an error occurred. Please try again.',
+            ? 'عذراً، حدث خطأ. يرجى التواصل معنا مباشرة على +963985453247' 
+            : 'Sorry, an error occurred. Please contact us directly at +963985453247',
           isUser: false,
-          timestamp: new Date()
+          timestamp: new Date(),
+          interactive: {
+            links: [
+              { text: language === 'ar' ? 'واتساب' : 'WhatsApp', url: '', type: 'whatsapp' },
+              { text: language === 'ar' ? 'اتصل الآن' : 'Call Now', url: '+963985453247', type: 'phone' }
+            ]
+          }
         }];
       });
     }
@@ -121,7 +152,7 @@ const ChatWidget = () => {
               {language === 'ar' ? 'المساعد الذكي' : 'AI Assistant'}
             </h3>
             <p className="text-xs opacity-90">
-              {language === 'ar' ? 'متصل الآن' : 'Online now'}
+              {language === 'ar' ? 'Travel.Ltd' : 'Travel.Ltd'}
             </p>
           </div>
         </div>
@@ -154,6 +185,7 @@ const ChatWidget = () => {
                 key={message.id}
                 message={message}
                 isTyping={message.isTyping}
+                onQuickAction={handleQuickAction}
               />
             ))}
             <div ref={messagesEndRef} />

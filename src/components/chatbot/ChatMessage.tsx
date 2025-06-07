@@ -1,6 +1,7 @@
 
 import { Bot, User, Clock } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import InteractiveMessage from './InteractiveMessage';
 
 interface Message {
   id: string;
@@ -8,15 +9,28 @@ interface Message {
   isUser: boolean;
   timestamp: Date;
   isTyping?: boolean;
+  interactive?: {
+    links?: Array<{
+      text: string;
+      url: string;
+      type?: 'internal' | 'external' | 'whatsapp' | 'email' | 'phone';
+    }>;
+    quickActions?: Array<{
+      text: string;
+      action: () => void;
+      variant?: 'default' | 'outline';
+    }>;
+  };
 }
 
 interface ChatMessageProps {
   message: Message;
   isTyping?: boolean;
+  onQuickAction?: (action: string) => void;
 }
 
-const ChatMessage = ({ message, isTyping }: ChatMessageProps) => {
-  const { direction } = useLanguage();
+const ChatMessage = ({ message, isTyping, onQuickAction }: ChatMessageProps) => {
+  const { direction, language } = useLanguage();
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -62,9 +76,20 @@ const ChatMessage = ({ message, isTyping }: ChatMessageProps) => {
           ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white' 
           : 'bg-gray-100 text-gray-800'
       }`}>
-        <p className="text-sm leading-relaxed" dir={direction}>
-          {message.text}
-        </p>
+        {message.interactive && !message.isUser ? (
+          <InteractiveMessage
+            content={message.text}
+            links={message.interactive.links}
+            quickActions={message.interactive.quickActions?.map(qa => ({
+              ...qa,
+              action: () => onQuickAction?.(qa.text)
+            }))}
+          />
+        ) : (
+          <p className="text-sm leading-relaxed" dir={direction}>
+            {message.text}
+          </p>
+        )}
         <div className={`flex items-center mt-2 text-xs opacity-70 ${
           message.isUser ? 'text-blue-100' : 'text-gray-500'
         }`}>
