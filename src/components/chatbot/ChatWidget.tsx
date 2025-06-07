@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { MessageCircle, X, Send, User, Minimize2, Maximize2 } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
@@ -36,8 +37,8 @@ const ChatWidget = () => {
     {
       id: '1',
       text: language === 'ar' 
-        ? 'مرحباً! أنا مساعدك الذكي في Travel.Ltd. كيف يمكنني مساعدتك اليوم؟' 
-        : 'Hello! I\'m your AI assistant at Travel.Ltd. How can I help you today?',
+        ? 'مرحباً! أنا Travel، مساعدك الشخصي للسفر والدراسة. كيف يمكنني مساعدتك اليوم؟' 
+        : 'Hi! I am Travel, your personal assistant for travel and education. How can I help you today?',
       isUser: false,
       timestamp: new Date(),
       interactive: {
@@ -132,11 +133,15 @@ const ChatWidget = () => {
         size="lg"
       >
         <MessageCircle className="w-6 h-6 mr-2" />
-        <img 
-          src="/lovable-uploads/2c3d2565-cf55-4e3f-90be-976a27dfc66c.png" 
-          alt="Travel.Ltd Logo" 
-          className="w-6 h-6 rounded-full bg-white p-1"
-        />
+        <Avatar className="w-8 h-8">
+          <AvatarImage 
+            src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=100&h=100&fit=crop&crop=face" 
+            alt="Travel Assistant" 
+          />
+          <AvatarFallback className="bg-white text-blue-600 text-sm font-bold">
+            T
+          </AvatarFallback>
+        </Avatar>
       </Button>
     );
   }
@@ -148,19 +153,21 @@ const ChatWidget = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center justify-between">
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
-          <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center p-1">
-            <img 
-              src="/lovable-uploads/2c3d2565-cf55-4e3f-90be-976a27dfc66c.png" 
-              alt="Travel.Ltd Logo" 
-              className="w-full h-full object-contain"
+          <Avatar className="w-10 h-10">
+            <AvatarImage 
+              src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=100&h=100&fit=crop&crop=face" 
+              alt="Travel Assistant" 
             />
-          </div>
+            <AvatarFallback className="bg-white text-blue-600 text-sm font-bold">
+              T
+            </AvatarFallback>
+          </Avatar>
           <div>
             <h3 className="font-semibold text-sm">
-              {language === 'ar' ? 'مساعد Travel.Ltd' : 'Travel.Ltd Assistant'}
+              {language === 'ar' ? 'Travel - مساعدك الشخصي' : 'Travel - Your Personal Assistant'}
             </h3>
             <p className="text-xs opacity-90">
-              {language === 'ar' ? 'خدمات تعليمية وسياحية' : 'Educational & Tourism Services'}
+              {language === 'ar' ? 'مفكر بصري للسفر والتعليم' : 'Visual Thinker for Travel & Education'}
             </p>
           </div>
         </div>

@@ -1,6 +1,7 @@
 
 import { User, Clock } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import InteractiveMessage from './InteractiveMessage';
 
 interface Message {
@@ -39,13 +40,15 @@ const ChatMessage = ({ message, isTyping, onQuickAction }: ChatMessageProps) => 
   if (isTyping) {
     return (
       <div className={`flex items-start space-x-3 rtl:space-x-reverse ${direction === 'rtl' ? 'flex-row-reverse' : ''}`}>
-        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center flex-shrink-0 border-2 border-blue-200">
-          <img 
-            src="/lovable-uploads/2c3d2565-cf55-4e3f-90be-976a27dfc66c.png" 
-            alt="Travel.Ltd Logo" 
-            className="w-5 h-5 object-contain"
+        <Avatar className="w-8 h-8 flex-shrink-0">
+          <AvatarImage 
+            src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=100&h=100&fit=crop&crop=face" 
+            alt="Travel Assistant" 
           />
-        </div>
+          <AvatarFallback className="bg-blue-100 text-blue-600 text-xs font-semibold">
+            T
+          </AvatarFallback>
+        </Avatar>
         <div className="bg-gray-100 rounded-2xl px-4 py-3 max-w-[80%]">
           <div className="flex space-x-1">
             <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
@@ -63,21 +66,26 @@ const ChatMessage = ({ message, isTyping, onQuickAction }: ChatMessageProps) => 
         ? `justify-end ${direction === 'rtl' ? 'flex-row' : 'flex-row-reverse'}` 
         : direction === 'rtl' ? 'flex-row-reverse' : ''
     }`}>
-      <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-        message.isUser 
-          ? 'bg-gradient-to-r from-green-500 to-emerald-500' 
-          : 'bg-white border-2 border-blue-200'
-      }`}>
+      <Avatar className="w-8 h-8 flex-shrink-0">
         {message.isUser ? (
-          <User className="w-4 h-4 text-white" />
+          <>
+            <AvatarImage src="" alt="User" />
+            <AvatarFallback className="bg-gradient-to-r from-green-500 to-emerald-500 text-white">
+              <User className="w-4 h-4" />
+            </AvatarFallback>
+          </>
         ) : (
-          <img 
-            src="/lovable-uploads/2c3d2565-cf55-4e3f-90be-976a27dfc66c.png" 
-            alt="Travel.Ltd Logo" 
-            className="w-5 h-5 object-contain"
-          />
+          <>
+            <AvatarImage 
+              src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=100&h=100&fit=crop&crop=face" 
+              alt="Travel Assistant" 
+            />
+            <AvatarFallback className="bg-blue-100 text-blue-600 text-xs font-semibold">
+              T
+            </AvatarFallback>
+          </>
         )}
-      </div>
+      </Avatar>
       
       <div className={`rounded-2xl px-4 py-3 max-w-[80%] ${
         message.isUser 
