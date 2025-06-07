@@ -42,8 +42,8 @@ const ChatMessage = ({ message, isTyping, onQuickAction }: ChatMessageProps) => 
       <div className={`flex items-start space-x-3 rtl:space-x-reverse ${direction === 'rtl' ? 'flex-row-reverse' : ''}`}>
         <Avatar className="w-8 h-8 flex-shrink-0">
           <AvatarImage 
-            src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=100&h=100&fit=crop&crop=face" 
-            alt="Travel Assistant" 
+            src="/lovable-uploads/212f0647-3890-45ac-9b81-977deeb54c9f.png" 
+            alt="Travel Robot Assistant" 
           />
           <AvatarFallback className="bg-blue-100 text-blue-600 text-xs font-semibold">
             T
@@ -77,8 +77,8 @@ const ChatMessage = ({ message, isTyping, onQuickAction }: ChatMessageProps) => 
         ) : (
           <>
             <AvatarImage 
-              src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=100&h=100&fit=crop&crop=face" 
-              alt="Travel Assistant" 
+              src="/lovable-uploads/212f0647-3890-45ac-9b81-977deeb54c9f.png" 
+              alt="Travel Robot Assistant" 
             />
             <AvatarFallback className="bg-blue-100 text-blue-600 text-xs font-semibold">
               T

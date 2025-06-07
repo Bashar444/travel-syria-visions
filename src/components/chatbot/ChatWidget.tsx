@@ -37,8 +37,8 @@ const ChatWidget = () => {
     {
       id: '1',
       text: language === 'ar' 
-        ? 'مرحباً! أنا Travel، مساعدك الشخصي للسفر والدراسة. كيف يمكنني مساعدتك اليوم؟' 
-        : 'Hi! I am Travel, your personal assistant for travel and education. How can I help you today?',
+        ? 'مرحباً! أنا Travel، مساعدك الشخصي الذكي للسفر والتعليم. كيف يمكنني مساعدتك اليوم؟' 
+        : 'Hello! I am Travel, your intelligent personal assistant for travel and education. How can I help you today?',
       isUser: false,
       timestamp: new Date(),
       interactive: {
@@ -135,8 +135,8 @@ const ChatWidget = () => {
         <MessageCircle className="w-6 h-6 mr-2" />
         <Avatar className="w-8 h-8">
           <AvatarImage 
-            src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=100&h=100&fit=crop&crop=face" 
-            alt="Travel Assistant" 
+            src="/lovable-uploads/212f0647-3890-45ac-9b81-977deeb54c9f.png" 
+            alt="Travel Robot Assistant" 
           />
           <AvatarFallback className="bg-white text-blue-600 text-sm font-bold">
             T
@@ -155,8 +155,8 @@ const ChatWidget = () => {
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
           <Avatar className="w-10 h-10">
             <AvatarImage 
-              src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=100&h=100&fit=crop&crop=face" 
-              alt="Travel Assistant" 
+              src="/lovable-uploads/212f0647-3890-45ac-9b81-977deeb54c9f.png" 
+              alt="Travel Robot Assistant" 
             />
             <AvatarFallback className="bg-white text-blue-600 text-sm font-bold">
               T
@@ -164,10 +164,10 @@ const ChatWidget = () => {
           </Avatar>
           <div>
             <h3 className="font-semibold text-sm">
-              {language === 'ar' ? 'Travel - مساعدك الشخصي' : 'Travel - Your Personal Assistant'}
+              {language === 'ar' ? 'Travel - مساعدك الذكي' : 'Travel - Your Smart Assistant'}
             </h3>
             <p className="text-xs opacity-90">
-              {language === 'ar' ? 'مفكر بصري للسفر والتعليم' : 'Visual Thinker for Travel & Education'}
+              {language === 'ar' ? 'مساعد ذكي للسفر والتعليم' : 'Intelligent Assistant for Travel & Education'}
             </p>
           </div>
         </div>

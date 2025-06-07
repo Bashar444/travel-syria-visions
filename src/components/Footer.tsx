@@ -100,6 +100,14 @@ const Footer = () => {
               {t('footer.terms')}
             </Link>
           </div>
+          <div className="mt-2">
+            <p className="text-[#EDF1F7] text-xs opacity-70">
+              {direction === 'rtl' 
+                ? 'أيقونة الروبوت مصممة من قبل roserodionova / Freepik'
+                : 'Chatbot avatar designed by roserodionova / Freepik'
+              }
+            </p>
+          </div>
         </div>
       </div>
     </footer>
