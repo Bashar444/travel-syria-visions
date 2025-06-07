@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { Analytics } from "@vercel/analytics/react";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import ClientOnly from "./components/ClientOnly";
 import UrlHandler from "./components/UrlHandler";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -27,7 +28,15 @@ import Terms from "./pages/Terms";
 import Sitemap from "./components/Sitemap";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+// Create query client outside of component to avoid hydration issues
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      retry: false,
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -36,7 +45,9 @@ const App = () => (
         <LanguageProvider>
           <Toaster />
           <Sonner />
-          <UrlHandler />
+          <ClientOnly>
+            <UrlHandler />
+          </ClientOnly>
           <div className="min-h-screen flex flex-col">
             <Navbar />
             <main className="flex-1">
@@ -57,11 +68,15 @@ const App = () => (
               </Routes>
             </main>
             <Footer />
-            <FeedbackButton />
-            <ChatWidget />
-            <CookieConsent />
+            <ClientOnly>
+              <FeedbackButton />
+              <ChatWidget />
+              <CookieConsent />
+            </ClientOnly>
           </div>
-          <Analytics />
+          <ClientOnly>
+            <Analytics />
+          </ClientOnly>
         </LanguageProvider>
       </TooltipProvider>
     </HelmetProvider>

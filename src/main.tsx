@@ -5,15 +5,24 @@ import App from './App.tsx'
 import './index.css'
 
 const root = document.getElementById("root")!;
-const app = (
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
+
+function createApp() {
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+}
 
 // Use hydration for SSR in production
-if (import.meta.env.PROD) {
-  hydrateRoot(root, app);
+if (import.meta.env.PROD && root.innerHTML.trim()) {
+  try {
+    hydrateRoot(root, createApp());
+  } catch (error) {
+    console.warn('Hydration failed, falling back to client-side rendering:', error);
+    root.innerHTML = '';
+    createRoot(root).render(createApp());
+  }
 } else {
-  createRoot(root).render(app);
+  createRoot(root).render(createApp());
 }
