@@ -31,9 +31,9 @@ try {
     encoding: 'utf8'
   });
 
-  // Prerender pages
+  // Prerender pages - Fixed the script name
   console.log('🏗️ Prerendering pages...');
-  execSync('npm run generate', { 
+  execSync('npm run build:prerender', { 
     stdio: 'inherit', 
     cwd: rootDir,
     encoding: 'utf8'

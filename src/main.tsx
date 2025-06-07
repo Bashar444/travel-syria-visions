@@ -14,15 +14,26 @@ function createApp() {
   );
 }
 
-// Use hydration for SSR in production
-if (import.meta.env.PROD && root.innerHTML.trim()) {
-  try {
-    hydrateRoot(root, createApp());
-  } catch (error) {
-    console.warn('Hydration failed, falling back to client-side rendering:', error);
-    root.innerHTML = '';
+// Enhanced hydration with better error handling
+if (import.meta.env.PROD) {
+  const hasServerContent = root.innerHTML.trim() && !root.innerHTML.includes('noscript');
+  
+  if (hasServerContent) {
+    try {
+      console.log('Attempting hydration...');
+      hydrateRoot(root, createApp());
+      console.log('Hydration successful');
+    } catch (error) {
+      console.warn('Hydration failed, falling back to client-side rendering:', error);
+      // Clear the content and render fresh
+      root.innerHTML = '';
+      createRoot(root).render(createApp());
+    }
+  } else {
+    console.log('No server content found, using client-side rendering');
     createRoot(root).render(createApp());
   }
 } else {
+  // Development mode - always use client-side rendering
   createRoot(root).render(createApp());
 }

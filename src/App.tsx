@@ -8,6 +8,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Analytics } from "@vercel/analytics/react";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import ClientOnly from "./components/ClientOnly";
+import ErrorBoundary from "./components/ErrorBoundary";
 import UrlHandler from "./components/UrlHandler";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -33,54 +34,65 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 5 * 60 * 1000, // 5 minutes
-      retry: false,
+      retry: 2, // Retry failed requests
+      retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
     },
   },
 });
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <TooltipProvider>
-        <LanguageProvider>
-          <Toaster />
-          <Sonner />
-          <ClientOnly>
-            <UrlHandler />
-          </ClientOnly>
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-1">
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/universities" element={<Universities />} />
-                <Route path="/success-stories" element={<SuccessStories />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPost />} />
-                <Route path="/work-with-us" element={<WorkWithUs />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="/sitemap" element={<Sitemap />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-            <Footer />
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <TooltipProvider>
+          <LanguageProvider>
+            <Toaster />
+            <Sonner />
             <ClientOnly>
-              <FeedbackButton />
-              <ChatWidget />
-              <CookieConsent />
+              <UrlHandler />
             </ClientOnly>
-          </div>
-          <ClientOnly>
-            <Analytics />
-          </ClientOnly>
-        </LanguageProvider>
-      </TooltipProvider>
-    </HelmetProvider>
-  </QueryClientProvider>
+            <div className="min-h-screen flex flex-col">
+              <ErrorBoundary>
+                <Navbar />
+              </ErrorBoundary>
+              <main className="flex-1">
+                <ErrorBoundary>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/universities" element={<Universities />} />
+                    <Route path="/success-stories" element={<SuccessStories />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:slug" element={<BlogPost />} />
+                    <Route path="/work-with-us" element={<WorkWithUs />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="/sitemap" element={<Sitemap />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </ErrorBoundary>
+              </main>
+              <ErrorBoundary>
+                <Footer />
+              </ErrorBoundary>
+              <ClientOnly>
+                <ErrorBoundary>
+                  <FeedbackButton />
+                  <ChatWidget />
+                  <CookieConsent />
+                </ErrorBoundary>
+              </ClientOnly>
+            </div>
+            <ClientOnly>
+              <Analytics />
+            </ClientOnly>
+          </LanguageProvider>
+        </TooltipProvider>
+      </HelmetProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;
