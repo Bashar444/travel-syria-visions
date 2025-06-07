@@ -95,7 +95,7 @@ const ChatWidget = () => {
     return (
       <Button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 z-50 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-2xl rounded-full p-4 transition-all duration-300 hover:scale-110 animate-pulse ${
+        className={`fixed bottom-24 z-50 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-2xl rounded-full p-4 transition-all duration-300 hover:scale-110 animate-pulse ${
           direction === 'rtl' ? 'left-6' : 'right-6'
         }`}
         size="lg"
@@ -107,7 +107,7 @@ const ChatWidget = () => {
   }
 
   return (
-    <Card className={`fixed bottom-6 z-50 w-96 max-w-[calc(100vw-2rem)] bg-white shadow-2xl border-0 rounded-2xl overflow-hidden transition-all duration-300 ${
+    <Card className={`fixed bottom-24 z-50 w-96 max-w-[calc(100vw-2rem)] bg-white shadow-2xl border-0 rounded-2xl overflow-hidden transition-all duration-300 ${
       direction === 'rtl' ? 'left-6' : 'right-6'
     } ${isMinimized ? 'h-16' : 'h-[600px] max-h-[80vh]'}`}>
       {/* Header */}
