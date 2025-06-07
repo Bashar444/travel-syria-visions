@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { Analytics } from "@vercel/analytics/react";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -36,34 +36,32 @@ const App = () => (
         <LanguageProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
-            <UrlHandler />
-            <div className="min-h-screen flex flex-col">
-              <Navbar />
-              <main className="flex-1">
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/services" element={<Services />} />
-                  <Route path="/universities" element={<Universities />} />
-                  <Route path="/success-stories" element={<SuccessStories />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/blog/:slug" element={<BlogPost />} />
-                  <Route path="/work-with-us" element={<WorkWithUs />} />
-                  <Route path="/privacy" element={<Privacy />} />
-                  <Route path="/terms" element={<Terms />} />
-                  <Route path="/sitemap" element={<Sitemap />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </main>
-              <Footer />
-              <FeedbackButton />
-              <ChatWidget />
-              <CookieConsent />
-            </div>
-            <Analytics />
-          </BrowserRouter>
+          <UrlHandler />
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <main className="flex-1">
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/universities" element={<Universities />} />
+                <Route path="/success-stories" element={<SuccessStories />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/work-with-us" element={<WorkWithUs />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/sitemap" element={<Sitemap />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+            <Footer />
+            <FeedbackButton />
+            <ChatWidget />
+            <CookieConsent />
+          </div>
+          <Analytics />
         </LanguageProvider>
       </TooltipProvider>
     </HelmetProvider>
