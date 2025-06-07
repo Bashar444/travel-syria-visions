@@ -11,6 +11,7 @@ import UrlHandler from "./components/UrlHandler";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FeedbackButton from "./components/FeedbackButton";
+import ChatWidget from "./components/chatbot/ChatWidget";
 import CookieConsent from "./components/CookieConsent";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
@@ -58,6 +59,7 @@ const App = () => (
               </main>
               <Footer />
               <FeedbackButton />
+              <ChatWidget />
               <CookieConsent />
             </div>
             <Analytics />

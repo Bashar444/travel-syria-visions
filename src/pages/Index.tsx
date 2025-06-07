@@ -6,7 +6,6 @@ import ServicesSection from '@/components/home/ServicesSection';
 import EducationShowcase from '@/components/home/EducationShowcase';
 import CTASection from '@/components/home/CTASection';
 import FAQ from '@/components/FAQ';
-import FeedbackButton from '@/components/FeedbackButton';
 
 const Index = () => {
   return (
@@ -30,7 +29,6 @@ const Index = () => {
         </section>
 
         <CTASection />
-        <FeedbackButton />
       </div>
     </>
   );
