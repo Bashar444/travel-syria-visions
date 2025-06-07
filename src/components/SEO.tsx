@@ -67,7 +67,7 @@ const SEO = ({
           "itemOffered": {
             "@type": "Service",
             "name": "University Admission Services",
-            "description": "Complete guidance for university applications worldwide"
+            "description": "Complete guidance for university applications worldwide with 95% success rate"
           },
           "price": "1099",
           "priceCurrency": "USD"
@@ -77,7 +77,7 @@ const SEO = ({
           "itemOffered": {
             "@type": "Service",
             "name": "Student Visa Processing",
-            "description": "Professional visa application support and tracking"
+            "description": "Professional visa application support and tracking for Syrian students"
           },
           "price": "1099",
           "priceCurrency": "USD"
@@ -95,15 +95,31 @@ const SEO = ({
         "name": "What educational services do you provide for Syrian students?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We offer comprehensive services including university admissions in Italy, India, Romania, student visa processing, Hajj & Umrah travel services, and Saudi scholarship programs with a 95% success rate."
+          "text": "We offer comprehensive services including university admissions in Italy, India, Romania, student visa processing, Hajj & Umrah travel services, and Saudi scholarship programs with a 95% success rate specifically designed for Syrian students seeking quality education abroad."
         }
       },
       {
         "@type": "Question",
-        "name": "What are your educational service fees?",
+        "name": "What are your educational service fees and consultation costs?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our comprehensive service package costs $1,099 USD, which includes all university admission services, visa processing assistance, and educational consultation with no hidden fees."
+          "text": "Our comprehensive service package costs $1,099 USD, which includes all university admission services, visa processing assistance, and educational consultation with no hidden fees or additional charges throughout the entire application process."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does the university admission and visa process take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "University admission processing typically takes 4-8 weeks depending on the university and program, while visa processing takes an additional 2-4 weeks. We provide step-by-step tracking and constant updates throughout the process."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you guarantee university admission acceptance for Syrian students?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We maintain a 95% success rate in securing university admissions for Syrian students. While we cannot guarantee 100% acceptance due to university policies, our extensive experience and partnerships significantly increase your chances of successful admission."
         }
       }
     ]
@@ -122,10 +138,60 @@ const SEO = ({
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Services",
+        "name": "Educational Services",
         "item": `${url}/services`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "University Admissions",
+        "item": `${url}/universities`
       }
     ]
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Educational Consulting and University Admissions",
+    "provider": {
+      "@type": "Organization",
+      "name": "Travel.Ltd"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Syria"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "University Admission Services for Syrian Students",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "University Admissions in Italy",
+            "description": "Complete university application assistance for Syrian students seeking education in Italian universities"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service", 
+            "name": "University Admissions in India",
+            "description": "Professional guidance for Syrian students applying to Indian universities and educational institutions"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "University Admissions in Romania", 
+            "description": "Expert assistance for Syrian students seeking admission to Romanian universities and colleges"
+          }
+        }
+      ]
+    }
   };
 
   return (
@@ -139,6 +205,14 @@ const SEO = ({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       
+      {/* Enhanced SEO Meta Tags */}
+      <meta name="subject" content="Educational Services for Syrian Students" />
+      <meta name="rating" content="General" />
+      <meta name="referrer" content="origin-when-cross-origin" />
+      <meta name="format-detection" content="telephone=yes" />
+      <meta name="HandheldFriendly" content="True" />
+      <meta name="MobileOptimized" content="320" />
+      
       {/* Google AdSense Meta Tags */}
       <meta name="google-adsense-account" content="ca-pub-5225376190298570" />
       <meta name="google-site-verification" content="googlea9821ecb17b703f8" />
@@ -151,19 +225,20 @@ const SEO = ({
       <meta property="og:url" content={url} />
       <meta property="og:site_name" content="Travel.Ltd" />
       <meta property="og:locale" content="ar_SY" />
+      <meta property="og:locale:alternate" content="en_US" />
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:site" content="@TravelLtdSyria" />
       
       {/* Additional SEO Meta Tags */}
       <meta name="geo.region" content="SY" />
       <meta name="geo.placename" content="Syria" />
-      <meta name="subject" content="Educational Services" />
-      <meta name="rating" content="General" />
-      <meta name="referrer" content="origin-when-cross-origin" />
+      <meta name="geo.position" content="34.802075;38.996815" />
+      <meta name="ICBM" content="34.802075, 38.996815" />
       
       {/* Schema.org JSON-LD */}
       <script type="application/ld+json">
@@ -177,18 +252,29 @@ const SEO = ({
       <script type="application/ld+json">
         {JSON.stringify(breadcrumbSchema)}
       </script>
+
+      <script type="application/ld+json">
+        {JSON.stringify(serviceSchema)}
+      </script>
       
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
       
       {/* Preload critical resources */}
       <link rel="preload" href="/lovable-uploads/266da83c-19ae-41d9-b291-60b8b0b9136a.png" as="image" />
+      <link rel="preload" href="/lovable-uploads/fe6a4f68-f143-4f67-9542-a8e94d68c617.png" as="image" />
       
       {/* Additional link tags for SEO */}
       <link rel="alternate" hrefLang="ar" href={url} />
       <link rel="alternate" hrefLang="en" href={`${url}/en`} />
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+      
+      {/* Additional meta tags for better crawling */}
+      <meta name="theme-color" content="#1e40af" />
+      <meta name="msapplication-TileColor" content="#1e40af" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     </Helmet>
   );
 };

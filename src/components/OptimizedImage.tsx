@@ -32,13 +32,13 @@ const OptimizedImage = ({
   return (
     <div className={`relative overflow-hidden ${className}`}>
       {!isLoaded && !hasError && (
-        <div className="absolute inset-0 bg-[#F6F8FC] animate-pulse flex items-center justify-center">
+        <div className="absolute inset-0 bg-[#F6F8FC] animate-pulse flex items-center justify-center" role="status" aria-label="Loading image">
           <div className="w-8 h-8 border-2 border-[#0018A8] border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
       
       {hasError ? (
-        <div className="absolute inset-0 bg-[#EDF1F7] flex items-center justify-center">
+        <div className="absolute inset-0 bg-[#EDF1F7] flex items-center justify-center" role="img" aria-label="Image failed to load">
           <span className="text-[#747474]">خطأ في تحميل الصورة</span>
         </div>
       ) : (

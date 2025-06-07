@@ -74,13 +74,13 @@ const FAQ = () => {
   const currentData = faqData[language as keyof typeof faqData];
 
   return (
-    <section className="content-wrapper" dir={direction}>
+    <section className="content-wrapper" dir={direction} role="complementary" aria-label="Frequently asked questions about educational services">
       <Card className="w-full max-w-4xl mx-auto">
         <CardHeader className="text-center">
           <div className="flex items-center justify-center gap-2 mb-2">
-            <HelpCircle className="w-6 h-6 text-blue-600" />
+            <HelpCircle className="w-6 h-6 text-blue-600" aria-hidden="true" />
             <CardTitle className="text-2xl font-bold text-gray-900 text-content">
-              <h3><strong>{currentData.title}</strong></h3>
+              <h2><strong>{currentData.title}</strong></h2>
             </CardTitle>
           </div>
           <p className="text-gray-600 text-content content-spacing">
@@ -88,13 +88,13 @@ const FAQ = () => {
           </p>
         </CardHeader>
         <CardContent>
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full" role="list" aria-label="FAQ list">
             {currentData.questions.map((item, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="font-medium text-gray-900 hover:text-blue-600 text-content text-left">
-                  <strong>{item.q}</strong>
+              <AccordionItem key={index} value={`item-${index}`} role="listitem">
+                <AccordionTrigger className="font-medium text-gray-900 hover:text-blue-600 text-content text-left" role="button" aria-expanded="false">
+                  <h3><strong>{item.q}</strong></h3>
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 leading-relaxed text-content content-spacing">
+                <AccordionContent className="text-gray-600 leading-relaxed text-content content-spacing" role="region" aria-label={`Answer to: ${item.q}`}>
                   <p>{item.a}</p>
                 </AccordionContent>
               </AccordionItem>
