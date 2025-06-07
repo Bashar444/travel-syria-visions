@@ -14,29 +14,29 @@ const ServicesSection = () => {
 
   const services = [
     {
-      title: 'University Admissions',
-      description: 'Complete guidance for university applications across Italy, India, Romania and more',
+      title: 'University Admissions Consulting',
+      description: 'Complete guidance for university applications across Italy, India, Romania and more with 95% success rate',
       icon: BookOpen,
       color: 'from-blue-500 to-cyan-500',
       price: '$1099'
     },
     {
-      title: 'Visa Processing',
-      description: 'Professional visa application support with document verification and tracking',
+      title: 'Student Visa Processing',
+      description: 'Professional visa application support with document verification, tracking, and embassy guidance',
       icon: Calendar,
       color: 'from-green-500 to-emerald-500',
       price: '$1099'
     },
     {
-      title: 'Hajj & Umrah Services',
-      description: 'Complete spiritual journey packages with accommodation, flights, and guided tours',
+      title: 'Hajj & Umrah Travel Services',
+      description: 'Complete spiritual journey packages with accommodation, flights, guided tours, and religious guidance',
       icon: MapPin,
       color: 'from-purple-500 to-pink-500',
       price: '$1099'
     },
     {
-      title: 'Saudi Scholarships',
-      description: 'Access to exclusive Saudi Arabia scholarship programs for Syrian students',
+      title: 'Saudi Arabia Scholarship Programs',
+      description: 'Access to exclusive Saudi Arabia scholarship programs and educational opportunities for Syrian students',
       icon: Star,
       color: 'from-orange-500 to-red-500',
       price: '$1099'
@@ -45,18 +45,18 @@ const ServicesSection = () => {
 
   const features = [
     {
-      title: 'University Browser',
-      description: 'Browse and compare universities worldwide with detailed information',
+      title: 'University Browser & Search',
+      description: 'Browse and compare universities worldwide with detailed information, rankings, and admission requirements',
       component: <UniversityBrowser />
     },
     {
-      title: 'Hajj Services',
-      description: 'Complete pilgrimage packages and spiritual journey guidance',
+      title: 'Hajj & Umrah Services',
+      description: 'Complete pilgrimage packages and spiritual journey guidance with experienced tour operators',
       component: <HajjServices />
     },
     {
-      title: 'Saudi Scholarships',
-      description: 'Exclusive access to Saudi Arabia education opportunities',
+      title: 'Saudi Scholarship Programs',
+      description: 'Exclusive access to Saudi Arabia education opportunities and government scholarship programs',
       component: <SaudiScholarships />
     }
   ];
@@ -64,59 +64,70 @@ const ServicesSection = () => {
   return (
     <section id="services" className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-16 ${direction === 'rtl' ? 'text-right' : 'text-left'}`}>
+        <header className={`text-center mb-16 ${direction === 'rtl' ? 'text-right' : 'text-left'}`}>
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Our Professional Services
+            <strong>Our Professional Educational Services</strong>
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Comprehensive educational and travel services designed specifically for Syrian students
+            <strong>Comprehensive educational and travel services</strong> designed specifically for 
+            <strong> Syrian students</strong> seeking quality education abroad. Professional guidance 
+            with <strong>transparent pricing</strong> and <strong>proven results</strong>.
           </p>
-        </div>
+        </header>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {services.map((service, index) => (
-            <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 university-card relative overflow-hidden">
+            <article key={index} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 university-card relative overflow-hidden">
               <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-5`}></div>
               <CardContent className="p-6 text-center relative">
                 <div className={`bg-gradient-to-br ${service.color} w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 hover:scale-110 transition-transform duration-300`}>
                   <service.icon className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  {service.title}
+                  <strong>{service.title}</strong>
                 </h3>
                 <p className="text-gray-600 leading-relaxed text-sm mb-4">
                   {service.description}
                 </p>
                 <div className="text-2xl font-bold text-blue-600 mb-3">
-                  {service.price}
+                  <strong>{service.price}</strong>
                 </div>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                  Learn More
+                <Button 
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                  aria-label={`Learn more about ${service.title} - ${service.price}`}
+                >
+                  Get Started with {service.title.split(' ')[0]}
                 </Button>
               </CardContent>
-            </Card>
+            </article>
           ))}
         </div>
 
         {/* Interactive Service Browser */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 border border-blue-100">
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {features.map((feature, index) => (
-              <Button
-                key={index}
-                variant={activeFeature === index ? "default" : "outline"}
-                onClick={() => setActiveFeature(index)}
-                className={activeFeature === index ? "bg-blue-600" : ""}
-              >
-                {feature.title}
-              </Button>
-            ))}
-          </div>
+        <section className="bg-white rounded-2xl shadow-xl p-8 border border-blue-100">
+          <header className="mb-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+              <strong>Explore Our Services in Detail</strong>
+            </h3>
+            <nav className="flex flex-wrap justify-center gap-4">
+              {features.map((feature, index) => (
+                <Button
+                  key={index}
+                  variant={activeFeature === index ? "default" : "outline"}
+                  onClick={() => setActiveFeature(index)}
+                  className={activeFeature === index ? "bg-blue-600" : ""}
+                  aria-label={`View ${feature.title} details`}
+                >
+                  <strong>{feature.title}</strong>
+                </Button>
+              ))}
+            </nav>
+          </header>
           
           <div className="mb-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">
-              {features[activeFeature].title}
-            </h3>
+            <h4 className="text-2xl font-bold text-gray-900 mb-2">
+              <strong>{features[activeFeature].title}</strong>
+            </h4>
             <p className="text-gray-600">
               {features[activeFeature].description}
             </p>
@@ -125,7 +136,7 @@ const ServicesSection = () => {
           <div className="min-h-[400px]">
             {features[activeFeature].component}
           </div>
-        </div>
+        </section>
       </div>
     </section>
   );

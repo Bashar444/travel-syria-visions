@@ -12,8 +12,8 @@ interface SEOProps {
 
 const SEO = ({ 
   title = "Travel.Ltd - University Admissions, Hajj Services & Educational Consulting for Syrian Students",
-  description = "Professional university admission services, visa processing, Hajj & Umrah packages, and Saudi scholarships for Syrian students. Expert educational consulting with 95% success rate. Transparent pricing from $1099.",
-  keywords = "university admissions Syria, study abroad Syrian students, visa processing Damascus, Hajj services Syria, Umrah packages, Saudi scholarships, educational consulting Syria, study in Italy India Romania, Syrian education services, university applications",
+  description = "Professional university admission services, student visa processing, Hajj & Umrah packages, and Saudi scholarships for Syrian students. Expert educational consulting with 95% success rate. Transparent pricing from $1099. Study abroad in Italy, India, Romania.",
+  keywords = "university admissions Syria, Syrian students study abroad, student visa processing Damascus, Hajj services Syria, Umrah packages, Saudi scholarships Syrian students, educational consulting Syria, study in Italy India Romania, Syrian education services, university applications Syria, study abroad guidance, student visa help Syria",
   image = "https://syriantravel.in/lovable-uploads/d7939d67-66f6-4e0d-9ecb-b43d2e214eda.png",
   url = "https://syriantravel.in",
   type = "website"
@@ -21,7 +21,7 @@ const SEO = ({
   const siteTitle = "Travel.Ltd";
   const fullTitle = title.includes(siteTitle) ? title : `${title} | ${siteTitle}`;
 
-  const schemaData = {
+  const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
     "name": "Travel.Ltd",
@@ -54,8 +54,59 @@ const SEO = ({
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.8",
-      "reviewCount": "500"
+      "reviewCount": "500",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Educational Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "University Admission Services",
+            "description": "Complete guidance for university applications worldwide"
+          },
+          "price": "1099",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer", 
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Student Visa Processing",
+            "description": "Professional visa application support and tracking"
+          },
+          "price": "1099",
+          "priceCurrency": "USD"
+        }
+      ]
     }
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What educational services do you provide for Syrian students?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer comprehensive services including university admissions in Italy, India, Romania, student visa processing, Hajj & Umrah travel services, and Saudi scholarship programs with a 95% success rate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are your educational service fees?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our comprehensive service package costs $1,099 USD, which includes all university admission services, visa processing assistance, and educational consultation with no hidden fees."
+        }
+      }
+    ]
   };
 
   const breadcrumbSchema = {
@@ -90,7 +141,7 @@ const SEO = ({
       
       {/* Google AdSense Meta Tags */}
       <meta name="google-adsense-account" content="ca-pub-5225376190298570" />
-      <meta name="google-site-verification" content="your-verification-code" />
+      <meta name="google-site-verification" content="googlea9821ecb17b703f8" />
       
       {/* Open Graph */}
       <meta property="og:type" content={type} />
@@ -116,7 +167,11 @@ const SEO = ({
       
       {/* Schema.org JSON-LD */}
       <script type="application/ld+json">
-        {JSON.stringify(schemaData)}
+        {JSON.stringify(organizationSchema)}
+      </script>
+      
+      <script type="application/ld+json">
+        {JSON.stringify(faqSchema)}
       </script>
       
       <script type="application/ld+json">
