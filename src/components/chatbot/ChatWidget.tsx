@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { MessageCircle, X, Send, Bot, User, Minimize2, Maximize2 } from 'lucide-react';
+import { MessageCircle, X, Send, User, Minimize2, Maximize2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
@@ -132,7 +132,11 @@ const ChatWidget = () => {
         size="lg"
       >
         <MessageCircle className="w-6 h-6 mr-2" />
-        <Bot className="w-4 h-4" />
+        <img 
+          src="/lovable-uploads/2c3d2565-cf55-4e3f-90be-976a27dfc66c.png" 
+          alt="Travel.Ltd Logo" 
+          className="w-6 h-6 rounded-full bg-white p-1"
+        />
       </Button>
     );
   }
@@ -144,15 +148,19 @@ const ChatWidget = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 flex items-center justify-between">
         <div className="flex items-center space-x-3 rtl:space-x-reverse">
-          <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-            <Bot className="w-5 h-5" />
+          <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center p-1">
+            <img 
+              src="/lovable-uploads/2c3d2565-cf55-4e3f-90be-976a27dfc66c.png" 
+              alt="Travel.Ltd Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <div>
             <h3 className="font-semibold text-sm">
-              {language === 'ar' ? 'المساعد الذكي' : 'AI Assistant'}
+              {language === 'ar' ? 'مساعد Travel.Ltd' : 'Travel.Ltd Assistant'}
             </h3>
             <p className="text-xs opacity-90">
-              {language === 'ar' ? 'Travel.Ltd' : 'Travel.Ltd'}
+              {language === 'ar' ? 'خدمات تعليمية وسياحية' : 'Educational & Tourism Services'}
             </p>
           </div>
         </div>

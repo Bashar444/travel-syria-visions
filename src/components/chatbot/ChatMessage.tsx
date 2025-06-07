@@ -1,5 +1,5 @@
 
-import { Bot, User, Clock } from 'lucide-react';
+import { User, Clock } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import InteractiveMessage from './InteractiveMessage';
 
@@ -39,8 +39,12 @@ const ChatMessage = ({ message, isTyping, onQuickAction }: ChatMessageProps) => 
   if (isTyping) {
     return (
       <div className={`flex items-start space-x-3 rtl:space-x-reverse ${direction === 'rtl' ? 'flex-row-reverse' : ''}`}>
-        <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
-          <Bot className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center flex-shrink-0 border-2 border-blue-200">
+          <img 
+            src="/lovable-uploads/2c3d2565-cf55-4e3f-90be-976a27dfc66c.png" 
+            alt="Travel.Ltd Logo" 
+            className="w-5 h-5 object-contain"
+          />
         </div>
         <div className="bg-gray-100 rounded-2xl px-4 py-3 max-w-[80%]">
           <div className="flex space-x-1">
@@ -62,12 +66,16 @@ const ChatMessage = ({ message, isTyping, onQuickAction }: ChatMessageProps) => 
       <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
         message.isUser 
           ? 'bg-gradient-to-r from-green-500 to-emerald-500' 
-          : 'bg-gradient-to-r from-blue-500 to-purple-500'
+          : 'bg-white border-2 border-blue-200'
       }`}>
         {message.isUser ? (
           <User className="w-4 h-4 text-white" />
         ) : (
-          <Bot className="w-4 h-4 text-white" />
+          <img 
+            src="/lovable-uploads/2c3d2565-cf55-4e3f-90be-976a27dfc66c.png" 
+            alt="Travel.Ltd Logo" 
+            className="w-5 h-5 object-contain"
+          />
         )}
       </div>
       
