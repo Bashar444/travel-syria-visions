@@ -9,6 +9,7 @@ import { MessageCircle, Send, Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useSecureForm } from '@/hooks/useSecureForm';
 import { createHoneypot } from '@/utils/security';
+import { supabase } from '@/integrations/supabase/client';
 
 const FeedbackButton = () => {
   const { t, direction, language } = useLanguage();
@@ -34,15 +35,25 @@ const FeedbackButton = () => {
       serviceType: { type: 'text', required: false }
     },
     onSubmit: async (data) => {
-      // Simulate feedback submission to privatelimitedtravel@gmail.com
-      console.log('Secure feedback submission to privatelimitedtravel@gmail.com:', {
-        ...data,
-        rating,
-        timestamp: new Date().toISOString()
+      console.log('Submitting feedback data:', data);
+      
+      const { data: response, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          type: 'feedback',
+          name: data.name,
+          email: data.email,
+          feedback: data.feedback,
+          serviceType: data.serviceType,
+          rating
+        }
       });
-      
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
+      if (error) {
+        console.error('Error sending feedback email:', error);
+        throw new Error('Failed to send feedback. Please try again.');
+      }
+
+      console.log('Feedback email sent successfully:', response);
       setShowSuccess(true);
       setRating(0);
       

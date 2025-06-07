@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,6 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Textarea } from '@/components/ui/textarea';
 import { useSecureForm } from '@/hooks/useSecureForm';
 import { createHoneypot } from '@/utils/security';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   const { t, direction } = useLanguage();
@@ -40,12 +42,26 @@ const Contact = () => {
       additionalMessage: { type: 'text', required: false }
     },
     onSubmit: async (data) => {
-      // In a real application, this would send to privatelimitedtravel@gmail.com via Supabase
-      console.log('Secure form submission to privatelimitedtravel@gmail.com:', data);
+      console.log('Submitting contact form data:', data);
       
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      const { data: response, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          type: 'contact',
+          fullName: data.fullName,
+          phoneNumber: data.phoneNumber,
+          email: data.email,
+          preferredUniversity: data.preferredUniversity,
+          desiredMajor: data.desiredMajor,
+          additionalMessage: data.additionalMessage
+        }
+      });
+
+      if (error) {
+        console.error('Error sending email:', error);
+        throw new Error('Failed to send email. Please try again.');
+      }
+
+      console.log('Email sent successfully:', response);
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 5000);
     }
