@@ -1,0 +1,98 @@
+
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Routes, Route } from "react-router-dom";
+import { HelmetProvider } from 'react-helmet-async';
+import { Analytics } from "@vercel/analytics/react";
+import { LanguageProvider } from "./contexts/LanguageContext";
+import ClientOnly from "./components/ClientOnly";
+import ErrorBoundary from "./components/ErrorBoundary";
+import UrlHandler from "./components/UrlHandler";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import FeedbackButton from "./components/FeedbackButton";
+import ChatWidget from "./components/chatbot/ChatWidget";
+import CookieConsent from "./components/CookieConsent";
+import Index from "./pages/Index";
+import Services from "./pages/Services";
+import Universities from "./pages/Universities";
+import SuccessStories from "./pages/SuccessStories";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import WorkWithUs from "./pages/WorkWithUs";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Sitemap from "./components/Sitemap";
+import NotFound from "./pages/NotFound";
+
+// Create query client outside of component to avoid hydration issues
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      retry: 2, // Retry failed requests
+      retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+    },
+  },
+});
+
+const App = () => (
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <TooltipProvider>
+          <LanguageProvider>
+            <Toaster />
+            <Sonner />
+            <ClientOnly>
+              <UrlHandler />
+            </ClientOnly>
+            <div className="min-h-screen flex flex-col">
+              <ErrorBoundary>
+                <Navbar />
+              </ErrorBoundary>
+              <main className="flex-1">
+                <ErrorBoundary>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/universities" element={<Universities />} />
+                    <Route path="/success-stories" element={<SuccessStories />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:slug" element={<BlogPost />} />
+                    <Route path="/work-with-us" element={<WorkWithUs />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="/sitemap" element={<Sitemap />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </ErrorBoundary>
+              </main>
+              <ErrorBoundary>
+                <Footer />
+              </ErrorBoundary>
+              <ClientOnly>
+                <ErrorBoundary>
+                  <FeedbackButton />
+                  <ChatWidget />
+                  <CookieConsent />
+                </ErrorBoundary>
+              </ClientOnly>
+            </div>
+            <ClientOnly>
+              <Analytics />
+            </ClientOnly>
+          </LanguageProvider>
+        </TooltipProvider>
+      </HelmetProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
+);
+
+export default App;

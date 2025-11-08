@@ -1,0 +1,34 @@
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: *
+Allow: /
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://syriantravel.in/sitemap.xml
+
+# Disallow certain paths (if needed)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*?*utm_source=*
+Disallow: /*?*utm_medium=*
+Disallow: /*?*utm_campaign=*
+
+# Allow important files
+Allow: /sitemap.xml
+Allow: /ads.txt
+Allow: /robots.txt
