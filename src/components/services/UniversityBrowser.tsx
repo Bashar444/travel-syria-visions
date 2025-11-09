@@ -3,139 +3,171 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Search, MapPin, Users, DollarSign, Star } from 'lucide-react';
+import { Search, MapPin, DollarSign, Star } from 'lucide-react';
+
+interface University {
+  id: number;
+  name: string;
+  city: string;
+  country: string;
+  ranking: number;
+  tuitionFee: string;
+  programs: string[];
+  scholarships: boolean;
+  rating: number;
+  image: string;
+  filterCountry: string;
+  keywords: string[];
+}
+
+const universities: University[] = [
+  {
+    id: 1,
+    name: 'جامعة بولونيا',
+    city: 'بولونيا',
+    country: 'إيطاليا',
+    ranking: 167,
+    tuitionFee: 'من 3000 إلى 4000 يورو سنوياً',
+    programs: ['الهندسة', 'الطب', 'إدارة الأعمال'],
+    scholarships: true,
+    rating: 4.5,
+    image: '/lovable-uploads/6b3b5567-fd2c-4b7a-9a5d-f064f7109719.png',
+    filterCountry: 'italy',
+    keywords: ['جامعة بولونيا', 'Bologna', 'Italy']
+  },
+  {
+    id: 2,
+    name: 'معهد SRM للعلوم والتكنولوجيا',
+    city: 'تشيناي',
+    country: 'الهند',
+    ranking: 801,
+    tuitionFee: 'من 3000 إلى 5000 دولار سنوياً',
+    programs: ['علوم الحاسوب', 'الهندسة', 'الإدارة'],
+    scholarships: true,
+    rating: 4.2,
+    image: '/lovable-uploads/c591c245-e976-4338-939b-f22ccec167ab.png',
+    filterCountry: 'india',
+    keywords: ['SRM', 'Chennai', 'India']
+  },
+  {
+    id: 3,
+    name: 'جامعة بابش-بولياي',
+    city: 'كلوج نابوكا',
+    country: 'رومانيا',
+    ranking: 651,
+    tuitionFee: 'من 2000 إلى 3500 يورو سنوياً',
+    programs: ['الطب', 'علم النفس', 'الاقتصاد'],
+    scholarships: true,
+    rating: 4.3,
+    image: '/lovable-uploads/a3ebc772-a1f3-42d0-9c45-03d9c677e2a6.png',
+    filterCountry: 'romania',
+    keywords: ['Babes-Bolyai', 'Romania', 'Cluj']
+  },
+  {
+    id: 4,
+    name: 'جامعة ميلانو التقنية',
+    city: 'ميلانو',
+    country: 'إيطاليا',
+    ranking: 154,
+    tuitionFee: 'حوالي 3900 يورو سنوياً',
+    programs: ['العمارة', 'التصميم', 'الهندسة'],
+    scholarships: true,
+    rating: 4.6,
+    image: '/lovable-uploads/fe6a4f68-f143-4f67-9542-a8e94d68c617.png',
+    filterCountry: 'italy',
+    keywords: ['Politecnico di Milano', 'Milan', 'Italy']
+  }
+];
+
+const countries = [
+  { value: 'all', label: 'كل الدول' },
+  { value: 'italy', label: 'إيطاليا' },
+  { value: 'india', label: 'الهند' },
+  { value: 'romania', label: 'رومانيا' }
+];
 
 const UniversityBrowser = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('all');
 
-  const universities = [
-    {
-      id: 1,
-      name: "University of Bologna",
-      country: "Italy",
-      city: "Bologna",
-      ranking: 167,
-      tuitionFee: "€3,000-4,000/year",
-      programs: ["Engineering", "Medicine", "Business"],
-      scholarships: true,
-      rating: 4.5,
-      image: "/lovable-uploads/6b3b5567-fd2c-4b7a-9a5d-f064f7109719.png"
-    },
-    {
-      id: 2,
-      name: "SRM Institute of Science",
-      country: "India",
-      city: "Chennai",
-      ranking: 801,
-      tuitionFee: "$3,000-5,000/year",
-      programs: ["Computer Science", "Engineering", "Management"],
-      scholarships: true,
-      rating: 4.2,
-      image: "/lovable-uploads/c591c245-e976-4338-939b-f22ccec167ab.png"
-    },
-    {
-      id: 3,
-      name: "Babeș-Bolyai University",
-      country: "Romania",
-      city: "Cluj-Napoca",
-      ranking: 651,
-      tuitionFee: "€2,000-3,500/year",
-      programs: ["Medicine", "Psychology", "Economics"],
-      scholarships: true,
-      rating: 4.3,
-      image: "/lovable-uploads/a3ebc772-a1f3-42d0-9c45-03d9c677e2a6.png"
-    },
-    {
-      id: 4,
-      name: "Polytechnic University of Milan",
-      country: "Italy",
-      city: "Milan",
-      ranking: 154,
-      tuitionFee: "€3,900/year",
-      programs: ["Architecture", "Design", "Engineering"],
-      scholarships: true,
-      rating: 4.6,
-      image: "/lovable-uploads/fe6a4f68-f143-4f67-9542-a8e94d68c617.png"
-    }
-  ];
+  const filteredUniversities = universities.filter((uni) => {
+    const normalizedSearch = searchTerm.trim().toLowerCase();
+    const matchesSearch =
+      normalizedSearch.length === 0 ||
+      uni.name.toLowerCase().includes(normalizedSearch) ||
+      uni.city.toLowerCase().includes(normalizedSearch) ||
+      uni.country.toLowerCase().includes(normalizedSearch) ||
+      uni.programs.some((program) => program.toLowerCase().includes(normalizedSearch)) ||
+      uni.keywords.some((keyword) => keyword.toLowerCase().includes(normalizedSearch));
 
-  const countries = ['all', 'Italy', 'India', 'Romania'];
-
-  const filteredUniversities = universities.filter(uni => {
-    const matchesSearch = uni.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         uni.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         uni.programs.some(program => program.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesCountry = selectedCountry === 'all' || uni.country === selectedCountry;
+    const matchesCountry = selectedCountry === 'all' || uni.filterCountry === selectedCountry;
     return matchesSearch && matchesCountry;
   });
 
   return (
-    <div className="space-y-6">
-      {/* Search and Filter */}
+    <div className="space-y-6" dir="rtl">
       <div className="flex flex-col md:flex-row gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+          <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
-            placeholder="Search universities, cities, or programs..."
+            placeholder="ابحث عن جامعة أو مدينة أو تخصص"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
+            className="pr-10 text-right"
           />
         </div>
-        <div className="flex gap-2">
-          {countries.map(country => (
+        <div className="flex gap-2 flex-wrap justify-end">
+          {countries.map((country) => (
             <Button
-              key={country}
-              variant={selectedCountry === country ? "default" : "outline"}
+              key={country.value}
+              variant={selectedCountry === country.value ? 'default' : 'outline'}
               size="sm"
-              onClick={() => setSelectedCountry(country)}
-              className="capitalize"
+              onClick={() => setSelectedCountry(country.value)}
+              className="text-sm"
             >
-              {country}
+              {country.label}
             </Button>
           ))}
         </div>
       </div>
 
-      {/* University Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {filteredUniversities.map(uni => (
-          <Card key={uni.id} className="hover:shadow-lg transition-shadow duration-300">
+        {filteredUniversities.map((uni) => (
+          <Card key={uni.id} className="hover:shadow-lg transition-shadow duration-300" dir="rtl">
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between">
-                <div>
+                <div className="text-right">
                   <CardTitle className="text-lg mb-1">{uni.name}</CardTitle>
-                  <div className="flex items-center text-sm text-gray-600 mb-2">
-                    <MapPin className="w-4 h-4 mr-1" />
-                    {uni.city}, {uni.country}
+                  <div className="flex items-center justify-end text-sm text-gray-600 mb-2 gap-1">
+                    <MapPin className="w-4 h-4 text-blue-600" />
+                    <span>{uni.city}، {uni.country}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="secondary">Rank #{uni.ranking}</Badge>
-                    <div className="flex items-center">
-                      <Star className="w-4 h-4 text-yellow-400 mr-1" />
+                  <div className="flex items-center gap-2 justify-end">
+                    <Badge variant="secondary">الترتيب العالمي #{uni.ranking}</Badge>
+                    <div className="flex items-center gap-1">
+                      <Star className="w-4 h-4 text-yellow-400" />
                       <span className="text-sm">{uni.rating}</span>
                     </div>
                   </div>
                 </div>
-                <img 
-                  src={uni.image} 
+                <img
+                  src={uni.image}
                   alt={uni.name}
                   className="w-16 h-16 rounded-lg object-cover"
                 />
               </div>
             </CardHeader>
-            <CardContent className="pt-0">
+            <CardContent className="pt-0" dir="rtl">
               <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">Tuition Fee:</span>
+                <div className="flex items-center justify-between text-sm text-gray-600">
+                  <span>متوسط الرسوم الدراسية:</span>
                   <span className="font-semibold text-green-600">{uni.tuitionFee}</span>
                 </div>
-                
+
                 <div>
-                  <span className="text-sm text-gray-600 mb-2 block">Popular Programs:</span>
-                  <div className="flex flex-wrap gap-1">
-                    {uni.programs.map(program => (
+                  <span className="text-sm text-gray-600 mb-2 block">التخصصات المتاحة:</span>
+                  <div className="flex flex-wrap gap-1 justify-end">
+                    {uni.programs.map((program) => (
                       <Badge key={program} variant="outline" className="text-xs">
                         {program}
                       </Badge>
@@ -144,18 +176,18 @@ const UniversityBrowser = () => {
                 </div>
 
                 {uni.scholarships && (
-                  <div className="flex items-center text-sm text-blue-600">
-                    <DollarSign className="w-4 h-4 mr-1" />
-                    Scholarships Available
+                  <div className="flex items-center justify-end text-sm text-blue-600 gap-1">
+                    <span>منح دراسية متوفرة</span>
+                    <DollarSign className="w-4 h-4" />
                   </div>
                 )}
 
                 <div className="flex gap-2 pt-2">
                   <Button size="sm" className="flex-1">
-                    Apply Now
+                    قدّم طلبك الآن
                   </Button>
                   <Button size="sm" variant="outline" className="flex-1">
-                    Learn More
+                    اطلب استشارة
                   </Button>
                 </div>
               </div>
@@ -166,7 +198,7 @@ const UniversityBrowser = () => {
 
       {filteredUniversities.length === 0 && (
         <div className="text-center py-8 text-gray-500">
-          No universities found matching your criteria. Try adjusting your search.
+          لم نعثر على جامعة تطابق معايير البحث الحالية. حاول تعديل الكلمات المفتاحية أو اختيار دولة مختلفة.
         </div>
       )}
     </div>

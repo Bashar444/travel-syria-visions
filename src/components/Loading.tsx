@@ -9,7 +9,7 @@ interface LoadingProps {
 }
 
 const Loading: React.FC<LoadingProps> = ({ 
-  message = "جاري التحميل... Loading...", 
+  message = "جاري التحميل...", 
   size = 'md',
   fullScreen = false 
 }) => {
@@ -24,7 +24,7 @@ const Loading: React.FC<LoadingProps> = ({
     : "flex items-center justify-center p-8";
 
   return (
-    <div className={containerClasses} role="status" aria-label="Loading">
+  <div className={containerClasses} role="status" aria-label="جاري التحميل">
       <div className="text-center">
         <Loader2 className={`${sizeClasses[size]} animate-spin text-[#0018A8] mx-auto mb-4`} />
         <p className="text-sm text-gray-600 max-w-xs">

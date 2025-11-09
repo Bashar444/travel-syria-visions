@@ -4,18 +4,13 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Menu, Languages, Globe, ChevronDown } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
-import LanguageConfirmDialog from './LanguageConfirmDialog';
+import { Menu, Globe, ChevronDown } from 'lucide-react';
 import MobileHeaderButtons from './MobileHeaderButtons';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showLanguageDialog, setShowLanguageDialog] = useState(false);
-  const [pendingLanguage, setPendingLanguage] = useState<string>('');
   const location = useLocation();
-  const { language, setLanguage, t, direction } = useLanguage();
-  const isMobile = useIsMobile();
+  const { t, direction } = useLanguage();
 
   const navigation = [
     { name: t('nav.home'), href: '/' },
@@ -42,36 +37,6 @@ const Navbar = () => {
     return legalPages.some(page => location.pathname === page.href);
   };
 
-  const handleLanguageSwitch = () => {
-    const newLanguage = language === 'ar' ? 'en' : 'ar';
-    console.log(`Language button clicked. Current: ${language}, Switching to: ${newLanguage}`);
-    setLanguage(newLanguage);
-    
-    // Add smooth transition effect
-    document.documentElement.style.transition = 'all 0.3s ease';
-    setTimeout(() => {
-      document.documentElement.style.transition = '';
-    }, 300);
-  };
-
-  const handleMobileLanguageClick = () => {
-    const newLanguage = language === 'ar' ? 'en' : 'ar';
-    setPendingLanguage(newLanguage);
-    setShowLanguageDialog(true);
-  };
-
-  const confirmLanguageChange = () => {
-    console.log(`Mobile language switch confirmed. Changing to: ${pendingLanguage}`);
-    setLanguage(pendingLanguage);
-    setShowLanguageDialog(false);
-    
-    // Add smooth transition effect
-    document.documentElement.style.transition = 'all 0.3s ease';
-    setTimeout(() => {
-      document.documentElement.style.transition = '';
-    }, 300);
-  };
-
   const handleCallClick = () => {
     window.open('tel:+963985453247', '_self');
   };
@@ -93,7 +58,7 @@ const Navbar = () => {
               <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                 <div className="flex items-center logo-hover">
                   <img 
-                    alt="Travel for university admissions" 
+                    alt="شعار ترافل لخدمات القبول الجامعي" 
                     style={{
                       filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.1))',
                       minHeight: 'auto'
@@ -154,18 +119,6 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
               
-              {/* Enhanced Language Switch */}
-              <Button 
-                variant="outline" 
-                size="sm" 
-                onClick={handleLanguageSwitch} 
-                className="border-[#0018A8] transition-colors duration-200 mx-2 text-white text-base font-normal bg-[#00A3E0] hover:bg-[#0018A8] min-w-[80px] flex items-center gap-2"
-                title={`Switch to ${language === 'ar' ? 'English' : 'Arabic'}`}
-              >
-                <Languages className="w-4 h-4" />
-                {language === 'ar' ? 'EN' : 'عربي'}
-              </Button>
-
               {/* WhatsApp CTA */}
               <Button 
                 onClick={() => window.open(`https://wa.me/${whatsappNumber}`, '_blank')} 
@@ -180,7 +133,6 @@ const Navbar = () => {
             <div className={`md:hidden flex items-center gap-2 ${direction === 'rtl' ? 'order-1' : 'order-3'}`}>
               {/* Mobile Header Buttons */}
               <MobileHeaderButtons
-                onLanguageClick={handleMobileLanguageClick}
                 onCallClick={handleCallClick}
                 onNotificationClick={handleNotificationClick}
               />
@@ -198,7 +150,7 @@ const Navbar = () => {
                     <div className="mb-6 pb-6 border-b border-[#747474]">
                       <img 
                         src="https://ik.imagekit.io/sa7gckrpwy/logo%20travel.ico?updatedAt=1748450827694" 
-                        alt="Travel for university admissions" 
+                        alt="شعار ترافل لخدمات القبول الجامعي" 
                         className="h-16 w-auto min-w-[140px] mx-auto" 
                         style={{
                           filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.1))',
@@ -245,16 +197,6 @@ const Navbar = () => {
                     
                     <div className="pt-4 border-t border-[#747474] mt-4">
                       <Button 
-                        variant="outline" 
-                        onClick={handleMobileLanguageClick} 
-                        className="border-[#0018A8] text-[#0018A8] hover:bg-[#0018A8] hover:text-white w-full mb-3 transition-colors duration-200 flex items-center justify-center gap-2"
-                        title={`Switch to ${language === 'ar' ? 'English' : 'Arabic'}`}
-                      >
-                        <Languages className="w-4 h-4" />
-                        {language === 'ar' ? 'English' : 'عربي'}
-                      </Button>
-
-                      <Button 
                         className="bg-[#0018A8] hover:bg-[#00A3E0] text-white w-full transition-colors duration-200 flex items-center justify-center gap-2" 
                         onClick={() => {
                           window.open(`https://wa.me/${whatsappNumber}`, '_blank');
@@ -273,13 +215,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Language Confirmation Dialog */}
-      <LanguageConfirmDialog
-        open={showLanguageDialog}
-        onOpenChange={setShowLanguageDialog}
-        onConfirm={confirmLanguageChange}
-        targetLanguage={pendingLanguage}
-      />
     </>
   );
 };

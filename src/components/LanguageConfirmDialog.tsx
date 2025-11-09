@@ -1,6 +1,5 @@
 
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 interface LanguageConfirmDialogProps {
   open: boolean;
@@ -9,45 +8,27 @@ interface LanguageConfirmDialogProps {
   targetLanguage: string;
 }
 
-const LanguageConfirmDialog = ({ open, onOpenChange, onConfirm, targetLanguage }: LanguageConfirmDialogProps) => {
-  const { t, language } = useLanguage();
-
-  const getConfirmMessage = () => {
-    if (targetLanguage === 'ar') {
-      return t('mobile.language-confirm');
-    } else {
-      return t('mobile.language-confirm-ar');
-    }
-  };
-
-  const getConfirmButton = () => {
-    if (targetLanguage === 'ar') {
-      return t('mobile.change-to-arabic');
-    } else {
-      return t('mobile.change-to-english');
-    }
-  };
-
+const LanguageConfirmDialog = ({ open, onOpenChange, onConfirm }: LanguageConfirmDialogProps) => {
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
-      <AlertDialogContent className="w-[90%] max-w-md mx-auto">
+      <AlertDialogContent className="w-[90%] max-w-md mx-auto" dir="rtl">
         <AlertDialogHeader>
-          <AlertDialogTitle className="text-[#0018A8] text-content">
-            {t('mobile.language-prompt')}
+          <AlertDialogTitle className="text-[#0018A8] text-content text-right">
+            تأكيد تفعيل الواجهة العربية
           </AlertDialogTitle>
-          <AlertDialogDescription className="text-content">
-            {getConfirmMessage()}
+          <AlertDialogDescription className="text-content text-right leading-relaxed">
+            واجهتنا صُممت بالكامل باللغة العربية لضمان تجربة واضحة للطلاب السوريين. بالضغط على تأكيد ستظهر لك جميع الصفحات والمحتوى باللغة العربية فقط.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter className="flex gap-2">
+        <AlertDialogFooter className="flex gap-2 justify-end">
           <AlertDialogCancel className="text-content">
-            {t('mobile.cancel')}
+            إلغاء
           </AlertDialogCancel>
-          <AlertDialogAction 
+          <AlertDialogAction
             onClick={onConfirm}
             className="bg-[#0018A8] hover:bg-[#00A3E0] text-white"
           >
-            {getConfirmButton()}
+            تأكيد الاستخدام بالعربية
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

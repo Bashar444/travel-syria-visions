@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 
 interface LanguageContextProps {
   language: string;
@@ -13,283 +13,144 @@ interface LanguageProviderProps {
   children: React.ReactNode;
 }
 
-const translations = {
-  en: {
-    'nav.home': 'Home',
-    'nav.services': 'Services',
-    'nav.universities': 'Universities',
-  'nav.blog': 'Blog',
-  'nav.languages': 'Languages',
-    'nav.work-with-us': 'Work With Us',
-    'nav.success-stories': 'Success Stories',
-    'nav.about': 'About',
-    'nav.contact': 'Contact',
-    'nav.terms-privacy': 'Terms & Privacy',
-    'nav.terms': 'Terms of Service',
-    'nav.privacy': 'Privacy Policy',
-
-    'hero.title': 'Unlock Your Future with Global Education',
-    'hero.subtitle': 'Your gateway to international universities and scholarships',
-    'hero.services': 'Explore Our Services',
-    'hero.whatsapp': 'Contact Us on WhatsApp',
-
-    'services.title': 'Our Services',
-    'services.university-admissions': 'University Admissions',
-    'services.visa-assistance': 'Visa Assistance',
-    'services.scholarships': 'Scholarships',
-    'services.study-abroad': 'Study Abroad',
-
-    'universities.title': 'Partner Universities',
-    'universities.description': 'Explore our network of prestigious universities around the world.',
-
-    'blog.title': 'Latest Articles',
-    'blog.description': 'Stay updated with the latest news and insights about studying abroad.',
-
-    'work-with-us.title': 'Join Our Team',
-    'work-with-us.description': 'Explore career opportunities and become a part of our mission.',
-
-    'success-stories.title': 'Inspiring Stories',
-    'success-stories.description': 'Read about the success of our students and their journey to global education.',
-    
-    'contact.title': 'Contact Us',
-    'contact.free-consultation': 'Book Free Consultation',
-    'contact.success-message': 'Your request has been sent successfully! We will contact you soon.',
-    'contact.full-name': 'Full Name',
-    'contact.full-name-required': 'Full name is required',
-    'contact.full-name-placeholder': 'Enter your full name',
-    'contact.phone': 'Phone Number',
-    'contact.phone-required': 'Phone number is required',
-    'contact.email': 'Email',
-    'contact.email-required': 'Email is required',
-    'contact.email-invalid': 'Invalid email format',
-    'contact.preferred-university': 'Preferred University',
-    'contact.select-university': 'Select University',
-    'contact.desired-major': 'Desired Major',
-    'contact.major-placeholder': 'e.g., Computer Engineering, Business Administration, Medicine',
-    'contact.additional-message': 'Additional Message (Optional)',
-    'contact.message-placeholder': 'Any additional information you would like to share...',
-    'contact.sending': 'Sending...',
-    'contact.submit': 'Submit Request',
-    'contact.direct-contact': 'Contact Us Directly',
-    'contact.whatsapp': 'Contact via WhatsApp',
-    'contact.whatsapp-number': 'WhatsApp Number',
-    'contact.email-label': 'Email',
-    'contact.working-hours': 'Working Hours',
-
-    'about.title': 'About Us',
-    'about.mission': 'Your trusted partner for university admissions and educational services.',
-    'about.hours': 'Monday to Friday: 10:00 AM - 6:00 PM (GMT+3)',
-
-    'footer.description': 'Professional educational services and university admissions guidance for Syrian students worldwide.',
-    'footer.quick-links': 'Quick Links',
-    'footer.contact-form': 'Contact Form',
-    'footer.rights': 'All rights reserved.',
-    'footer.privacy': 'Privacy Policy',
-    'footer.terms': 'Terms of Service',
-
-    // New mobile header translations
-    'mobile.language-prompt': 'Change Website Language?',
-    'mobile.language-confirm': 'Would you like to switch to Arabic?',
-    'mobile.language-confirm-ar': 'Would you like to switch to English?',
-    'mobile.change-to-arabic': 'Change to Arabic',
-    'mobile.change-to-english': 'Change to English',
-    'mobile.cancel': 'Cancel',
-    'mobile.confirm': 'Confirm',
-    'mobile.call-now': 'Call Now',
-    'mobile.apply-now': 'Apply Now',
-    'mobile.notifications': 'Notifications',
-    'mobile.quick-contact': 'Quick Contact',
-
-    'cta.badge': 'Join 500+ Successful Syrian Students',
-    'cta.title': 'Ready to Start Your Educational Journey Abroad?',
-    'cta.subtitle': 'Professional university admission guidance with transparent pricing starting at $1099 and proven results with 95% success rate for Syrian students seeking quality education abroad.',
-    'cta.button': 'Start Your University Application Today',
-
-    'languages.title': 'Language Preparation Services',
-    'languages.subtitle': 'Detailed guidance for English and German language programs with bilingual support.',
-    'languages.english.heading': 'English Language Programs',
-    'languages.german.heading': 'German Language Programs',
-    'languages.overview': 'Overview',
-    'languages.services': 'Included Services',
-    'languages.english.overview.en': 'Comprehensive coaching for IELTS, TOEFL, and academic speaking prepared by certified instructors.',
-    'languages.english.overview.ar': 'تدريب شامل لاختبارات الآيلتس والتوفل ومهارات المحادثة الأكاديمية بإشراف مدربين معتمدين.',
-    'languages.german.overview.en': 'Structured preparation for TestDaF, DSH, and university interview requirements with native-level mentors.',
-    'languages.german.overview.ar': 'تهيئة منظمة لاختبارات TestDaF وDSH ومتطلبات مقابلات الجامعات بإشراف مدربين بمستوى لغتهم الأصلي.',
-    'languages.cta': 'Book Your Language Assessment',
-
-    'languages.english.services': JSON.stringify([
-      'IELTS, TOEFL, and Duolingo placement diagnostics',
-      'Academic writing and presentation workshops',
-      'Scholarship essay refinement and mock interviews',
-      'Weekly progress tracking with bilingual feedback'
-    ]),
-    'languages.english.services.ar': JSON.stringify([
-      'اختبارات تقييم لمستويات IELTS وTOEFL وDuolingo',
-      'ورشات للكتابة الأكاديمية والعروض التقديمية',
-      'تحسين رسائل المنح والتدريب على المقابلات الوهمية',
-      'متابعة تقدم أسبوعية مع ملاحظات باللغتين'
-    ]),
-    'languages.german.services': JSON.stringify([
-      'Placement support for TestDaF, DSH, and TELC exams',
-      'Integration modules about studying and living in Germany',
-      'Visa interview simulations with native speakers',
-      'Specialized vocabulary for medical and engineering tracks'
-    ]),
-    'languages.german.services.ar': JSON.stringify([
-      'دعم لتحديد المستوى في اختبارات TestDaF وDSH وTELC',
-      'جلسات تعريفية حول الدراسة والحياة في ألمانيا',
-      'محاكاة لمقابلات التأشيرة مع متحدثين أصليين',
-      'مصطلحات متخصصة للتخصصات الطبية والهندسية'
-    ])
-  },
-  ar: {
-    'nav.home': 'الرئيسية',
-    'nav.services': 'خدماتنا',
-    'nav.universities': 'الجامعات',
+const translations: Record<string, string> = {
+  'nav.home': 'الرئيسية',
+  'nav.services': 'خدماتنا',
+  'nav.universities': 'الجامعات',
   'nav.blog': 'المدونة',
-  'nav.languages': 'اللغات',
-    'nav.work-with-us': 'اعمل معنا',
-    'nav.success-stories': 'قصص النجاح',
-    'nav.about': 'معلومات عنا',
-    'nav.contact': 'اتصل بنا',
-    'nav.terms-privacy': 'الشروط والخصوصية',
-    'nav.terms': 'شروط الخدمة',
-    'nav.privacy': 'سياسة الخصوصية',
+  'nav.languages': 'خدمات اللغات',
+  'nav.work-with-us': 'انضم إلى فريقنا',
+  'nav.success-stories': 'قصص النجاح',
+  'nav.about': 'من نحن',
+  'nav.contact': 'تواصل معنا',
+  'nav.terms-privacy': 'الشروط والخصوصية',
+  'nav.terms': 'شروط الخدمة',
+  'nav.privacy': 'سياسة الخصوصية',
 
-    'hero.title': 'اطلق العنان لمستقبلك مع التعليم العالمي',
-    'hero.subtitle': 'بوابتك إلى الجامعات والمنح الدراسية الدولية',
-    'hero.services': 'اكتشف خدماتنا',
-    'hero.whatsapp': 'تواصل معنا على واتساب',
+  'hero.badge': 'خدمات تعليمية متكاملة للطلاب السوريين',
+  'hero.title': 'نقودك إلى مستقبلك الدراسي بثقة',
+  'hero.highlight': 'قبولات جامعية، تأشيرات طلابية، منح سعودية، وخدمات الحج والعمرة',
+  'hero.description': 'نقدم حلولاً تعليمية متكاملة للطلاب السوريين الراغبين بالدراسة في الخارج مع متابعة دقيقة لكل مرحلة من القبول وحتى السفر بنسبة نجاح 95٪.',
+  'hero.primary-action': 'استكشف خدماتنا التعليمية',
+  'hero.secondary-action': 'استشارة مجانية عبر واتساب',
+  'hero.whatsapp': 'تواصل عبر واتساب',
 
-    'services.title': 'خدماتنا',
-    'services.university-admissions': 'قبولات جامعية',
-    'services.visa-assistance': 'المساعدة في الحصول على التأشيرة',
-    'services.scholarships': 'المنح الدراسية',
-    'services.study-abroad': 'الدراسة في الخارج',
+  'services.heading': 'حلول تعليمية مصممة لاحتياجاتك',
+  'services.description': 'خدمات احترافية في القبول الجامعي، معالجة التأشيرات، برامج المنح، وخدمات الحج والعمرة مع متابعة دقيقة بكل خطوة.',
+  'services.card.consulting.title': 'استشارات القبول الجامعي',
+  'services.card.consulting.desc': 'تنسيق كامل لملفك الأكاديمي واختيار الجامعات وفق أهدافك وتخصصك، مع إعداد احترافي لجميع متطلبات القبول.',
+  'services.card.visa.title': 'معالجة التأشيرات الطلابية',
+  'services.card.visa.desc': 'إعداد ملفات التأشيرة، حجز المواعيد، التدريب على المقابلات، وترجمة الوثائق لضمان تجربة ميسرة.',
+  'services.card.hajj.title': 'تنظيم رحلات الحج والعمرة',
+  'services.card.hajj.desc': 'برامج ميسرة تشمل التأشيرة، السكن، النقل، والإشراف الديني مع مرافقين خبراء.',
+  'services.card.scholarship.title': 'برامج المنح السعودية',
+  'services.card.scholarship.desc': 'فرص دراسية ممولة بالكامل مع متابعة منح وزارة التعليم السعودية وتوفير مقاعد مضمونة للطلاب المتميزين.',
+  'services.price': 'ابتداءً من 1099 دولار أمريكي',
+  'services.button': 'ابدأ الآن',
+  'services.tabs.title': 'استكشف خدماتنا التفصيلية',
+  'services.tabs.university': 'متصفح الجامعات العالمي',
+  'services.tabs.hajj': 'خدمات الحج والعمرة',
+  'services.tabs.scholarship': 'المنح السعودية',
+  'services.tabs.university.desc': 'ابحث في قاعدة بيانات عالمية للجامعات مع فلترة للتخصصات، الرسوم، ولغات الدراسة.',
+  'services.tabs.hajj.desc': 'تنظيم شامل للرحلة، من الحصول على التأشيرة وحتى البرامج الزيارات الدينية.',
+  'services.tabs.scholarship.desc': 'إرشاد متكامل للحصول على منح دراسية سعودية مع متابعة الملفات والمقابلات الشخصية.',
 
-    'universities.title': 'الجامعات الشريكة',
-    'universities.description': 'اكتشف شبكتنا من الجامعات المرموقة حول العالم.',
+  'education.heading': 'قصص نجاح طلابنا',
+  'education.subtitle': 'صور حقيقية تعكس تجارب طلابنا في الجامعات العالمية من التسجيل وحتى التخرج.',
+  'education.card.1.title': 'تخرج ناجح',
+  'education.card.1.desc': 'لحظة تخرج أحد طلابنا بعد رحلة أكاديمية ناجحة بفضل خدماتنا الاستشارية.',
+  'education.card.2.title': 'حياة جامعية متطورة',
+  'education.card.2.desc': 'تعرف على نمط الحياة الجامعية الحديثة التي نوفرها لطلابنا حول العالم.',
+  'education.card.3.title': 'تفوق أكاديمي',
+  'education.card.3.desc': 'احتفال جماعي بتخرج طلابنا في الجامعات الدولية بعد تحقيق نتائج متميزة.',
+  'education.card.4.title': 'حفل تخرج عالمي',
+  'education.card.4.desc': 'طلاب من ثقافات متعددة يحتفلون بالنجاح ضمن بيئة تعليمية داعمة.',
+  'education.card.5.title': 'حرم جامعي تاريخي',
+  'education.card.5.desc': 'جولة داخل أبرز الجامعات ذات الطراز المعماري العريق حول العالم.',
+  'education.card.6.title': 'رحلة الطالب الجامعية',
+  'education.card.6.desc': 'طلابنا يستكشفون مرافق الجامعات ويستفيدون من خدمات الإرشاد الأكاديمي.',
+  'education.button': 'استكشف قصص النجاح',
 
-    'blog.title': 'أحدث المقالات',
-    'blog.description': 'ابق على اطلاع بأحدث الأخبار والرؤى حول الدراسة في الخارج.',
+  'cta.badge': 'انضم إلى أكثر من 500 طالب سوري ناجح',
+  'cta.title': 'هل أنت جاهز لبدء رحلتك التعليمية في الخارج؟',
+  'cta.subtitle': 'استشارات تعليمية احترافية برسوم واضحة تبدأ من 1099 دولار مع متابعة دقيقة للقبولات الجامعية والتأشيرات الطلابية.',
+  'cta.button': 'ابدأ طلبك الجامعي الآن',
 
-    'work-with-us.title': 'انضم إلى فريقنا',
-    'work-with-us.description': 'اكتشف الفرص الوظيفية وكن جزءًا من مهمتنا.',
+  'footer.description': 'خدمات تعليمية متكاملة للطلاب السوريين تشمل القبول الجامعي، التأشيرات، المنح الدراسية، وخدمات الحج والعمرة.',
+  'footer.quick-links': 'روابط مهمة',
+  'footer.contact-form': 'نموذج التواصل',
+  'footer.rights': 'جميع الحقوق محفوظة.',
 
-    'success-stories.title': 'قصص ملهمة',
-    'success-stories.description': 'اقرأ عن نجاح طلابنا ورحلتهم إلى التعليم العالمي.',
-    
-    'contact.title': 'اتصل بنا',
-    'contact.free-consultation': 'احجز استشارة مجانية',
-    'contact.success-message': 'تم إرسال طلبك بنجاح! سنتواصل معك قريباً.',
-    'contact.full-name': 'الاسم الكامل',
-    'contact.full-name-required': 'الاسم الكامل مطلوب',
-    'contact.full-name-placeholder': 'أدخل اسمك الكامل',
-    'contact.phone': 'رقم الهاتف',
-    'contact.phone-required': 'رقم الهاتف مطلوب',
-    'contact.email': 'البريد الإلكتروني',
-    'contact.email-required': 'البريد الإلكتروني مطلوب',
-    'contact.email-invalid': 'البريد الإلكتروني غير صحيح',
-    'contact.preferred-university': 'الجامعة المرغوبة',
-    'contact.select-university': 'اختر الجامعة',
-    'contact.desired-major': 'التخصص المطلوب',
-    'contact.major-placeholder': 'مثل: هندسة الحاسوب، إدارة الأعمال، الطب',
-    'contact.additional-message': 'رسالة إضافية (اختيارية)',
-    'contact.message-placeholder': 'أي معلومات إضافية تود مشاركتها...',
-    'contact.sending': 'جاري الإرسال...',
-    'contact.submit': 'إرسال الطلب',
-    'contact.direct-contact': 'تواصل معنا مباشرة',
-    'contact.whatsapp': 'تواصل عبر واتساب',
-    'contact.whatsapp-number': 'رقم الواتساب',
-    'contact.email-label': 'البريد الإلكتروني',
-    'contact.working-hours': 'ساعات العمل',
+  'contact.title': 'تواصل معنا الآن',
+  'contact.free-consultation': 'احجز استشارتك المجانية',
+  'contact.success-message': 'تم استلام طلبك بنجاح وسيتم التواصل معك في أقرب وقت.',
+  'contact.full-name': 'الاسم الكامل',
+  'contact.full-name-required': 'الاسم الكامل مطلوب',
+  'contact.full-name-placeholder': 'مثال: أحمد علي الحسين',
+  'contact.phone': 'رقم الهاتف',
+  'contact.phone-required': 'رقم الهاتف مطلوب',
+  'contact.email': 'البريد الإلكتروني',
+  'contact.email-required': 'البريد الإلكتروني مطلوب',
+  'contact.email-invalid': 'صيغة البريد الإلكتروني غير صحيحة',
+  'contact.preferred-university': 'الجامعة المفضلة',
+  'contact.select-university': 'اختر الجامعة المناسبة',
+  'contact.desired-major': 'التخصص المطلوب',
+  'contact.major-placeholder': 'مثال: هندسة الحاسوب، إدارة الأعمال، الطب',
+  'contact.additional-message': 'رسالة إضافية (اختياري)',
+  'contact.message-placeholder': 'اكتب أي تفاصيل أو استفسارات ترغب بمشاركتها...',
+  'contact.sending': 'جاري الإرسال...',
+  'contact.submit': 'إرسال الطلب',
+  'contact.direct-contact': 'طرق التواصل المباشر',
+  'contact.whatsapp': 'التواصل عبر واتساب',
+  'contact.whatsapp-number': 'رقم واتساب',
+  'contact.email-label': 'البريد الإلكتروني',
+  'contact.working-hours': 'ساعات العمل الرسمية',
 
-    'about.title': 'معلومات عنا',
-    'about.mission': 'شريكك الموثوق لقبولات الجامعات والخدمات التعليمية.',
-    'about.hours': 'الاثنين إلى الجمعة: 10:00 صباحاً - 6:00 مساءً (توقيت دمشق)',
+  'about.title': 'من نحن',
+  'about.mission': 'شركة متخصصة في تمكين الطلاب السوريين من الحصول على أفضل الفرص التعليمية في الخارج مع متابعة كاملة لكل التفاصيل.',
+  'about.hours': 'الإثنين - الجمعة: 10 صباحاً - 6 مساءً (توقيت دمشق)',
 
-    'footer.description': 'خدمات تعليمية احترافية وإرشاد لقبولات الجامعات للطلاب السوريين حول العالم.',
-    'footer.quick-links': 'روابط سريعة',
-    'footer.contact-form': 'نموذج التواصل',
-    'footer.rights': 'جميع الحقوق محفوظة.',
-    'footer.privacy': 'سياسة الخصوصية',
-    'footer.terms': 'شروط الخدمة',
+  'mobile.call-now': 'اتصل الآن',
+  'mobile.apply-now': 'قدم الآن',
+  'mobile.notifications': 'الإشعارات',
+  'mobile.quick-contact': 'تواصل سريع',
 
-    // New mobile header translations
-    'mobile.language-prompt': 'تغيير لغة الموقع؟',
-    'mobile.language-confirm': 'هل تريد التبديل إلى اللغة الإنجليزية؟',
-    'mobile.language-confirm-ar': 'هل تريد التبديل إلى اللغة العربية؟',
-    'mobile.change-to-arabic': 'التغيير إلى العربية',
-    'mobile.change-to-english': 'التغيير إلى الإنجليزية',
-    'mobile.cancel': 'إلغاء',
-    'mobile.confirm': 'تأكيد',
-    'mobile.call-now': 'اتصل الآن',
-    'mobile.apply-now': 'قدم الآن',
-    'mobile.notifications': 'الإشعارات',
-    'mobile.quick-contact': 'تواصل سريع',
+  'languages.title': 'خدمات إعداد اللغة',
+  'languages.subtitle': 'دورات مكثفة للغة الإنجليزية والألمانية مع مدربين معتمدين ومحتوى موجه للطلاب السوريين.',
+  'languages.english.title': 'برنامج اللغة الإنجليزية الأكاديمي',
+  'languages.english.desc': 'تحضير شامل لاختبارات IELTS وTOEFL مع تركيز على مهارات المحادثة والكتابة الأكاديمية ونماذج المقابلات الجامعية.',
+  'languages.german.title': 'برنامج اللغة الألمانية الجامعي',
+  'languages.german.desc': 'تهيئة متكاملة لاختبارات TestDaF وDSH ومهارات الاندماج الثقافي مع تدريبات على مقابلات السفارة.',
+  'languages.services.heading': 'ماذا نقدم في برامج اللغة؟',
+  'languages.services.item1': 'تقييم مستوى دقيق وخطة تعلم مخصصة لكل طالب',
+  'languages.services.item2': 'جلسات مباشرة مع مدربين معتمدين ومتحدثين أصليين',
+  'languages.services.item3': 'متابعة أسبوعية وتقارير تقدم مفصلة باللغة العربية',
+  'languages.services.item4': 'تحضير للمقابلات الجامعية ومهارات العرض الأكاديمي',
+  'languages.cta': 'احجز اختبار تحديد المستوى',
 
-    'cta.badge': 'انضم إلى أكثر من 500 طالب سوري ناجح',
-    'cta.title': 'هل أنت مستعد لبدء رحلتك التعليمية في الخارج؟',
-    'cta.subtitle': 'إرشاد احترافي للقبولات الجامعية بأسعار شفافة تبدأ من 1099 دولار ونتائج مثبتة بنسبة نجاح 95٪ للطلاب السوريين الباحثين عن تعليم عالي الجودة في الخارج.',
-    'cta.button': 'ابدأ طلبك الجامعي اليوم',
+  'faq.title': 'الأسئلة الشائعة حول خدماتنا',
+  'faq.subtitle': 'إجابات تفصيلية على أكثر استفسارات الطلاب السوريين انتشاراً حول الدراسة في الخارج.',
 
-    'languages.title': 'خدمات إعداد اللغات',
-    'languages.subtitle': 'إرشاد تفصيلي لبرامج اللغة الإنجليزية والألمانية بدعم ثنائي اللغة.',
-    'languages.english.heading': 'برامج اللغة الإنجليزية',
-    'languages.german.heading': 'برامج اللغة الألمانية',
-    'languages.overview': 'نظرة عامة',
-    'languages.services': 'الخدمات المتضمنة',
-    'languages.english.overview.en': 'Complete IELTS, TOEFL, and speaking preparation delivered in fluent Arabic and English.',
-    'languages.english.overview.ar': 'إعداد كامل لاختبارات الآيلتس والتوفل ومهارات المحادثة يقدم باللغة العربية والإنجليزية بطلاقة.',
-    'languages.german.overview.en': 'Step-by-step guidance for TestDaF, DSH، and German university integration requirements.',
-    'languages.german.overview.ar': 'إرشاد خطوة بخطوة لاختبارات TestDaF وDSH ومتطلبات الاندماج الجامعي الألماني.',
-    'languages.cta': 'احجز تقييمك اللغوي الآن',
-
-    'languages.english.services': JSON.stringify([
-      'جلسات تشخيص لمستوى IELTS وTOEFL وDuolingo',
-      'ورشات للكتابة الأكاديمية والعروض التقديمية',
-      'تنقيح رسائل المنح وتدريب على المقابلات',
-      'متابعة تقدم أسبوعية بتقارير عربية وإنجليزية'
-    ]),
-    'languages.english.services.ar': JSON.stringify([
-      'IELTS, TOEFL, and Duolingo placement diagnostics',
-      'Academic writing and presentation workshops',
-      'Scholarship essay refinement and mock interviews',
-      'Weekly progress tracking with bilingual feedback'
-    ]),
-    'languages.german.services': JSON.stringify([
-      'جلسات تحديد مستوى لاختبارات TestDaF وDSH وTELC',
-      'برامج اندماج للدراسة والحياة في ألمانيا',
-      'محاكاة لمقابلات الفيزا مع مدربين ألمان',
-      'مصطلحات متخصصة للتخصصات الطبية والهندسية'
-    ]),
-    'languages.german.services.ar': JSON.stringify([
-      'Placement support for TestDaF, DSH, and TELC exams',
-      'Integration modules about studying and living in Germany',
-      'Visa interview simulations with native speakers',
-      'Specialized vocabulary for medical and engineering tracks'
-    ])
-  }
+  'footer.address': 'سوريا - خدمات استشارية عبر الإنترنت',
+  'footer.phone': 'هاتف',
+  'footer.email': 'البريد الإلكتروني'
 };
 
+const translate = (key: string) => translations[key] ?? key;
+const noop = () => {};
+
 const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState(localStorage.getItem('language') || 'en');
-
-  useEffect(() => {
-    localStorage.setItem('language', language);
-  }, [language]);
-
-  const t = (key: string): string => {
-    return translations[language as keyof typeof translations][key] || key;
-  };
-
-  const direction = language === 'ar' ? 'rtl' : 'ltr';
-
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, direction }}>
-      {children}
-    </LanguageContext.Provider>
+  const value = useMemo(
+    () => ({
+      language: 'ar',
+      setLanguage: noop,
+      t: translate,
+      direction: 'rtl'
+    }),
+    []
   );
+
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
 
 const useLanguage = () => {

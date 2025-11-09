@@ -34,45 +34,53 @@ const VisaProcessingModule: React.FC = () => {
     setApplications([
       {
         id: '1',
-        country: 'Italy',
-        type: 'Student Visa',
+        country: 'إيطاليا',
+        type: 'تأشيرة طالب',
         status: 'processing',
         progress: 65,
         estimatedCompletion: '2024-04-15',
         requiredDocuments: [
-          { name: 'Passport', status: 'verified', aiVerificationScore: 98 },
-          { name: 'University Acceptance Letter', status: 'verified', aiVerificationScore: 95 },
-          { name: 'Financial Proof', status: 'uploaded', aiVerificationScore: 87 },
-          { name: 'Medical Certificate', status: 'pending' },
-          { name: 'Travel Insurance', status: 'pending' }
+          { name: 'جواز السفر', status: 'verified', aiVerificationScore: 98 },
+          { name: 'خطاب القبول الجامعي', status: 'verified', aiVerificationScore: 95 },
+          { name: 'إثبات القدرة المالية', status: 'uploaded', aiVerificationScore: 87 },
+          { name: 'شهادة طبية', status: 'pending' },
+          { name: 'تأمين سفر', status: 'pending' }
         ],
         nextSteps: [
-          'Complete medical examination',
-          'Purchase travel insurance',
-          'Schedule embassy appointment'
+          'إجراء الفحص الطبي المطلوب',
+          'شراء تأمين سفر معتمد',
+          'حجز موعد في السفارة'
         ]
       },
       {
         id: '2',
-        country: 'Romania',
-        type: 'Student Visa',
+        country: 'رومانيا',
+        type: 'تأشيرة طالب',
         status: 'requires-action',
         progress: 40,
         estimatedCompletion: '2024-05-01',
         requiredDocuments: [
-          { name: 'Passport', status: 'verified', aiVerificationScore: 96 },
-          { name: 'University Acceptance Letter', status: 'rejected', rejectionReason: 'Document quality too low' },
-          { name: 'Financial Proof', status: 'pending' },
-          { name: 'Birth Certificate', status: 'pending' }
+          { name: 'جواز السفر', status: 'verified', aiVerificationScore: 96 },
+          { name: 'خطاب القبول الجامعي', status: 'rejected', rejectionReason: 'جودة المستند غير كافية' },
+          { name: 'إثبات القدرة المالية', status: 'pending' },
+          { name: 'شهادة الميلاد', status: 'pending' }
         ],
         nextSteps: [
-          'Re-upload university acceptance letter',
-          'Provide financial documentation',
-          'Submit birth certificate'
+          'إعادة رفع خطاب القبول الجامعي بصيغة واضحة',
+          'تقديم المستندات المالية المطلوبة',
+          'تسليم شهادة الميلاد مترجمة ومصدّقة'
         ]
       }
     ]);
   }, []);
+
+  const statusLabels: Record<VisaApplication['status'], string> = {
+    pending: 'قيد الانتظار',
+    processing: 'تجري المعالجة',
+    approved: 'مقبولة',
+    rejected: 'مرفوضة',
+    'requires-action': 'بحاجة إلى إجراء'
+  };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -126,12 +134,12 @@ const VisaProcessingModule: React.FC = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
+    <div className="max-w-6xl mx-auto space-y-6" dir="rtl">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2 rtl:space-x-reverse">
             <FileText className="w-6 h-6 text-[#0018A8]" />
-            <span>AI-Powered Visa Processing</span>
+            <span>متابعة طلبات التأشيرات بالذكاء الاصطناعي</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -141,11 +149,11 @@ const VisaProcessingModule: React.FC = () => {
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <div>
-                      <CardTitle className="text-lg">{app.country} {app.type}</CardTitle>
-                      <p className="text-sm text-[#2B3A3E]">Est. completion: {app.estimatedCompletion}</p>
+                      <CardTitle className="text-lg text-[#0E1B34]">{app.country} - {app.type}</CardTitle>
+                      <p className="text-sm text-[#2B3A3E]">التاريخ المتوقع للإنجاز: {app.estimatedCompletion}</p>
                     </div>
                     <Badge className={getStatusColor(app.status)}>
-                      {app.status.replace('-', ' ')}
+                      {statusLabels[app.status]}
                     </Badge>
                   </div>
                 </CardHeader>
@@ -153,14 +161,14 @@ const VisaProcessingModule: React.FC = () => {
                   <div className="space-y-4">
                     <div>
                       <div className="flex justify-between text-sm mb-2">
-                        <span>Progress</span>
+                        <span>نسبة التقدم</span>
                         <span>{app.progress}%</span>
                       </div>
                       <Progress value={app.progress} className="w-full" />
                     </div>
 
                     <div>
-                      <h4 className="font-medium mb-2">Required Documents</h4>
+                      <h4 className="font-medium mb-2">المستندات المطلوبة</h4>
                       <div className="space-y-2">
                         {app.requiredDocuments.map((doc, index) => (
                           <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
@@ -169,7 +177,7 @@ const VisaProcessingModule: React.FC = () => {
                               <span className="text-sm">{doc.name}</span>
                               {doc.aiVerificationScore && (
                                 <Badge variant="secondary" className="text-xs">
-                                  {doc.aiVerificationScore}% confidence
+                                  دقة التحقق {doc.aiVerificationScore}%
                                 </Badge>
                               )}
                             </div>
@@ -180,8 +188,8 @@ const VisaProcessingModule: React.FC = () => {
                                 onClick={() => simulateAIVerification(doc.name)}
                                 disabled={loading}
                               >
-                                <Upload className="w-3 h-3 mr-1" />
-                                Upload
+                                <Upload className="w-3 h-3 rtl:ml-1 ltr:mr-1" />
+                                رفع المستند
                               </Button>
                             )}
                           </div>
@@ -190,7 +198,7 @@ const VisaProcessingModule: React.FC = () => {
                     </div>
 
                     <div>
-                      <h4 className="font-medium mb-2">Next Steps</h4>
+                      <h4 className="font-medium mb-2">الخطوات التالية</h4>
                       <ul className="text-sm space-y-1">
                         {app.nextSteps.map((step, index) => (
                           <li key={index} className="flex items-center space-x-2 rtl:space-x-reverse">
@@ -205,7 +213,7 @@ const VisaProcessingModule: React.FC = () => {
                       className="w-full bg-[#0018A8] hover:bg-[#00A3E0]"
                       onClick={() => setSelectedApp(app.id)}
                     >
-                      View Details
+                      عرض التفاصيل
                     </Button>
                   </div>
                 </CardContent>

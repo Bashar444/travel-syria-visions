@@ -104,38 +104,38 @@ const ScholarshipMatcher: React.FC = () => {
     const scholarshipData = [
       {
         id: '1',
-        university: "Sant'Anna School of Advanced Studies",
-        program: 'International Security Studies',
-        country: 'Italy',
+        university: 'جامعة سانت آنا للدراسات العليا',
+        program: 'دراسات الأمن الدولي',
+        country: 'إيطاليا',
         fundingAmount: 15000,
-        requirements: ['GPA > 3.5', 'English B2', 'Research proposal'],
+        requirements: ['معدل تراكمي أعلى من 3.5', 'إجادة اللغة الإنجليزية بمستوى متقدم', 'تقديم خطة بحثية'],
         deadline: '2024-06-30'
       },
       {
         id: '2',
-        university: 'SRM Institute of Science and Technology',
-        program: 'Computer Science Engineering',
-        country: 'India',
+        university: 'معهد إس آر إم للعلوم والتكنولوجيا',
+        program: 'هندسة علوم الحاسوب',
+        country: 'الهند',
         fundingAmount: 8000,
-        requirements: ['GPA > 3.0', 'English B1', 'Entrance exam'],
+        requirements: ['معدل تراكمي أعلى من 3.0', 'إجادة اللغة الإنجليزية بمستوى متوسط', 'اختبار قبول جامعي'],
         deadline: '2024-07-15'
       },
       {
         id: '3',
-        university: 'Babeș-Bolyai University',
-        program: 'Business Administration',
-        country: 'Romania',
+        university: 'جامعة بابش-بولياي',
+        program: 'إدارة الأعمال',
+        country: 'رومانيا',
         fundingAmount: 12000,
-        requirements: ['GPA > 3.2', 'English B2', 'Interview'],
+        requirements: ['معدل تراكمي أعلى من 3.2', 'إجادة اللغة الإنجليزية بمستوى متقدم', 'مقابلة أكاديمية'],
         deadline: '2024-08-01'
       },
       {
         id: '4',
-        university: 'University of Milano-Bicocca',
-        program: 'Medicine',
-        country: 'Italy',
+        university: 'جامعة ميلانو بيكوكّا',
+        program: 'الطب والجراحة',
+        country: 'إيطاليا',
         fundingAmount: 20000,
-        requirements: ['GPA > 3.8', 'English C1', 'Medical aptitude test'],
+        requirements: ['معدل تراكمي أعلى من 3.8', 'إجادة اللغة الإنجليزية بمستوى متقدم جدًا', 'اختبار كفاءة طبية'],
         deadline: '2024-05-30'
       }
     ];
@@ -169,30 +169,30 @@ const ScholarshipMatcher: React.FC = () => {
 
   if (!studentProfile) {
     return (
-      <Card className="max-w-4xl mx-auto">
+      <Card className="max-w-4xl mx-auto" dir="rtl">
         <CardHeader>
           <CardTitle className="flex items-center space-x-2 rtl:space-x-reverse">
             <Target className="w-6 h-6 text-[#0018A8]" />
-            <span>AI-Powered Scholarship Matching</span>
+            <span>مطابقة المنح الدراسية بالذكاء الاصطناعي</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-6">
             <p className="text-[#2B3A3E] leading-relaxed">
-              Our AI system analyzes your academic profile and matches you with the most suitable scholarships from over 150+ universities.
+              يقوم نظام الذكاء الاصطناعي لدينا بتحليل ملفك الأكاديمي وحاجتك التمويلية ليرشح لك أفضل المنح المتاحة في أكثر من 150 جامعة حول العالم.
             </p>
             <Button 
               onClick={() => handleProfileSubmit({
                 academicScore: 85,
                 financialNeed: 8,
                 conflictAreaStatus: true,
-                preferredCountries: ['Italy', 'Romania'],
-                fieldOfStudy: 'Engineering',
+                preferredCountries: ['إيطاليا', 'رومانيا'],
+                fieldOfStudy: 'الهندسة',
                 languageProficiency: 7
               })}
               className="bg-[#0018A8] hover:bg-[#00A3E0] text-white"
             >
-              Start AI Matching Demo
+              جرّب أداة المطابقة الذكية
             </Button>
           </div>
         </CardContent>
@@ -201,19 +201,19 @@ const ScholarshipMatcher: React.FC = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
+    <div className="max-w-6xl mx-auto space-y-6" dir="rtl">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center space-x-2 rtl:space-x-reverse">
             <Award className="w-6 h-6 text-[#0018A8]" />
-            <span>Your Scholarship Matches</span>
+            <span>نتائج المطابقة الموصى بها</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           {loading ? (
             <div className="space-y-4">
               <div className="text-center">
-                <div className="animate-pulse text-[#0018A8]">AI is analyzing your profile...</div>
+                <div className="animate-pulse text-[#0018A8]">جارٍ تحليل ملفك بواسطة الذكاء الاصطناعي...</div>
               </div>
               <Progress value={85} className="w-full" />
             </div>
@@ -228,7 +228,7 @@ const ScholarshipMatcher: React.FC = () => {
                         <p className="text-[#2B3A3E]">{match.program}</p>
                       </div>
                       <Badge variant={match.matchScore > 80 ? "default" : "secondary"}>
-                        {match.matchScore}% Match
+                        نسبة تطابق {match.matchScore}%
                       </Badge>
                     </div>
                   </CardHeader>
@@ -240,10 +240,10 @@ const ScholarshipMatcher: React.FC = () => {
                       </div>
                       <div className="flex items-center space-x-2 rtl:space-x-reverse">
                         <BookOpen className="w-4 h-4 text-[#00A3E0]" />
-                        <span className="text-sm font-semibold">${match.fundingAmount.toLocaleString()} funding</span>
+                        <span className="text-sm font-semibold">تمويل بقيمة {match.fundingAmount.toLocaleString()} دولار</span>
                       </div>
                       <div>
-                        <p className="text-sm font-medium mb-1">Requirements:</p>
+                        <p className="text-sm font-medium mb-1">الشروط الأساسية:</p>
                         <ul className="text-xs text-[#2B3A3E] space-y-1">
                           {match.requirements.map((req, index) => (
                             <li key={index} className="flex items-center space-x-1 rtl:space-x-reverse">
@@ -254,10 +254,10 @@ const ScholarshipMatcher: React.FC = () => {
                         </ul>
                       </div>
                       <div className="text-xs text-[#EE3524] font-medium">
-                        Deadline: {match.deadline}
+                        آخر موعد للتقديم: {match.deadline}
                       </div>
                       <Button size="sm" className="w-full bg-[#0018A8] hover:bg-[#00A3E0]">
-                        Apply Now
+                        قدّم طلبك الآن
                       </Button>
                     </div>
                   </CardContent>
