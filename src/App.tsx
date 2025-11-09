@@ -26,6 +26,7 @@ import BlogPost from "./pages/BlogPost";
 import WorkWithUs from "./pages/WorkWithUs";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import Languages from "./pages/Languages";
 import Sitemap from "./components/Sitemap";
 import NotFound from "./pages/NotFound";
 
@@ -60,6 +61,7 @@ const App = () => (
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/services" element={<Services />} />
+                    <Route path="/languages" element={<Languages />} />
                     <Route path="/universities" element={<Universities />} />
                     <Route path="/success-stories" element={<SuccessStories />} />
                     <Route path="/about" element={<About />} />

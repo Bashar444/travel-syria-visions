@@ -20,6 +20,7 @@ const Navbar = () => {
   const navigation = [
     { name: t('nav.home'), href: '/' },
     { name: t('nav.services'), href: '/services' },
+    { name: t('nav.languages'), href: '/languages' },
     { name: t('nav.universities'), href: '/universities' },
     { name: t('nav.blog'), href: '/blog' },
     { name: t('nav.success-stories'), href: '/success-stories' },
@@ -110,7 +111,7 @@ const Navbar = () => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`relative px-3 sm:px-4 py-2 sm:py-3 rounded-md text-xs sm:text-sm md:text-base font-medium transition-colors duration-200 hover:bg-[#F6F8FC] ${
+                  className={`relative px-3 sm:px-4 py-2 sm:py-3 rounded-md text-xs sm:text-sm md:text-base font-medium transition-colors duration-200 hover:bg-[#F6F8FC] whitespace-nowrap ${
                     isActivePage(item.href)
                       ? "text-[#0018A8] bg-[#F6F8FC] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0018A8] after:content-[''] after:rounded-t-md"
                       : 'text-[#2B3A3E] hover:text-[#0018A8]'
@@ -125,7 +126,7 @@ const Navbar = () => {
                 <DropdownMenuTrigger asChild>
                   <Button 
                     variant="ghost" 
-                    className={`relative px-3 sm:px-4 py-2 sm:py-3 rounded-md text-xs sm:text-sm md:text-base font-medium transition-colors duration-200 hover:bg-[#F6F8FC] flex items-center gap-1 ${
+                    className={`relative px-3 sm:px-4 py-2 sm:py-3 rounded-md text-xs sm:text-sm md:text-base font-medium transition-colors duration-200 hover:bg-[#F6F8FC] flex items-center gap-1 whitespace-nowrap ${
                       isLegalPageActive()
                         ? "text-[#0018A8] bg-[#F6F8FC] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0018A8] after:content-[''] after:rounded-t-md"
                         : 'text-[#2B3A3E] hover:text-[#0018A8]'

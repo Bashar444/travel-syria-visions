@@ -18,7 +18,8 @@ const translations = {
     'nav.home': 'Home',
     'nav.services': 'Services',
     'nav.universities': 'Universities',
-    'nav.blog': 'Blog',
+  'nav.blog': 'Blog',
+  'nav.languages': 'Languages',
     'nav.work-with-us': 'Work With Us',
     'nav.success-stories': 'Success Stories',
     'nav.about': 'About',
@@ -98,12 +99,55 @@ const translations = {
     'mobile.apply-now': 'Apply Now',
     'mobile.notifications': 'Notifications',
     'mobile.quick-contact': 'Quick Contact',
+
+    'cta.badge': 'Join 500+ Successful Syrian Students',
+    'cta.title': 'Ready to Start Your Educational Journey Abroad?',
+    'cta.subtitle': 'Professional university admission guidance with transparent pricing starting at $1099 and proven results with 95% success rate for Syrian students seeking quality education abroad.',
+    'cta.button': 'Start Your University Application Today',
+
+    'languages.title': 'Language Preparation Services',
+    'languages.subtitle': 'Detailed guidance for English and German language programs with bilingual support.',
+    'languages.english.heading': 'English Language Programs',
+    'languages.german.heading': 'German Language Programs',
+    'languages.overview': 'Overview',
+    'languages.services': 'Included Services',
+    'languages.english.overview.en': 'Comprehensive coaching for IELTS, TOEFL, and academic speaking prepared by certified instructors.',
+    'languages.english.overview.ar': 'تدريب شامل لاختبارات الآيلتس والتوفل ومهارات المحادثة الأكاديمية بإشراف مدربين معتمدين.',
+    'languages.german.overview.en': 'Structured preparation for TestDaF, DSH, and university interview requirements with native-level mentors.',
+    'languages.german.overview.ar': 'تهيئة منظمة لاختبارات TestDaF وDSH ومتطلبات مقابلات الجامعات بإشراف مدربين بمستوى لغتهم الأصلي.',
+    'languages.cta': 'Book Your Language Assessment',
+
+    'languages.english.services': JSON.stringify([
+      'IELTS, TOEFL, and Duolingo placement diagnostics',
+      'Academic writing and presentation workshops',
+      'Scholarship essay refinement and mock interviews',
+      'Weekly progress tracking with bilingual feedback'
+    ]),
+    'languages.english.services.ar': JSON.stringify([
+      'اختبارات تقييم لمستويات IELTS وTOEFL وDuolingo',
+      'ورشات للكتابة الأكاديمية والعروض التقديمية',
+      'تحسين رسائل المنح والتدريب على المقابلات الوهمية',
+      'متابعة تقدم أسبوعية مع ملاحظات باللغتين'
+    ]),
+    'languages.german.services': JSON.stringify([
+      'Placement support for TestDaF, DSH, and TELC exams',
+      'Integration modules about studying and living in Germany',
+      'Visa interview simulations with native speakers',
+      'Specialized vocabulary for medical and engineering tracks'
+    ]),
+    'languages.german.services.ar': JSON.stringify([
+      'دعم لتحديد المستوى في اختبارات TestDaF وDSH وTELC',
+      'جلسات تعريفية حول الدراسة والحياة في ألمانيا',
+      'محاكاة لمقابلات التأشيرة مع متحدثين أصليين',
+      'مصطلحات متخصصة للتخصصات الطبية والهندسية'
+    ])
   },
   ar: {
     'nav.home': 'الرئيسية',
     'nav.services': 'خدماتنا',
     'nav.universities': 'الجامعات',
-    'nav.blog': 'المدونة',
+  'nav.blog': 'المدونة',
+  'nav.languages': 'اللغات',
     'nav.work-with-us': 'اعمل معنا',
     'nav.success-stories': 'قصص النجاح',
     'nav.about': 'معلومات عنا',
@@ -183,6 +227,48 @@ const translations = {
     'mobile.apply-now': 'قدم الآن',
     'mobile.notifications': 'الإشعارات',
     'mobile.quick-contact': 'تواصل سريع',
+
+    'cta.badge': 'انضم إلى أكثر من 500 طالب سوري ناجح',
+    'cta.title': 'هل أنت مستعد لبدء رحلتك التعليمية في الخارج؟',
+    'cta.subtitle': 'إرشاد احترافي للقبولات الجامعية بأسعار شفافة تبدأ من 1099 دولار ونتائج مثبتة بنسبة نجاح 95٪ للطلاب السوريين الباحثين عن تعليم عالي الجودة في الخارج.',
+    'cta.button': 'ابدأ طلبك الجامعي اليوم',
+
+    'languages.title': 'خدمات إعداد اللغات',
+    'languages.subtitle': 'إرشاد تفصيلي لبرامج اللغة الإنجليزية والألمانية بدعم ثنائي اللغة.',
+    'languages.english.heading': 'برامج اللغة الإنجليزية',
+    'languages.german.heading': 'برامج اللغة الألمانية',
+    'languages.overview': 'نظرة عامة',
+    'languages.services': 'الخدمات المتضمنة',
+    'languages.english.overview.en': 'Complete IELTS, TOEFL, and speaking preparation delivered in fluent Arabic and English.',
+    'languages.english.overview.ar': 'إعداد كامل لاختبارات الآيلتس والتوفل ومهارات المحادثة يقدم باللغة العربية والإنجليزية بطلاقة.',
+    'languages.german.overview.en': 'Step-by-step guidance for TestDaF, DSH، and German university integration requirements.',
+    'languages.german.overview.ar': 'إرشاد خطوة بخطوة لاختبارات TestDaF وDSH ومتطلبات الاندماج الجامعي الألماني.',
+    'languages.cta': 'احجز تقييمك اللغوي الآن',
+
+    'languages.english.services': JSON.stringify([
+      'جلسات تشخيص لمستوى IELTS وTOEFL وDuolingo',
+      'ورشات للكتابة الأكاديمية والعروض التقديمية',
+      'تنقيح رسائل المنح وتدريب على المقابلات',
+      'متابعة تقدم أسبوعية بتقارير عربية وإنجليزية'
+    ]),
+    'languages.english.services.ar': JSON.stringify([
+      'IELTS, TOEFL, and Duolingo placement diagnostics',
+      'Academic writing and presentation workshops',
+      'Scholarship essay refinement and mock interviews',
+      'Weekly progress tracking with bilingual feedback'
+    ]),
+    'languages.german.services': JSON.stringify([
+      'جلسات تحديد مستوى لاختبارات TestDaF وDSH وTELC',
+      'برامج اندماج للدراسة والحياة في ألمانيا',
+      'محاكاة لمقابلات الفيزا مع مدربين ألمان',
+      'مصطلحات متخصصة للتخصصات الطبية والهندسية'
+    ]),
+    'languages.german.services.ar': JSON.stringify([
+      'Placement support for TestDaF, DSH, and TELC exams',
+      'Integration modules about studying and living in Germany',
+      'Visa interview simulations with native speakers',
+      'Specialized vocabulary for medical and engineering tracks'
+    ])
   }
 };
 
