@@ -98,7 +98,7 @@ const Navbar = () => {
                       minHeight: 'auto'
                     }} 
                     src="https://ik.imagekit.io/sa7gckrpwy/logo%20travel.ico?updatedAt=1748450827694" 
-                    className="h-14 sm:h-16 md:h-20 w-auto min-w-[120px] sm:min-w-[140px] md:min-w-[180px] transition-transform duration-300 hover:scale-105 object-contain" 
+                    className="h-14 sm:h-16 md:h-20 w-auto min-w-[120px] sm:min-w-[140px] md:min-w-[180px] object-contain" 
                   />
                 </div>
               </Link>
@@ -110,9 +110,9 @@ const Navbar = () => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`relative px-3 sm:px-4 py-2 sm:py-3 rounded-md text-xs sm:text-sm md:text-base font-medium transition-all duration-300 hover:bg-[#F6F8FC] hover:shadow-sm transform hover:-translate-y-1 hover:scale-105 ${
+                  className={`relative px-3 sm:px-4 py-2 sm:py-3 rounded-md text-xs sm:text-sm md:text-base font-medium transition-colors duration-200 hover:bg-[#F6F8FC] ${
                     isActivePage(item.href)
-                      ? 'text-[#0018A8] bg-[#F6F8FC] shadow-md after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0018A8] after:content-[""] after:rounded-t-md'
+                      ? "text-[#0018A8] bg-[#F6F8FC] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0018A8] after:content-[''] after:rounded-t-md"
                       : 'text-[#2B3A3E] hover:text-[#0018A8]'
                   }`}
                 >
@@ -125,9 +125,9 @@ const Navbar = () => {
                 <DropdownMenuTrigger asChild>
                   <Button 
                     variant="ghost" 
-                    className={`relative px-3 sm:px-4 py-2 sm:py-3 rounded-md text-xs sm:text-sm md:text-base font-medium transition-all duration-300 hover:bg-[#F6F8FC] hover:shadow-sm transform hover:-translate-y-1 hover:scale-105 flex items-center gap-1 ${
+                    className={`relative px-3 sm:px-4 py-2 sm:py-3 rounded-md text-xs sm:text-sm md:text-base font-medium transition-colors duration-200 hover:bg-[#F6F8FC] flex items-center gap-1 ${
                       isLegalPageActive()
-                        ? 'text-[#0018A8] bg-[#F6F8FC] shadow-md after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0018A8] after:content-[""] after:rounded-t-md'
+                        ? "text-[#0018A8] bg-[#F6F8FC] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-1 after:bg-[#0018A8] after:content-[''] after:rounded-t-md"
                         : 'text-[#2B3A3E] hover:text-[#0018A8]'
                     }`}
                   >
@@ -158,7 +158,7 @@ const Navbar = () => {
                 variant="outline" 
                 size="sm" 
                 onClick={handleLanguageSwitch} 
-                className="border-[#0018A8] transition-all duration-300 hover:shadow-md hover:-translate-y-1 mx-2 text-white text-base font-normal bg-[#00A3E0] hover:bg-[#0018A8] min-w-[80px] flex items-center gap-2"
+                className="border-[#0018A8] transition-colors duration-200 mx-2 text-white text-base font-normal bg-[#00A3E0] hover:bg-[#0018A8] min-w-[80px] flex items-center gap-2"
                 title={`Switch to ${language === 'ar' ? 'English' : 'Arabic'}`}
               >
                 <Languages className="w-4 h-4" />
@@ -168,7 +168,7 @@ const Navbar = () => {
               {/* WhatsApp CTA */}
               <Button 
                 onClick={() => window.open(`https://wa.me/${whatsappNumber}`, '_blank')} 
-                className="text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-1 transform text-base bg-[#0018A8] hover:bg-[#00A3E0] flex items-center gap-2"
+                className="text-white transition-colors duration-200 text-base bg-[#0018A8] hover:bg-[#00A3E0] flex items-center gap-2"
               >
                 <Globe className="w-4 h-4" />
                 {t('hero.whatsapp')}
@@ -211,7 +211,7 @@ const Navbar = () => {
                         key={item.href}
                         to={item.href}
                         onClick={() => setIsOpen(false)}
-                        className={`px-4 py-3 rounded-md text-base font-medium transition-all duration-200 ${
+                        className={`px-4 py-3 rounded-md text-base font-medium transition-colors duration-200 ${
                           isActivePage(item.href)
                             ? 'text-[#0018A8] bg-[#F6F8FC] border-r-2 border-[#0018A8]'
                             : 'text-[#2B3A3E] hover:text-[#0018A8] hover:bg-[#F6F8FC]'
@@ -223,7 +223,7 @@ const Navbar = () => {
 
                     {/* Legal Pages in Mobile Menu */}
                     <div className="pt-2 border-t border-[#747474] mt-2">
-                      <div className="px-4 py-2 text-sm font-semibold text-[#0018A8]">
+                      <div className="px-4 py-2 text-sm font-medium text-[#0018A8]">
                         {t('nav.terms-privacy')}
                       </div>
                       {legalPages.map((page) => (
@@ -231,7 +231,7 @@ const Navbar = () => {
                           key={page.href}
                           to={page.href}
                           onClick={() => setIsOpen(false)}
-                          className={`px-6 py-2 rounded-md text-sm font-medium transition-all duration-200 block ${
+                          className={`px-6 py-2 rounded-md text-sm font-medium transition-colors duration-200 block ${
                             isActivePage(page.href)
                               ? 'text-[#0018A8] bg-[#F6F8FC] border-r-2 border-[#0018A8]'
                               : 'text-[#2B3A3E] hover:text-[#0018A8] hover:bg-[#F6F8FC]'
@@ -246,7 +246,7 @@ const Navbar = () => {
                       <Button 
                         variant="outline" 
                         onClick={handleMobileLanguageClick} 
-                        className="border-[#0018A8] text-[#0018A8] hover:bg-[#0018A8] hover:text-white w-full mb-3 transition-all duration-200 flex items-center justify-center gap-2"
+                        className="border-[#0018A8] text-[#0018A8] hover:bg-[#0018A8] hover:text-white w-full mb-3 transition-colors duration-200 flex items-center justify-center gap-2"
                         title={`Switch to ${language === 'ar' ? 'English' : 'Arabic'}`}
                       >
                         <Languages className="w-4 h-4" />
@@ -254,7 +254,7 @@ const Navbar = () => {
                       </Button>
 
                       <Button 
-                        className="bg-[#0018A8] hover:bg-[#00A3E0] text-white w-full transition-all duration-200 flex items-center justify-center gap-2" 
+                        className="bg-[#0018A8] hover:bg-[#00A3E0] text-white w-full transition-colors duration-200 flex items-center justify-center gap-2" 
                         onClick={() => {
                           window.open(`https://wa.me/${whatsappNumber}`, '_blank');
                           setIsOpen(false);
