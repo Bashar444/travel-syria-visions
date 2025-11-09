@@ -106,7 +106,7 @@ const Navbar = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className={`hidden md:flex items-center space-x-1 rtl:space-x-reverse ${direction === 'rtl' ? 'order-1' : 'order-2'}`}>
+            <div className={`hidden md:flex items-center space-x-2 rtl:space-x-reverse ${direction === 'rtl' ? 'order-1' : 'order-2'}`}>
               {navigation.map((item) => (
                 <Link
                   key={item.href}

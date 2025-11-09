@@ -61,7 +61,7 @@ const Languages = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-12">
         <header className={`mb-16 text-center ${direction === 'rtl' ? 'text-right' : 'text-left'}`}>
           <div className="inline-flex items-center gap-3 bg-white px-5 py-2 rounded-full shadow-sm border border-slate-200">
             <LanguagesIcon className="w-5 h-5 text-blue-600" />
