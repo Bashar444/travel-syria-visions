@@ -78,11 +78,18 @@
     border-color: hsl(var(--border));
   }
 
+  html {
+    font-size: 100%;
+  }
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     transition: all 0.3s ease;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-family: 'Noto Sans Arabic', 'Cairo', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
   }
 
   html[lang="ar"] {
@@ -97,15 +104,15 @@
 
   html[lang="en"] body {
     font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.65;
     letter-spacing: -0.011em;
     font-weight: 400;
   }
 
   html[lang="ar"] body {
-    font-family: 'Noto Sans Arabic', 'Cairo', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-    line-height: 1.8;
-    font-size: 1.05em;
+    font-size: 1.125rem;
+    line-height: 1.7;
     font-weight: 400;
   }
 
@@ -123,33 +130,33 @@
   }
 
   h1 {
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-size: clamp(2.75rem, 5vw, 3.5rem);
     letter-spacing: -0.03em;
   }
 
   h2 {
-    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-size: clamp(2.25rem, 4.5vw, 2.9rem);
     letter-spacing: -0.025em;
     font-weight: 500;
   }
 
   h3 {
-    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
     font-weight: 500;
   }
 
   h4 {
-    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 500;
   }
 
   h5 {
-    font-size: clamp(1.125rem, 2.5vw, 1.75rem);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
     font-weight: 500;
   }
 
   h6 {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
     font-weight: 500;
   }
 
@@ -159,9 +166,10 @@
   }
 
   p {
-    font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
     line-height: 1.7;
     margin-bottom: 1em;
+    max-width: 72ch;
   }
 
   a {
@@ -177,10 +185,11 @@
 
   ul,
   ol {
-    font-size: clamp(0.95rem, 2.5vw, 1.125rem);
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
     margin-left: 1.5em;
     margin-bottom: 1em;
     line-height: 1.7;
+    max-width: 72ch;
   }
 
   li {
