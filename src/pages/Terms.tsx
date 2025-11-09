@@ -56,7 +56,7 @@ const Terms = () => {
         },
         fees: {
           title: "الرسوم وسياسة الدفع",
-          content: "رسوم خدماتنا تبدأ من 1099 دولار أمريكي وتختلف حسب نوع الخدمة والوجهة. الرسوم غير قابلة للاسترداد إلا في ظروف استثنائية محددة كما هو موضح في سياسة الاسترداد الخاصة بنا. جميع الدفعات تتم عبر قنوات آمنة ومحمية."
+          content: "لمعرفة تفاصيل الرسوم يرجى التواصل معنا مباشرة عبر واتساب على الرقم ‎+963 985 453 247‎، حيث يحدد فريقنا قيمة الخدمة بناءً على احتياجاتك ونوع البرنامج المطلوب. تطبق سياسة الدفع والاسترداد الخاصة بنا بعد تأكيد الاتفاق الخطي معك."
         },
         limitations: {
           title: "قيود المسؤولية واستثناءات الضمان",
@@ -154,7 +154,7 @@ const Terms = () => {
         },
         fees: {
           title: "Fees and Payment Policy",
-          content: "Our service fees start from $1,099 USD and vary depending on service type, destination country, and program complexity. Fees are non-refundable except under exceptional circumstances as defined in our refund policy. All payments are processed through secure and protected channels with industry-standard encryption."
+          content: "For detailed pricing information, please contact us directly on WhatsApp at +963 985 453 247. Our team will prepare a tailored quote based on your requested service and program scope. Payment and refund policies apply once a written agreement is confirmed with you."
         },
         limitations: {
           title: "Liability Limitations and Warranty Disclaimers",

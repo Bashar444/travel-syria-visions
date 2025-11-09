@@ -23,7 +23,9 @@ const WorkWithUs = () => {
         direction === 'rtl' ? 'مهارات تواصل ممتازة' : 'Excellent communication skills'
       ],
       icon: Users,
-      salary: direction === 'rtl' ? '$800-1200' : '$800-1200'
+      salary: direction === 'rtl'
+        ? 'تفاصيل التعويضات تحدد بعد المقابلة، وللاستفسار يرجى التواصل عبر واتساب على الرقم ‎+963 985 453 247‎.'
+        : 'Compensation is discussed after the interview. Contact us on WhatsApp at +963 985 453 247 for details.'
     },
     {
       title: direction === 'rtl' ? 'مطور أعمال' : 'Business Developer',
@@ -36,7 +38,9 @@ const WorkWithUs = () => {
         direction === 'rtl' ? 'مهارات تفاوض' : 'Negotiation skills'
       ],
       icon: Target,
-      salary: direction === 'rtl' ? '$1000-1500' : '$1000-1500'
+      salary: direction === 'rtl'
+        ? 'تفاصيل التعويضات تحدد بعد المقابلة، وللاستفسار يرجى التواصل عبر واتساب على الرقم ‎+963 985 453 247‎.'
+        : 'Compensation is discussed after the interview. Contact us on WhatsApp at +963 985 453 247 for details.'
     },
     {
       title: direction === 'rtl' ? 'منسق أكاديمي' : 'Academic Coordinator',
@@ -49,7 +53,9 @@ const WorkWithUs = () => {
         direction === 'rtl' ? 'اهتمام بالتفاصيل' : 'Attention to detail'
       ],
       icon: Award,
-      salary: direction === 'rtl' ? '$700-1000' : '$700-1000'
+      salary: direction === 'rtl'
+        ? 'تفاصيل التعويضات تحدد بعد المقابلة، وللاستفسار يرجى التواصل عبر واتساب على الرقم ‎+963 985 453 247‎.'
+        : 'Compensation is discussed after the interview. Contact us on WhatsApp at +963 985 453 247 for details.'
     },
     {
       title: direction === 'rtl' ? 'ممثل دولي' : 'International Representative',
@@ -62,7 +68,9 @@ const WorkWithUs = () => {
         direction === 'rtl' ? 'شغف بالتعليم' : 'Passion for education'
       ],
       icon: Globe,
-      salary: direction === 'rtl' ? '$600-900' : '$600-900'
+      salary: direction === 'rtl'
+        ? 'تفاصيل التعويضات تحدد بعد المقابلة، وللاستفسار يرجى التواصل عبر واتساب على الرقم ‎+963 985 453 247‎.'
+        : 'Compensation is discussed after the interview. Contact us on WhatsApp at +963 985 453 247 for details.'
     }
   ];
 

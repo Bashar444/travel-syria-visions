@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { DollarSign } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const CTASection = () => {
@@ -11,7 +11,7 @@ const CTASection = () => {
     <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white" role="complementary" aria-label="دعوة لاتخاذ إجراء للقبولات الجامعية" dir="rtl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-          <DollarSign className="w-5 h-5 text-blue-200" aria-hidden="true" />
+          <MessageCircle className="w-5 h-5 text-blue-200" aria-hidden="true" />
           <span className="text-sm font-medium">
             {t('cta.badge')}
           </span>

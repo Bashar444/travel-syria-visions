@@ -57,6 +57,10 @@ const Universities = () => {
     }
   ];
 
+  const feesNote = direction === 'rtl'
+    ? 'تفاصيل الرسوم الدراسية تُحدد بعد التواصل المباشر معنا عبر واتساب على الرقم ‎+963 985 453 247‎.'
+    : 'Tuition details are provided after contacting us on WhatsApp at +963 985 453 247.';
+
   const indianUniversities = [
     {
       name: "SRM Institute of Science and Technology",
@@ -70,7 +74,7 @@ const Universities = () => {
         direction === 'rtl' ? "معدلات توظيف عالية وصلات صناعية" : "High placement rates and industry connections",
         direction === 'rtl' ? "شبكة خريجين قوية ومرافق بحثية" : "Strong alumni network and research facilities"
       ],
-      fees: direction === 'rtl' ? "7.5 ألف إلى 1.4 كرور روبية هندية" : "INR 7.5K to INR 1.4 Crore",
+  fees: feesNote,
       color: "bg-orange-50 border-orange-200"
     },
     {

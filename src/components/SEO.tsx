@@ -12,7 +12,7 @@ interface SEOProps {
 
 const SEO = ({ 
   title = "Travel.Ltd - University Admissions, Hajj Services & Educational Consulting for Syrian Students",
-  description = "Professional university admission services, student visa processing, Hajj & Umrah packages, and Saudi scholarships for Syrian students. Expert educational consulting with 95% success rate. Transparent pricing from $1099. Study abroad in Italy, India, Romania.",
+  description = "Professional university admission services, student visa processing, Hajj & Umrah packages, and Saudi scholarships for Syrian students. Expert educational consulting with 95% success rate. For pricing details contact us on WhatsApp at +963 985 453 247. Study abroad in Italy, India, Romania.",
   keywords = "university admissions Syria, Syrian students study abroad, student visa processing Damascus, Hajj services Syria, Umrah packages, Saudi scholarships Syrian students, educational consulting Syria, study in Italy India Romania, Syrian education services, university applications Syria, study abroad guidance, student visa help Syria",
   image = "https://syriantravel.in/lovable-uploads/d7939d67-66f6-4e0d-9ecb-b43d2e214eda.png",
   url = "https://syriantravel.in",
@@ -50,7 +50,6 @@ const SEO = ({
       "@type": "Country",
       "name": "Syria"
     },
-    "priceRange": "$1099",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.8",
@@ -68,9 +67,7 @@ const SEO = ({
             "@type": "Service",
             "name": "University Admission Services",
             "description": "Complete guidance for university applications worldwide with 95% success rate"
-          },
-          "price": "1099",
-          "priceCurrency": "USD"
+          }
         },
         {
           "@type": "Offer", 
@@ -78,9 +75,7 @@ const SEO = ({
             "@type": "Service",
             "name": "Student Visa Processing",
             "description": "Professional visa application support and tracking for Syrian students"
-          },
-          "price": "1099",
-          "priceCurrency": "USD"
+          }
         }
       ]
     }
@@ -100,10 +95,10 @@ const SEO = ({
       },
       {
         "@type": "Question",
-        "name": "What are your educational service fees and consultation costs?",
+        "name": "How can I learn about your educational service fees?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our comprehensive service package costs $1,099 USD, which includes all university admission services, visa processing assistance, and educational consultation with no hidden fees or additional charges throughout the entire application process."
+          "text": "For a tailored quote, please contact our team directly on WhatsApp at +963 985 453 247. We evaluate each case individually and provide transparent pricing once we understand your needs and chosen services."
         }
       },
       {

@@ -4,13 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Users, Plane, Hotel, Star } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const hajjPackages = [
   {
     id: 1,
     name: 'باقة الحج المميزة',
     duration: '14 يومًا',
-    price: '4,500 دولار للفرد',
     groupSize: 'من 25 إلى 30 حاجًا',
     accommodation: 'فنادق خمس نجوم قريبة من الحرم',
     features: ['رحلات مباشرة', 'نقل فاخر بين المشاعر', 'مرشد شرعي وطبي مرافق', 'وجبات كاملة يوميًا', 'إشراف طبي على مدار الساعة'],
@@ -21,7 +21,6 @@ const hajjPackages = [
     id: 2,
     name: 'باقة الحج الاقتصادية',
     duration: '12 يومًا',
-    price: '3,200 دولار للفرد',
     groupSize: 'من 40 إلى 50 حاجًا',
     accommodation: 'فنادق أربع نجوم بخدمات مميزة',
     features: ['رحلات مجدولة', 'نقل جماعي مكيف', 'مرشدون يتحدثون العربية', 'وجبتان يوميًا', 'رعاية طبية أساسية'],
@@ -35,7 +34,6 @@ const umrahPackages = [
     id: 3,
     name: 'باقة العمرة الفاخرة',
     duration: '7 أيام',
-    price: '1,800 دولار للفرد',
     groupSize: 'من 15 إلى 20 معتمرًا',
     accommodation: 'فنادق خمس نجوم مقابل الحرم',
     features: ['رحلات مباشرة', 'نقل خاص', 'مرشد شخصي', 'وجبات يومية كاملة', 'توفير مياه زمزم وتسهيلات خاصة'],
@@ -46,7 +44,6 @@ const umrahPackages = [
     id: 4,
     name: 'باقة العمرة الاقتصادية',
     duration: '5 أيام',
-    price: '1,200 دولار للفرد',
     groupSize: 'من 30 إلى 40 معتمرًا',
     accommodation: 'فنادق ثلاث نجوم بخدمات جيدة',
     features: ['رحلات اقتصادية', 'نقل مشترك مريح', 'مرشد جماعي', 'إفطار يومي', 'دعم لوجستي متواصل'],
@@ -81,6 +78,7 @@ const serviceHighlights = [
 const HajjServices = () => {
   const [selectedPackage, setSelectedPackage] = useState<'hajj' | 'umrah'>('hajj');
   const currentPackages = selectedPackage === 'hajj' ? hajjPackages : umrahPackages;
+  const { t } = useLanguage();
 
   return (
     <div className="space-y-6" dir="rtl">
@@ -127,9 +125,13 @@ const HajjServices = () => {
                   </div>
                   <p className="text-sm text-gray-600">{pkg.available}</p>
                 </div>
-                <div className="text-left">
-                  <div className="text-2xl font-bold text-green-600">{pkg.price}</div>
-                  <div className="text-sm text-gray-500">يشمل جميع الخدمات</div>
+                <div className="text-left max-w-[180px]">
+                  <div className="text-sm font-semibold text-green-700 leading-relaxed">
+                    {t('pricing.note')}
+                  </div>
+                  <div className="text-xs text-gray-500 mt-2">
+                    سيتم تحديد قيمة الباقة بعد تقييم احتياجات المجموعة والخدمات الإضافية المطلوبة.
+                  </div>
                 </div>
               </div>
             </CardHeader>

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Search, MapPin, DollarSign, Star } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface University {
   id: number;
@@ -11,7 +12,6 @@ interface University {
   city: string;
   country: string;
   ranking: number;
-  tuitionFee: string;
   programs: string[];
   scholarships: boolean;
   rating: number;
@@ -27,7 +27,6 @@ const universities: University[] = [
     city: 'بولونيا',
     country: 'إيطاليا',
     ranking: 167,
-    tuitionFee: 'من 3000 إلى 4000 يورو سنوياً',
     programs: ['الهندسة', 'الطب', 'إدارة الأعمال'],
     scholarships: true,
     rating: 4.5,
@@ -41,7 +40,6 @@ const universities: University[] = [
     city: 'تشيناي',
     country: 'الهند',
     ranking: 801,
-    tuitionFee: 'من 3000 إلى 5000 دولار سنوياً',
     programs: ['علوم الحاسوب', 'الهندسة', 'الإدارة'],
     scholarships: true,
     rating: 4.2,
@@ -55,7 +53,6 @@ const universities: University[] = [
     city: 'كلوج نابوكا',
     country: 'رومانيا',
     ranking: 651,
-    tuitionFee: 'من 2000 إلى 3500 يورو سنوياً',
     programs: ['الطب', 'علم النفس', 'الاقتصاد'],
     scholarships: true,
     rating: 4.3,
@@ -69,7 +66,6 @@ const universities: University[] = [
     city: 'ميلانو',
     country: 'إيطاليا',
     ranking: 154,
-    tuitionFee: 'حوالي 3900 يورو سنوياً',
     programs: ['العمارة', 'التصميم', 'الهندسة'],
     scholarships: true,
     rating: 4.6,
@@ -89,6 +85,7 @@ const countries = [
 const UniversityBrowser = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('all');
+  const { t } = useLanguage();
 
   const filteredUniversities = universities.filter((uni) => {
     const normalizedSearch = searchTerm.trim().toLowerCase();
@@ -159,9 +156,9 @@ const UniversityBrowser = () => {
             </CardHeader>
             <CardContent className="pt-0" dir="rtl">
               <div className="space-y-3">
-                <div className="flex items-center justify-between text-sm text-gray-600">
-                  <span>متوسط الرسوم الدراسية:</span>
-                  <span className="font-semibold text-green-600">{uni.tuitionFee}</span>
+                <div className="text-sm text-gray-600 leading-relaxed">
+                  <span className="block font-semibold text-gray-700 mb-1">تفاصيل الرسوم الدراسية:</span>
+                  <span className="text-green-700 font-medium">{t('pricing.note')}</span>
                 </div>
 
                 <div>

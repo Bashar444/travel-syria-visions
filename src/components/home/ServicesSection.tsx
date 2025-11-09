@@ -89,11 +89,12 @@ const ServicesSection = () => {
                 <p className="text-gray-600 leading-relaxed text-sm mb-4">
                   {service.description}
                 </p>
-                <div className="text-2xl font-bold text-blue-600 mb-3">
-                  {t('services.price')}
-                </div>
+                <p className="text-sm font-semibold text-blue-700 mb-3 leading-relaxed">
+                  {t('pricing.note')}
+                </p>
                 <Button 
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                  onClick={() => window.open('https://wa.me/+963985453247', '_blank')}
                   aria-label={`ابدأ في خدمة ${service.title}`}
                 >
                   {t('services.button')}

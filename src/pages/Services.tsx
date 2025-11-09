@@ -72,8 +72,10 @@ const Services = () => {
               : 'We provide comprehensive and specialized services to ensure you get the best educational opportunities'
             }
           </p>
-          <div className="bg-[#EE3524] text-white px-8 py-4 rounded-lg inline-block">
-            <span className="text-2xl font-bold">{t('services.price')}</span>
+          <div className="bg-[#EE3524] text-white px-8 py-4 rounded-lg inline-block max-w-2xl">
+            <span className="text-lg font-semibold leading-relaxed block">
+              {t('pricing.note')}
+            </span>
           </div>
         </div>
 

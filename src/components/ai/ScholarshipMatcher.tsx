@@ -22,7 +22,6 @@ interface ScholarshipMatch {
   program: string;
   country: string;
   matchScore: number;
-  fundingAmount: number;
   requirements: string[];
   deadline: string;
 }
@@ -107,7 +106,6 @@ const ScholarshipMatcher: React.FC = () => {
         university: 'جامعة سانت آنا للدراسات العليا',
         program: 'دراسات الأمن الدولي',
         country: 'إيطاليا',
-        fundingAmount: 15000,
         requirements: ['معدل تراكمي أعلى من 3.5', 'إجادة اللغة الإنجليزية بمستوى متقدم', 'تقديم خطة بحثية'],
         deadline: '2024-06-30'
       },
@@ -116,7 +114,6 @@ const ScholarshipMatcher: React.FC = () => {
         university: 'معهد إس آر إم للعلوم والتكنولوجيا',
         program: 'هندسة علوم الحاسوب',
         country: 'الهند',
-        fundingAmount: 8000,
         requirements: ['معدل تراكمي أعلى من 3.0', 'إجادة اللغة الإنجليزية بمستوى متوسط', 'اختبار قبول جامعي'],
         deadline: '2024-07-15'
       },
@@ -125,7 +122,6 @@ const ScholarshipMatcher: React.FC = () => {
         university: 'جامعة بابش-بولياي',
         program: 'إدارة الأعمال',
         country: 'رومانيا',
-        fundingAmount: 12000,
         requirements: ['معدل تراكمي أعلى من 3.2', 'إجادة اللغة الإنجليزية بمستوى متقدم', 'مقابلة أكاديمية'],
         deadline: '2024-08-01'
       },
@@ -134,7 +130,6 @@ const ScholarshipMatcher: React.FC = () => {
         university: 'جامعة ميلانو بيكوكّا',
         program: 'الطب والجراحة',
         country: 'إيطاليا',
-        fundingAmount: 20000,
         requirements: ['معدل تراكمي أعلى من 3.8', 'إجادة اللغة الإنجليزية بمستوى متقدم جدًا', 'اختبار كفاءة طبية'],
         deadline: '2024-05-30'
       }
@@ -240,7 +235,7 @@ const ScholarshipMatcher: React.FC = () => {
                       </div>
                       <div className="flex items-center space-x-2 rtl:space-x-reverse">
                         <BookOpen className="w-4 h-4 text-[#00A3E0]" />
-                        <span className="text-sm font-semibold">تمويل بقيمة {match.fundingAmount.toLocaleString()} دولار</span>
+                        <span className="text-sm font-semibold text-green-700">تفاصيل التمويل تُحدد بعد مراجعة ملفك، تواصل معنا عبر واتساب على الرقم ‎+963 985 453 247‎.</span>
                       </div>
                       <div>
                         <p className="text-sm font-medium mb-1">الشروط الأساسية:</p>
